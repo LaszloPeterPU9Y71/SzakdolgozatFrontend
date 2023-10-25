@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,19 +12,31 @@ export interface Tool {
   status: string ;
 }
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ToolsService {
-  host = 'http://localhost:8080/api/v1';
+  host = 'http://localhost:8080/api/v1/tools';
 
   constructor(private http: HttpClient) { }
 
   getToolList(searchValue: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host + '/tools/all');
+    return this.http.get<Tool[]>(this.host +`/all`);
   }
 
-  getToolByName(name: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host + `/tools/name/title_like=${name}`);
+  getToolByName(searchValue: string): Observable<Tool[]> {
+   return this.http.get<Tool[]>(this.host + `/name=${searchValue}`);
+   }
+
+  getToolByStatus(searchValue: string): Observable<Tool[]> {
+    return this.http.get<Tool[]>(this.host + `/status=${searchValue}`);
   }
+
+
+
+
+
+
 }

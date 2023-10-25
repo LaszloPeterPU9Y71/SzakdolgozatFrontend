@@ -10,6 +10,7 @@
           "style": "scss"
         }
       },
+
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -79,6 +80,7 @@
             "browserTarget": "Szakdolgozat_frontend:build"
           }
         },
+
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
