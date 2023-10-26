@@ -5,6 +5,7 @@ import {FormBuilder} from "@angular/forms";
 
 
 @Component({
+  selector: '.app-tool-list',
   templateUrl: './tool-list.component.html',
   styleUrls: ['./tool-list.component.scss']
 })

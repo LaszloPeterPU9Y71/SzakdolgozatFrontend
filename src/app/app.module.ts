@@ -14,6 +14,10 @@ import {ToolSearchTypenumberComponent} from "./tools/tool-inprogress/tool-search
 import {ToolReadyComponent} from "./tools/tool-ready/tool-ready.component";
 import {ToolClosedComponent} from "./tools/tool-closed/tool-closed.component";
 import {RepairManComponent} from "./repairMen/repairMan/repairMan.component";
+import {UserRegisterComponent} from "./user/user-register/user-register.component";
+import {UserLoginComponent} from "./user/user-login/user-login.component";
+import {MainComponent} from "./main/main.component";
+import {WorksheetComponent} from "./worksheet/worksheet.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import {RepairManComponent} from "./repairMen/repairMan/repairMan.component";
     ToolSearchTypenumberComponent,
     ToolReadyComponent,
     ToolClosedComponent,
-    RepairManComponent
+    RepairManComponent,
+    UserRegisterComponent,
+    UserLoginComponent,
+    MainComponent,
+    WorksheetComponent
   ],
     imports: [
         BrowserModule,

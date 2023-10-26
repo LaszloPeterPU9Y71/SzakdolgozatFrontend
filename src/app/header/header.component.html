@@ -1,28 +1,29 @@
+
+
 <nav class=" bg-light navbar-light d-flex justify-content-between shadow me-auto">
 
     <span>
-        <div>
-            <button type="button"  >Beállítások</button>
-            <button type="button"  >Ügyfelek</button>
-            <button type="button"  >Hibák</button>
-            <button type="button"  >Munkalapok</button>
-            <button type="button"  >Alkatrészek</button>
-            <button type="button" [routerLink]="['repairman']" >Munkatársak</button>
+        <div >
+
+            <button class="button" type="button"  >Ügyfelek</button>
+            <button class="button" type="button"  >Hibák</button>
+            <button class="button" type="button"  >Alkatrészek</button>
+            <button class="button" type="button" [routerLink]="['repairman']" >Munkatársak</button>
         </div> <br>
         <div >
-            <button type="button"  >Új munkalap</button>
-            <button type="button"  >Szerkesztés</button>
-            <button type="button"  >Törlés</button>
-            <button type="button"  >Nyomtatás</button>
-            <button type="button"  >Másolás</button>
-            <button type="button"  >Küldés</button>
+            <button class="button" type="button" [routerLink]="['worksheet']" >Új munkalap</button>
+            <button class="button" type="button"  >Szerkesztés</button>
+            <button class="button" type="button"  >Törlés</button>
+            <button class="button" type="button"  >Nyomtatás</button>
+            <button class="button" type="button"  >Másolás</button>
+            <button class="button" type="button"  >Küldés</button>
         </div> <br>
         <div>
-            <button type="button" [routerLink]="['tools']" >Munkalapok </button>
-            <button type="button" [routerLink]="['arrived']">Beérkezett</button>
-            <button type="button" [routerLink]="['inprogress']">Folyamatban</button>
-            <button type="button" [routerLink]="['ready']">Elkészült</button>
-            <button type="button" [routerLink]="['closed']">Lezárt</button>
+            <button class="button" type="button" [routerLink]="['tools']" >Összes </button>
+            <button class="button" type="button" [routerLink]="['arrived']">Beérkezett</button>
+            <button class="button" type="button" [routerLink]="['inprogress']">Folyamatban</button>
+            <button class="button" type="button" [routerLink]="['ready']">Elkészült</button>
+            <button class="button" type="button" [routerLink]="['closed']">Lezárt</button>
         </div> <br>
     </span>
   <br>

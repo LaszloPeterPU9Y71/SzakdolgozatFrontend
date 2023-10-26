@@ -1,0 +1,85 @@
+<table class="Registration">
+  <tr>
+    <td>
+      <div class="container">
+        <div class="row col-md-8 offset-md-2">
+          <div class="row">
+            <div class="card-header">
+              <h2 class="text-center">Regisztráció</h2>
+              <h4 class="text-center">Alkalmazott adatai</h4>
+            </div>
+            <div class="card-body">
+              <form method="post" role="form"  >
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Teljes név</label>
+                  <label for="UserName"></label>
+                  <input class="form-control"
+                         id="UserName"
+                         name="UserName"
+                         placeholder="Teljes nevét írja ide!"
+
+                         type="text"
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label">Telefonszám</label>
+                  <label for="UserTelNum"></label>
+
+                  <input class="form-control"
+                         id="UserTelNum"
+                         name="UserTelNum"
+                         placeholder="Telefonszámát írja ide"
+                         type="number"
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label">E-mail cím</label>
+                  <label for="UserEmail"></label>
+                  <input class="form-control"
+                         id="UserEmail"
+                         name="UserEmail"
+                         placeholder="E-mail címét írja ide"
+
+                         type="email"
+                  />
+
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Jelszó</label>
+                  <label for="UserPassword"></label>
+                  <input class="form-control"
+                         id="UserPassword"
+                         name="UserPassword"
+                         placeholder="Jelszavát írja ide!"
+
+                         type="password"
+                  />
+
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Beosztás</label>
+                  <select name="select" >
+                    <option value="repairman">Szerelő</option>
+                    <option value="smallboss">Műhelyvezető</option>
+                    <option value="owner" >Vezető</option>
+                    <option value="seller" >Eladó</option>
+                  </select>
+                </div>
+
+
+                <div class="form-group mb-3">
+                  <button class="btn btn-primary" type="submit" routerLink="/login">Regisztrál</button>
+                  <span>Regisztráltál már? <a routerLink="/login" >Lépj be itt!</a></span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+
+  </tr>
+</table>
