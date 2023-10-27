@@ -6,14 +6,14 @@ import {FormControl, FormGroup} from "@angular/forms";
 
   @Component({
     selector: 'app-user-register',
-    templateUrl: './user-register.component.html',
-    styleUrls: ['./user-register.component.scss'],
+    templateUrl: './customer-company-register.component.html',
+    styleUrls: ['./customer-company-register.component.scss'],
   })
 
 
 
 
-export class UserRegisterComponent {
+export class CustomerCompanyRegisterComponent {
 
 
     private userService = inject(UserService)

@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 
 
   @Component({
@@ -7,7 +7,12 @@ import {Component} from "@angular/core";
     styleUrls: ['./worksheet.component.scss']
   })
 
-export class WorksheetComponent {
+export class WorksheetComponent implements OnInit{
+
+    ngOnInit() {
+
+    }
+
 
   }
 

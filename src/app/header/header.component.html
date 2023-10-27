@@ -6,12 +6,12 @@
         <div >
 
             <button class="button" type="button"  >Ügyfelek</button>
-            <button class="button" type="button"  >Hibák</button>
-            <button class="button" type="button"  >Alkatrészek</button>
-            <button class="button" type="button" [routerLink]="['repairman']" >Munkatársak</button>
+            <button class="button" type="button" [routerLink]="['/home/defects']" >Hibák</button>
+            <button class="button" type="button" [routerLink]="['/home/spareparts']" >Alkatrészek</button>
+            <button class="button" type="button" [routerLink]="['/home/repairman']" >Munkatársak</button>
         </div> <br>
         <div >
-            <button class="button" type="button" [routerLink]="['worksheet']" >Új munkalap</button>
+            <button class="button" type="button" [routerLink]="['/home/worksheet']" >Új munkalap</button>
             <button class="button" type="button"  >Szerkesztés</button>
             <button class="button" type="button"  >Törlés</button>
             <button class="button" type="button"  >Nyomtatás</button>
@@ -19,11 +19,11 @@
             <button class="button" type="button"  >Küldés</button>
         </div> <br>
         <div>
-            <button class="button" type="button" [routerLink]="['tools']" >Összes </button>
-            <button class="button" type="button" [routerLink]="['arrived']">Beérkezett</button>
-            <button class="button" type="button" [routerLink]="['inprogress']">Folyamatban</button>
-            <button class="button" type="button" [routerLink]="['ready']">Elkészült</button>
-            <button class="button" type="button" [routerLink]="['closed']">Lezárt</button>
+            <button class="button" type="button" [routerLink]="['/home/tools']" >Összes </button>
+            <button class="button" type="button" [routerLink]="['/home/arrived']">Beérkezett</button>
+            <button class="button" type="button" [routerLink]="['/home/inprogress']">Folyamatban</button>
+            <button class="button" type="button" [routerLink]="['/home/ready']">Elkészült</button>
+            <button class="button" type="button" [routerLink]="['/home/closed']">Lezárt</button>
         </div> <br>
     </span>
   <br>

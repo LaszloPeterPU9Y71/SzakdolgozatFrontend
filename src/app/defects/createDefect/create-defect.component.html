@@ -1,0 +1,43 @@
+<table class="Registration">
+  <tr>
+    <td>
+      <div class="container">
+        <div class="row col-md-8 offset-md-2">
+          <div class="row">
+            <div class="card-header">
+
+              <h4 class="text-center">Hiba megnevezés</h4>
+            </div>
+            <div class="card-body">
+              <form method="post" role="form" [formGroup]="form"  >
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Megnevezés</label>
+                  <label for="defectName"></label>
+                  <input class="form-control"
+                         id="defectName"
+                         name="defectName"
+                         placeholder="Megnevezés"
+                         formControlName="defectName"
+                         type="text"
+                  />
+                </div>
+
+                <div class="form-group mb-3">
+                  <button class="btn btn-primary" type="button" (click)="onSave()" >Hiba felvétel</button>
+                </div>
+                <div>
+                <button class="btn btn-primary" type="button" routerLink="/defects"  >Vissza a hibalistához</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+
+  </tr>
+
+</table>
+
+

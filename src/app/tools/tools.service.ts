@@ -30,6 +30,16 @@ export class ToolsService {
    return this.http.get<Tool[]>(this.host + `/name=${searchValue}`);
    }
 
+  getToolByTypeNumber(searchValue: string): Observable<Tool[]> {
+    return this.http.get<Tool[]>(this.host + `/type=${searchValue}`);
+  }
+  getToolByItemNumber(searchValue: string): Observable<Tool[]> {
+    return this.http.get<Tool[]>(this.host + `/item=${searchValue}`);
+  }
+  getToolBySerialNumber(searchValue: string): Observable<Tool[]> {
+    return this.http.get<Tool[]>(this.host + `/serial=${searchValue}`);
+  }
+
   getToolByStatus(searchValue: string): Observable<Tool[]> {
     return this.http.get<Tool[]>(this.host + `/status=${searchValue}`);
   }

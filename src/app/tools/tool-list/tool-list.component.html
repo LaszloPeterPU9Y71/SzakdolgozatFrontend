@@ -1,19 +1,4 @@
 
-<div class="container">
-  <form
-    [formGroup]="searchForm"
-    class="searchBar"
-    (ngSubmit)="onSearchSubmit()"
-
-  >
-    <input
-      type="text"
-      placeholder="Search..."
-      formControlName="searchValue"
-      class="searchBarInput"
-    />
-    <button type="submit" >Keresés</button>
-  </form>
 
   <div class="container">
     <div class="row">
@@ -25,17 +10,96 @@
       <thead class="table-dark">
       <tr>
 
-        <th>ID</th>
-        <th>Megnevezés</th>
-        <th>Típusszám</th>
-        <th>Cikkszám</th>
-        <th>Sorszám</th>
+        <th class="noSearch">ID
+          <br><br>
+        </th>
+        <th>Megnevezés
+          <form
+            [formGroup]="searchFormName"
+            class="searchBar"
+            (ngSubmit)="onSearchSubmitName()"
 
-        <th>Átvétel időpontja</th>
-        <th>Státusz</th>
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInput"
+            />
+          </form>
+        </th>
+        <th>Típusszám
+          <form
+            [formGroup]="searchFormTypeNumber"
+            class="searchBar"
+            (ngSubmit)="onSearchSubmitTypeNumber()"
+
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInput"
+            />
+          </form>
+        </th>
+        <th>Cikkszám
+          <form
+            [formGroup]="searchFormItemNumber"
+            class="searchBar"
+            (ngSubmit)="onSearchSubmitItemNumber()"
+
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInput"
+            />
+          </form>
+        </th>
+        <th>Sorszám
+          <form
+            [formGroup]="searchFormSerialNumber"
+            class="searchBar"
+            (ngSubmit)="onSearchSubmitSerialNumber()"
+
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInput"
+            />
+          </form>
+        </th>
+
+        <th class="nosearch">
+
+          Átvétel időpontja
+
+
+        </th>
+
+        <th>Státusz
+          <form
+            [formGroup]="searchFormStatus"
+            class="searchBar"
+            (ngSubmit)="onSearchSubmitStatus()"
+
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInput"
+            />
+          </form>
+        </th>
 
 
       </tr>
+
       </thead>
       <tbody>
 
@@ -55,15 +119,9 @@
             <option value="Beérkezett" >Beérkezett</option>
            </select>
         </td>
-        <td>
-          <form>
-
-            <button type="submit" >Mentés</button>
-          </form>
-        </td>
       </tr>
       </tbody>
     </table>
   </div>
-</div>
+
 
