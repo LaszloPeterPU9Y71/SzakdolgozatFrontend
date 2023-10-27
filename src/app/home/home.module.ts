@@ -18,6 +18,9 @@ import {CreateSparePartComponent} from "../spareParts/createSparePart/create-spa
 import {SparePartsListComponent} from "../spareParts/sparePartsList/spare-parts-list.component";
 import {DefectListComponent} from "../defects/defectList/defect-list.component";
 import {CreateDefectComponent} from "../defects/createDefect/create-defect.component";
+import {
+  CustomerCompanyRegisterComponent
+} from "../customerCompany/customer-company-register/customer-company-register.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import {CreateDefectComponent} from "../defects/createDefect/create-defect.compo
     CreateSparePartComponent,
     SparePartsListComponent,
     DefectListComponent,
-    CreateDefectComponent
+    CreateDefectComponent,
+    CustomerCompanyRegisterComponent
 
   ],
   imports: [

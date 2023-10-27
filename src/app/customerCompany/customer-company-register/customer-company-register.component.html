@@ -1,0 +1,182 @@
+<div>
+<h2 class="text-center">Partner regisztráció</h2>
+</div>
+<table class="Registration">
+  <tr>
+    <td>
+      <div class="container">
+        <div class="row col-md-8 offset-md-2">
+          <div class="row">
+            <div class="card-header">
+              <h4 class="text-center">Alkalmazott adatai</h4>
+            </div>
+            <div class="card-body">
+              <form method="post" role="form" [formGroup]="Customerform"  >
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Teljes név</label>
+                  <label for="name"></label>
+                  <input class="form-control"
+                         id="name"
+                         name="name"
+                         placeholder="Teljes nevét írja ide!"
+                         formControlName="name"
+                         type="text"
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label">Telefonszám</label>
+                  <label for="telnum"></label>
+                  <input class="form-control"
+                         id="telnum"
+                         name="telnum"
+                         formControlName="telNum"
+                         placeholder="Telefonszámát írja ide"
+                         type="number"
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label">E-mail cím</label>
+                  <label for="email"></label>
+                  <input class="form-control"
+                         id="email"
+                         name="email"
+                         formControlName="email"
+                         placeholder="E-mail címét írja ide"
+                         type="email"
+                  />
+
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Jelszó</label>
+                  <label for="password"></label>
+                  <input class="form-control"
+                         id="password"
+                         name="password"
+                         formControlName="password"
+                         placeholder="Jelszavát írja ide!"
+                         type="text"
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label">Jelszó</label>
+                  <label for="title"></label>
+                  <input class="form-control"
+                         id="title"
+                         name="title"
+                         formControlName="title"
+                         placeholder="Beosztását írja ide!"
+                         type="text"
+                  />
+
+                  <div class="form-group mb-3">
+                    <label class="form-label">Jelszó</label>
+                    <label for="accountNumber"></label>
+                    <input class="form-control"
+                           id="accountNumber"
+                           name="accountNumber"
+                           formControlName="accountNumber"
+                           placeholder="Számlaszám!"
+                           type="text"
+                    />
+                  </div>
+
+
+
+
+
+                <div class="form-group mb-3">
+                  <button class="btn btn-primary" type="button" (click)="onSave()" (click)="onSaveCustomer()" >Regisztrál</button>
+
+                  <button class="btn btn-primary" type="button" routerLink="/spareparts"  >Vissza az partnerlistához</button>
+                </div>
+
+            </div>
+          </form>
+            </div>
+        </div>
+      </div>
+      </div>
+    </td>
+
+
+
+    <td>
+      <div class="container">
+        <div class="row col-md-8 offset-md-2">
+          <div class="row">
+            <div class="card-header">
+
+              <h4 class="text-center">Cég adatai</h4>
+            </div>
+            <div class="card-body">
+              <form method="post" role="form" [formGroup]="Companyform"  >
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Teljes név</label>
+                  <label for="name"></label>
+                  <input class="form-control"
+                         name="name"
+                         placeholder="Cégnév!"
+                         formControlName="name"
+                         type="text"
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label">Telefonszám</label>
+                  <label for="postalcode"></label>
+                  <input class="form-control"
+                         id="postalcode"
+                         name="postalcode"
+                         formControlName="postalcode"
+                         placeholder="Irányítószám"
+                         type="number"
+                  />
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Telefonszám</label>
+                  <label for="town"></label>
+                  <input class="form-control"
+                         id="town"
+                         name="town"
+                         formControlName="town"
+                         placeholder="Településnév"
+                         type="text"
+                  />
+                </div>
+
+
+                <div class="form-group mb-3">
+                  <label class="form-label">E-mail cím</label>
+                  <label for="street"></label>
+                  <input class="form-control"
+                         id="street"
+                         name="street"
+                         formControlName="street"
+                         placeholder="Utca és házszám"
+                         type="text"
+                  />
+
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Jelszó</label>
+                  <label for="taxNumber"></label>
+                  <input class="form-control"
+                         id="taxNumber"
+                         name="taxNumber"
+                         formControlName="taxNumber"
+                         placeholder="Adószám!"
+                         type="text"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

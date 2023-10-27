@@ -12,6 +12,9 @@ import {CreateSparePartComponent} from "../spareParts/createSparePart/create-spa
 import {SparePartsListComponent} from "../spareParts/sparePartsList/spare-parts-list.component";
 import {DefectListComponent} from "../defects/defectList/defect-list.component";
 import {CreateDefectComponent} from "../defects/createDefect/create-defect.component";
+import {
+  CustomerCompanyRegisterComponent
+} from "../customerCompany/customer-company-register/customer-company-register.component";
 
 
 
@@ -172,6 +175,20 @@ const routes: Routes = [
   {
     path: 'adddefect',
     component: CreateDefectComponent
+  },
+
+  {
+    path: '',
+    component: HomeComponent,
+    children: [{
+      path: 'addcompany',
+      component: CustomerCompanyRegisterComponent
+    }]
+  },
+
+  {
+    path: 'addcompany',
+    component: CustomerCompanyRegisterComponent
   },
 
 ];
