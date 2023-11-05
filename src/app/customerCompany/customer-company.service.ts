@@ -8,12 +8,8 @@ export interface CustomerCreateRequest {
   name: string;
   telNum: number;
   email: string;
-  password: string;
   title: string;
 }
-
-
-
 
 export interface CustomerCompanyCreateRequest{
 
@@ -26,11 +22,9 @@ export interface CustomerCompanyCreateRequest{
 
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 
 export class CustomerService {
   host = 'http://localhost:8080/api/v1/ownercompany';
@@ -40,21 +34,27 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   createCustomer(customer: CustomerCreateRequest): Observable<CustomerCreateRequest>{
-    return this.http.post<CustomerCreateRequest>(this.host + `addEmployee`, customer)
+    return this.http.post<CustomerCreateRequest>(this.host + `/addEmployee`, customer)
   }
 
 }
 
+@Injectable({
+  providedIn: "root"
+})
+
 export class CustomerCompanyService {
-  host = 'http://localhost:8080/api/v1/ownercompany';
+  host = 'http://localhost:8080/api/v1/owner';
 
   constructor(private http: HttpClient) { }
 
   createCustomerCompany(customerCompany: CustomerCompanyCreateRequest): Observable<CustomerCompanyCreateRequest>{
-    return this.http.post<CustomerCompanyCreateRequest>(this.host + `addCompany`, customerCompany)
+    return this.http.post<CustomerCompanyCreateRequest>(this.host + `/addCompany`, customerCompany)
   }
 
 
+  getCustomerCompanyList(searchValue: string):Observable<CustomerCompanyCreateRequest[]> {
+    return this.http.get<CustomerCompanyCreateRequest[]>(this.host + `/all`);
 
-
+  }
 }

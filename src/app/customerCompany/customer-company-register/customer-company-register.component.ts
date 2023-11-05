@@ -20,7 +20,6 @@ export class CustomerCompanyRegisterComponent {
           name: new FormControl(),
           telNum: new FormControl(),
           email: new FormControl(),
-          password: new FormControl(),
           title: new FormControl()
       })
 
@@ -30,7 +29,6 @@ export class CustomerCompanyRegisterComponent {
               name: this.Customerform?.controls['name'].value,
               telNum: this.Customerform?.controls['telNum'].value,
               email: this.Customerform?.controls['email'].value,
-              password: this.Customerform?.controls['password'].value,
               title: this.Customerform?.controls['title'].value
 
           }).subscribe((response) => {
@@ -56,7 +54,7 @@ export class CustomerCompanyRegisterComponent {
       onSaveCustomer() {
           this.CustomerCompanyService.createCustomerCompany({
               name: this.Companyform?.controls['name'].value,
-              postalCode: this.Companyform?.controls['postalcode'].value,
+              postalCode: this.Companyform?.controls['postalCode'].value,
               town: this.Companyform?.controls['town'].value,
               street: this.Companyform?.controls['street'].value,
               taxNumber: this.Companyform?.controls['taxNumber'].value,

@@ -5,7 +5,7 @@
     <span>
         <div >
 
-            <button class="button" type="button" [routerLink]="['/home/addcompany']" >Ügyfelek</button>
+            <button class="button" type="button" [routerLink]="['/home/companylist']" >Ügyfelek</button>
             <button class="button" type="button" [routerLink]="['/home/defects']" >Hibák</button>
             <button class="button" type="button" [routerLink]="['/home/spareparts']" >Alkatrészek</button>
             <button class="button" type="button" [routerLink]="['/home/repairman']" >Munkatársak</button>
@@ -13,10 +13,9 @@
         <div >
             <button class="button" type="button" [routerLink]="['/home/worksheet']" >Új munkalap</button>
             <button class="button" type="button"  >Szerkesztés</button>
-            <button class="button" type="button"  >Törlés</button>
-            <button class="button" type="button"  >Nyomtatás</button>
-            <button class="button" type="button"  >Másolás</button>
-            <button class="button" type="button"  >Küldés</button>
+            <button class="button" type="button" [routerLink]="['/worksheet']" >Nyomtatás</button>
+
+
         </div> <br>
         <div>
             <button class="button" type="button" [routerLink]="['/home/tools']" >Összes </button>
@@ -25,7 +24,13 @@
             <button class="button" type="button" [routerLink]="['/home/ready']">Elkészült</button>
             <button class="button" type="button" [routerLink]="['/home/closed']">Lezárt</button>
         </div> <br>
+
     </span>
+
+    <div>
+      <button class="button" type="button" [routerLink]="['/']">Kilépés</button>
+    </div>
+
   <br>
 
 </nav>

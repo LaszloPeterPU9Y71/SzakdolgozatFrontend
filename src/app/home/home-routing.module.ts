@@ -15,6 +15,7 @@ import {CreateDefectComponent} from "../defects/createDefect/create-defect.compo
 import {
   CustomerCompanyRegisterComponent
 } from "../customerCompany/customer-company-register/customer-company-register.component";
+import {CustomerCompanyListComponent} from "../customerCompany/customer-company-list/customer-company-list.component";
 
 
 
@@ -191,6 +192,19 @@ const routes: Routes = [
     component: CustomerCompanyRegisterComponent
   },
 
+  {
+    path: '',
+    component: HomeComponent,
+    children: [{
+      path: 'companylist',
+      component: CustomerCompanyListComponent
+    }]
+  },
+
+  {
+    path: 'companylist',
+    component: CustomerCompanyListComponent
+  },
 ];
 
 @NgModule({

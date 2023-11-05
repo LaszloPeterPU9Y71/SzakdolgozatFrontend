@@ -17,7 +17,7 @@ export class RepairManComponent implements OnInit {
 
     constructor(
         private repairManService: RepairManService,
-    ) {    }
+    ) {}
 
     ngOnInit(): void {
         this.repairManService

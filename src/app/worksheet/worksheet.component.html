@@ -1,67 +1,182 @@
-<div class="container">
-  <div class="row">
-    <!-- BEGIN INVOICE -->
-    <div class="col-xs-12">
-      <div class="grid invoice">
-        <div class="grid-body">
-          <div class="invoice-title">
-            <br>
+<div class="container mt-6 mb-7">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-xl-7">
+      <div class="card">
+        <div class="card-body p-5">
+
+
+          <div class="border-top border-gray-200 mt-4 py-4">
             <div class="row">
-              <div class="col-xs-12">
-                <h2>Munkalap<br>
-                  <span class="small">Sorszám "id"</span></h2>
+              <div class="col-md-6">
+                <table class="customer">
+                  <tr>
+                    <th>
+                      Vevő
+                    </th>
+                    <th></th>
+                    <th>A keresés eredménye</th>
+                  </tr>
+                  <tr>
+                    <td>Cégnév</td>
+                    <td><input></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Irányítószám</td>
+                    <td><input></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Város</td>
+                    <td><input></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Utca és házszám</td>
+                    <td><input></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Személy neve</td>
+                    <td><input></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Telefonszám</td>
+                    <td><input></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>E-mail</td>
+                    <td><input></td>
+                    <td></td>
+
+                  </tr>
+                    <br>
+                  <tr>
+                    <td>
+                      <button class="btn btn-primary" type="button" >Keresés</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-primary" type="button" [routerLink]="['/home/addcompany']"  >Új ügyfél felvétele</button>
+                    </td>
+                  </tr>
+                </table>
+
+
+
               </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-xs-6 text-start">
-              <address>
-                <strong>Behozta:</strong><br>
-                Twitter, Inc.<br>
-                795 Folsom Ave, Suite 600<br>
-                San Francisco, CA 94107<br>
-                <abbr title="Phone">P:</abbr> (123) 456-7890
-              </address>
-            </div>
-            <div class="col-xs-6 text-right">
-              <address>
-                <strong>Szerviz:</strong><br>
-                Szerszám Kuckó Kft<br>
-                9023 Győr, Attila utca 49.<br>
-                szerviz@szerszamkucko.hu<br>
-                <abbr title="Phone">Tel.: 701234567</abbr>
-              </address>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <h3>Munkalap</h3>
-              <table class="table table-striped">
-                <thead>
-                <tr class="line">
-                  <td><strong></strong></td>
-                  <td class="text-center"><strong>PROJECT</strong></td>
-                  <td class="text-center"><strong>HRS</strong></td>
-                  <td class="text-right"><strong>RATE</strong></td>
-
+              <table class="service">
+                <tr>
+                  <th>
+                    Szerviz
+                  </th>
                 </tr>
-                </thead>
-                <tbody>
+                <tr>
+                  <td>Cégnév</td>
 
+                  <td>Szerszám Kuckó Kft</td>
+                </tr>
+                <tr>
+                  <td>Irányítószám</td>
 
+                  <td>9023</td>
+                </tr>
+                <tr>
+                  <td>Város</td>
 
+                  <td>Győr</td>
+                </tr>
+                <tr>
+                  <td>Utca és házszám</td>
 
+                  <td>Attila utca 49</td>
+                </tr>
+                <tr>
+                  <td>Személy neve</td>
 
-                </tbody>
+                  <td>Az egyik munkatárs</td>
+                </tr>
+                <tr>
+                  <td>Telefonszám</td>
+
+                  <td>Az egyik telefonszám</td>
+                </tr>
+                <tr>
+                  <td>E-mail</td>
+
+                  <td>Az egyik e-mail cím</td>
+                </tr>
+                <br><br><br>
+
               </table>
             </div>
           </div>
+          <p><strong>Javításre badott gép adatai!</strong></p>
+          <table class="table border-bottom border-gray-200 mt-3">
+            <thead>
+            <tr>
 
-          </div>
+              <th>Megnevezés</th>
+              <th>Típusszám</th>
+              <th>Cikkszám</th>
+              <th>Sorszám</th>
+              <th>Átvétel időpontja</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+              <td ><input></td>
+              <td ><input></td>
+              <td ><input></td>
+              <td ><input></td>
+              <td ><input></td>
+
+            </tr>
+            <tr>
+              <td><strong>Hibajelenség</strong></td>
+              <td colspan="6" class="defect"><input class="defect"> </td>
+            </tr>
+            <div>
+              <button class="btn btn-primary" type="button" [routerLink]="['/home/addcompany']" >Hozzáadás</button>
+            </div>
+
+            <br>
+            <strong>Hozzáadott alkatrészek</strong>
+
+
+
+            <tr>
+
+              <th>Megnevezés</th>
+              <th>Cikkszám</th>
+              <th>Nettó ár</th>
+              <th>Bruttó ár</th>
+              <th>Darabszám</th>
+              <th></th>
+              <th>Összesen bruttó</th>
+            </tr>
+
+            <tbody>
+            <tr>
+              <td ><input></td>
+              <td ><input></td>
+              <td ><input></td>
+              <td ><input></td>
+              <td ><input></td>
+              <td ></td>
+              <td ><input></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
+
+          <button class="btn btn-primary" type="button"  >Felvétel</button> <br>
+          <button class="btn btn-primary" type="button" [routerLink]="['/home/']" >Főoldal</button>
+
       </div>
     </div>
-    <!-- END INVOICE -->
   </div>
+</div>

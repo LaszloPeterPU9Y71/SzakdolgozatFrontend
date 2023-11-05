@@ -1,4 +1,4 @@
-import {Component, inject, Injectable} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {DefectService} from "../defect.service";
 import {FormControl, FormGroup} from "@angular/forms";
 
@@ -18,17 +18,16 @@ export class CreateDefectComponent {
 
     private defectService = inject(DefectService)
     form: FormGroup = new FormGroup({
-      defectName: new FormControl(),
+      name: new FormControl(),
     });
 
 
 
     onSave() {
-      console.log(this.defectService)
       this.defectService.createDefect({
-        defectName: this.form?.controls['defectName'].value,
+        name: this.form?.controls["name"].value,
       }).subscribe((response) => {
-        console.log(response)
+        console.log(response);
       })
     }
   }

@@ -30,7 +30,7 @@
       <td>{{machine.serialNumber}} </td>
       <td>{{machine.dateOfReceiving}} </td>
       <td>
-        <select name="select" >
+        <select name="select" (change)="onStatusChange(machine, $event)" >
           <option value="{{machine.status}}" selected>{{machine.status}}</option>
           <option value="Folyamatban">Folyamatban</option>
           <option value="Kész">Kész</option>

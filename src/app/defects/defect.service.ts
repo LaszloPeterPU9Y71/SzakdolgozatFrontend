@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 export interface Defect {
 
-  defectName: string;
+  name: string;
 
 }
 
@@ -20,11 +20,11 @@ export class DefectService {
   constructor(private http: HttpClient) { }
 
   createDefect(defect: Defect): Observable<Defect[]>{
-   return this.http.post<Defect[]>(this.host + `/create`, defect);
+   return this.http.post<Defect[]>(this.host + '/create', defect);
   }
 
   getDefectList(searchValue: string): Observable<Defect[]> {
-    return this.http.get<Defect[]>(this.host +`/all`);
+    return this.http.get<Defect[]>(this.host + '/all');
   }
 
 }

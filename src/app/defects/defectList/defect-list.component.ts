@@ -24,17 +24,14 @@ export class DefectListComponent implements  OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.fetchData();
+    this.defectService
+      .getDefectList(this.searchValue)
+      .subscribe((searchList) => {
+        this.searchList = searchList
+        console.log(searchList)
+        console.log(this.searchValue)
+      })
   }
 
-  fetchData(): void{
-    if (this.searchValue == '') {
-      this.defectService
-        .getDefectList(this.searchValue)
-        .subscribe((searchList) => {
-          this.searchList = searchList
-          console.log(searchList)
-        })
-    }
-  }
 }
+

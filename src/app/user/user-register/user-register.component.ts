@@ -26,19 +26,6 @@ export class UserRegisterComponent {
       status: new FormControl()
     });
 
-
-    ngOnInit() {
-      this.form = new FormGroup({
-        name: new FormControl(),
-        email: new FormControl(),
-        telNum: new FormControl(),
-        title: new FormControl(),
-        password: new FormControl(),
-        status: new FormControl()
-      })
-    }
-
-
     onSave() {
       this.userService.createUser({
         name: this.form?.controls['name'].value,
