@@ -27,5 +27,12 @@ export class ToolSearchTypenumberComponent implements OnInit {
         console.log(this.searchValue)
       })
   }
+  onStatusChange(machine: Tool, $event: Event) {
+    const newStatus = $event.target as HTMLInputElement;
+    machine.status = newStatus.value;
+    this.toolsService
+      .updateTool(machine)
+      .subscribe(console.log)
+  }
 }
 

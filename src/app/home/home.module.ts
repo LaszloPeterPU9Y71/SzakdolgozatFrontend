@@ -22,6 +22,7 @@ import {
   CustomerCompanyRegisterComponent
 } from "../customerCompany/customer-company-register/customer-company-register.component";
 import {CustomerCompanyListComponent} from "../customerCompany/customer-company-list/customer-company-list.component";
+import {FooterComponent} from "../footer/footer.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {CustomerCompanyListComponent} from "../customerCompany/customer-company-
     DefectListComponent,
     CreateDefectComponent,
     CustomerCompanyRegisterComponent,
-    CustomerCompanyListComponent
+    CustomerCompanyListComponent,
+    FooterComponent
 
   ],
   imports: [

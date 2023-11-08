@@ -9,9 +9,15 @@ import {Component, OnInit} from "@angular/core";
 
 export class WorksheetComponent implements OnInit{
 
+
     ngOnInit() {
 
     }
+
+    createcompany(){
+      window.open("http://localhost:4200/addcompany", '_blank');
+    }
+
 
 
   }

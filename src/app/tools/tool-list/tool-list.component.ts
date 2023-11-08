@@ -139,5 +139,12 @@ export class ToolListComponent implements  OnInit{
     this.searchValue = this.searchFormStatus.value.searchValue ?? '';
     this.fetchData();
   }
+  onStatusChange(machine: Tool, $event: Event) {
+    const newStatus = $event.target as HTMLInputElement;
+    machine.status = newStatus.value;
+    this.toolsService
+      .updateTool(machine)
+      .subscribe(console.log)
+  }
 
 }

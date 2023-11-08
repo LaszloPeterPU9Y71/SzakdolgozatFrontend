@@ -10,11 +10,23 @@
       <thead class="table-dark">
       <tr>
         <th>Cégnév</th>
+        <th>Irányítószám</th>
+        <th>Város</th>
+        <th>Utca, házszám</th>
+
+        <th>Adószám</th>
+
+
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let defect of searchList" >
         <td>{{defect.name}}</td>
+        <td>{{defect.postalCode}}</td>
+        <td>{{defect.town}}</td>
+        <td>{{defect.street}}</td>
+        <td>{{defect.taxNumber}}</td>
+
       </tr>
       </tbody>
     </table>

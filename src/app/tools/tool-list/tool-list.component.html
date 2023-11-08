@@ -82,19 +82,6 @@
         </th>
 
         <th>Státusz
-          <form
-            [formGroup]="searchFormStatus"
-            class="searchBar"
-            (ngSubmit)="onSearchSubmitStatus()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
         </th>
 
 
@@ -111,7 +98,7 @@
         <td>{{machine.serialNumber}} </td>
         <td>{{machine.dateOfReceiving}} </td>
         <td >
-          <select>
+          <select (change)="onStatusChange(machine, $event)">
             <option value="{{machine.status}}" selected>{{machine.status}}</option>
             <option value="Folyamatban">Folyamatban</option>
             <option value="Kész">Kész</option>
