@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {UserRegisterComponent} from "./user/user-register/user-register.component";
 import {UserLoginComponent} from "./user/user-login/user-login.component";
 import {MainComponent} from "./main/main.component";
-import {WorksheetComponent} from "./worksheet/worksheet.component";
+import {AddWorksheetComponent} from "./worksheet/newWorksheet/addWorksheet.component";
+import {PrintWorksheetComponent} from "./worksheet/printWorksheet/printWorksheet.component";
 
 
 const routes: Routes = ([
@@ -15,7 +16,7 @@ const routes: Routes = ([
 
   {
     path: 'worksheet',
-    component: WorksheetComponent,
+    component: PrintWorksheetComponent,
   },
 
   {

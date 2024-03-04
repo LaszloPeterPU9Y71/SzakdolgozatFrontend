@@ -2,18 +2,23 @@ import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
+export interface ResponseTypes<T>{
+  payload: T;
+  errors: string[];
+  ok: boolean;
+}
 export interface CustomerCreateRequest {
 
   name: string;
   telNum: number;
   email: string;
   title: string;
+  companyName: string;
 }
 
 export interface CustomerCompanyCreateRequest{
 
-  name: string;
+  companyName: string;
   postalCode: number;
   town: string;
   street: string;
@@ -33,8 +38,13 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  createCustomer(customer: CustomerCreateRequest): Observable<CustomerCreateRequest>{
-    return this.http.post<CustomerCreateRequest>(this.host + `/addEmployee`, customer)
+  createCustomer(customer: CustomerCreateRequest): Observable<ResponseTypes<CustomerCreateRequest>>{
+    return this.http.post<ResponseTypes<CustomerCreateRequest>>(this.host + `/addEmployee`, customer)
+  }
+
+  getEmployeeList(searchValue: string):Observable<CustomerCreateRequest[]> {
+    return this.http.get<CustomerCreateRequest[]>(this.host + `/findall`);
+
   }
 
 }
@@ -48,7 +58,15 @@ export class CustomerCompanyService {
 
   constructor(private http: HttpClient) { }
 
-  createCustomerCompany(customerCompany: CustomerCompanyCreateRequest): Observable<CustomerCompanyCreateRequest>{
+  createCustomerCompany(customerCompany: {
+    town: any;
+    street: any;
+    companyName: any;
+    postalCode: any;
+    taxNumber: any;
+    accountNumber: any
+
+  }): Observable<CustomerCompanyCreateRequest>{
     return this.http.post<CustomerCompanyCreateRequest>(this.host + `/addCompany`, customerCompany)
   }
 
@@ -57,4 +75,5 @@ export class CustomerCompanyService {
     return this.http.get<CustomerCompanyCreateRequest[]>(this.host + `/all`);
 
   }
+
 }

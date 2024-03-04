@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {catchError} from "rxjs/operators";
 
 export interface UserCreateRequest {
   name: string
@@ -8,7 +9,7 @@ export interface UserCreateRequest {
   email: string;
   password: string;
   title: string;
-  status: boolean;
+
 }
 
 
@@ -24,6 +25,10 @@ export class UserService {
 
   createUser(user: UserCreateRequest): Observable<any> {
     return this.http.post<any>(this.host +`/create`, user);
+  }
+  load(user: UserCreateRequest): Observable<any> {
+    return this.http
+      .post<any>(this.host +`/create`, user)
   }
 
 }

@@ -20,14 +20,25 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let defect of searchList" >
-        <td>{{defect.name}}</td>
-        <td>{{defect.postalCode}}</td>
-        <td>{{defect.town}}</td>
-        <td>{{defect.street}}</td>
-        <td>{{defect.taxNumber}}</td>
-
+      <tr *ngFor="let company of searchCompany" >
+        <td>{{company.companyName}}</td>
+        <td>{{company.postalCode}}</td>
+        <td>{{company.town}}</td>
+        <td>{{company.street}}</td>
+        <td>{{company.taxNumber}}</td>
+      <tr>
+        <th>Név</th>
+        <th>Telefonszám</th>
+        <th>E-mail</th>
+        <th>Beosztás</th>
       </tr>
+      <tr *ngFor="let employee of searchEmployee" >
+        <td>{{employee.name}}</td>
+        <td>{{employee.telNum}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.title}}</td>
+      </tr>
+
       </tbody>
     </table>
     <button class="btn btn-primary" type="button" routerLink="/addcompany"  >Tovább a partner felvételhez</button>

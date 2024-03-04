@@ -1,5 +1,5 @@
 import {Component, OnInit, } from '@angular/core';
-import {CustomerCompanyCreateRequest, CustomerCompanyService} from "../customer-company.service";
+import {CustomerCompanyCreateRequest, CustomerCompanyService, CustomerCreateRequest, CustomerService} from "../customer-company.service";
 
 
 @Component({
@@ -12,13 +12,15 @@ export class CustomerCompanyListComponent implements  OnInit{
 
 
   searchValue = '';
-  searchList: CustomerCompanyCreateRequest[] = [];
+  searchCompany: CustomerCompanyCreateRequest[] = [];
+  searchEmployee: CustomerCreateRequest[] = [];
 
 
 
 
   constructor(
     private customerComapnyService: CustomerCompanyService,
+    private customerEmployeeService: CustomerService
 
   ) {}
 
@@ -26,11 +28,17 @@ export class CustomerCompanyListComponent implements  OnInit{
     this.customerComapnyService
       .getCustomerCompanyList(this.searchValue)
       .subscribe((searchList: CustomerCompanyCreateRequest[]) => {
-        this.searchList = searchList
+        this.searchCompany = searchList
         console.log(searchList)
         console.log(this.searchValue)
-      })
+      } )
+    this.customerEmployeeService
+      .getEmployeeList(this.searchValue)
+      .subscribe((searchList: CustomerCreateRequest[]) => {
+        this.searchEmployee = searchList
+        console.log(searchList)
+        console.log(this.searchValue)
+      } )
   }
 
 }
-

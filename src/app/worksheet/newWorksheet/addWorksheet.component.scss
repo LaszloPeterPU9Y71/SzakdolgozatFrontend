@@ -1,0 +1,42 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+table{
+  border: 1px;
+}
+
+input{
+  width: 200px;
+  vertical-align: center;
+  horiz-align: center;
+}
+
+.defect {
+  text-align: left;
+  column-width: 400px;
+}
+.service{
+  width: 400px;
+}
+.autocomplete{
+  position: relative;
+  display:flex;
+  flex-direction: column;
+
+}
+ul{
+  position: absolute;
+
+  background: white;
+
+}
+
+li{
+  width: 300px;
+}
+
+
+.data{
+  text-align: center;
+  width: 600px;
+}
+

@@ -4,7 +4,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 
 
-  @Component({
+@Component({
     selector: 'customer-company-register',
     templateUrl: './customer-company-register.component.html',
     styleUrls: ['./customer-company-register.component.scss'],
@@ -20,7 +20,7 @@ export class CustomerCompanyRegisterComponent {
           name: new FormControl(),
           telNum: new FormControl(),
           email: new FormControl(),
-          title: new FormControl()
+          title: new FormControl(),
       })
 
 
@@ -29,8 +29,8 @@ export class CustomerCompanyRegisterComponent {
               name: this.Customerform?.controls['name'].value,
               telNum: this.Customerform?.controls['telNum'].value,
               email: this.Customerform?.controls['email'].value,
-              title: this.Customerform?.controls['title'].value
-
+              title: this.Customerform?.controls['title'].value,
+              companyName: this.Companyform?.controls['companyName'].value
           }).subscribe((response) => {
             console.log(response)
           })
@@ -38,7 +38,7 @@ export class CustomerCompanyRegisterComponent {
 
     private CustomerCompanyService = inject(CustomerCompanyService)
       Companyform : FormGroup = new FormGroup({
-          name: new FormControl(),
+          companyName: new FormControl(),
           postalCode: new FormControl(),
           town: new FormControl(),
           street: new FormControl(),
@@ -47,13 +47,9 @@ export class CustomerCompanyRegisterComponent {
 
 
       })
-
-
-
-
       onSaveCustomer() {
           this.CustomerCompanyService.createCustomerCompany({
-              name: this.Companyform?.controls['name'].value,
+              companyName: this.Companyform?.controls['companyName'].value,
               postalCode: this.Companyform?.controls['postalCode'].value,
               town: this.Companyform?.controls['town'].value,
               street: this.Companyform?.controls['street'].value,

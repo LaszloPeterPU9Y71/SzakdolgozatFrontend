@@ -1,6 +1,9 @@
 import {Component, inject, OnInit} from "@angular/core";
 import {UserService} from "../user.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {catchError} from "rxjs/operators";
+import {HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {Observable, of, throwError} from "rxjs";
 
 
 
@@ -15,6 +18,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 export class UserRegisterComponent {
 
+    errorfield : string[] = []
 
     private userService = inject(UserService)
     form: FormGroup = new FormGroup({
@@ -23,7 +27,7 @@ export class UserRegisterComponent {
       telNum: new FormControl(),
       title: new FormControl(),
       password: new FormControl(),
-      status: new FormControl()
+
     });
 
     onSave() {
@@ -33,8 +37,14 @@ export class UserRegisterComponent {
         telNum: this.form?.controls['telNum'].value,
         title: this.form?.controls['title'].value,
         password: this.form?.controls['password'].value,
-        status: this.form?.controls['status'].value
-      }).subscribe((response) => {
+      }).pipe(
+        catchError((err, caught) => {
+          const errorMessage = 'error';
+          this.errorfield[0] = errorMessage
+          return of()
+        }))
+
+    .subscribe((response) => {
         console.log(response)
       })
     }

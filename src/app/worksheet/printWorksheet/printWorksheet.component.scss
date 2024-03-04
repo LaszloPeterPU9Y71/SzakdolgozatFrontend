@@ -2,11 +2,10 @@
 
 input{
   width: 130px;
-
 }
 
 .defect{
-  width: 900px;
+  width: fit-content;
 }
 
 .customer{
@@ -18,8 +17,14 @@ input{
 
 }
 
-
-
 th{
+  width: 400px;
   text-align: center;
 }
+
+
+
+
+
+
+

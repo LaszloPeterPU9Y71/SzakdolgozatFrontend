@@ -11,7 +11,7 @@ import {ToolSearchTypenumberComponent} from "../tools/tool-inprogress/tool-searc
 import {ToolReadyComponent} from "../tools/tool-ready/tool-ready.component";
 import {ToolClosedComponent} from "../tools/tool-closed/tool-closed.component";
 import {RepairManComponent} from "../repairMen/repairMan/repairMan.component";
-import {WorksheetComponent} from "../worksheet/worksheet.component";
+import {AddWorksheetComponent} from "../worksheet/newWorksheet/addWorksheet.component";
 import {ToolsService} from "../tools/tools.service";
 import {CommonModule} from "@angular/common";
 import {CreateSparePartComponent} from "../spareParts/createSparePart/create-spare-part.component";
@@ -23,6 +23,8 @@ import {
 } from "../customerCompany/customer-company-register/customer-company-register.component";
 import {CustomerCompanyListComponent} from "../customerCompany/customer-company-list/customer-company-list.component";
 import {FooterComponent} from "../footer/footer.component";
+import {UpdateWorksheetComponent} from "../worksheet/updateWorksheet/updateWorksheet.component";
+import {PrintWorksheetComponent} from "../worksheet/printWorksheet/printWorksheet.component";
 
 @NgModule({
   declarations: [
@@ -34,14 +36,16 @@ import {FooterComponent} from "../footer/footer.component";
     ToolReadyComponent,
     ToolClosedComponent,
     RepairManComponent,
-    WorksheetComponent,
+    AddWorksheetComponent,
     CreateSparePartComponent,
     SparePartsListComponent,
     DefectListComponent,
     CreateDefectComponent,
     CustomerCompanyRegisterComponent,
     CustomerCompanyListComponent,
-    FooterComponent
+    FooterComponent,
+    UpdateWorksheetComponent,
+    PrintWorksheetComponent
 
   ],
   imports: [

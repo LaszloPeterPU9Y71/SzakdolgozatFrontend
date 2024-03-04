@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {CustomerCreateRequest} from "../customerCompany/customer-company.service";
+import {Defect} from "../defects/defect.service";
 
 export interface Tool {
   id: number;
@@ -10,6 +12,16 @@ export interface Tool {
   serialNumber: string ;
   dateOfReceiving: Date;
   status: string ;
+  ownerCompanyEmployee: number ;
+}
+
+export interface CreateToolRequest{
+  name: string ;
+  typeNumber: string ;
+  itemNumber: string ;
+  serialNumber: string ;
+  ownerCompanyEmployee: number ;
+  defectsId: any[];
 }
 
 
@@ -47,6 +59,8 @@ export class ToolsService {
   updateTool(machine: Tool): Observable<string> {
     return this.http.put<string>(this.host + `/update/${machine.id}`, machine);
   }
+
+
 
 
 

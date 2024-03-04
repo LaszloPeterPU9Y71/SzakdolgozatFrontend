@@ -19,7 +19,7 @@ export class DefectService {
 
   constructor(private http: HttpClient) { }
 
-  createDefect(defect: Defect): Observable<Defect[]>{
+  createDefect(defect: Defect): Observable<Defect[]> {
    return this.http.post<Defect[]>(this.host + '/create', defect);
   }
 

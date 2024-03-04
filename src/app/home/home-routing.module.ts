@@ -6,7 +6,7 @@ import {ToolSearchTypenumberComponent} from "../tools/tool-inprogress/tool-searc
 import {ToolReadyComponent} from "../tools/tool-ready/tool-ready.component";
 import {ToolClosedComponent} from "../tools/tool-closed/tool-closed.component";
 import {RepairManComponent} from "../repairMen/repairMan/repairMan.component";
-import {WorksheetComponent} from "../worksheet/worksheet.component";
+import {AddWorksheetComponent} from "../worksheet/newWorksheet/addWorksheet.component";
 import {HomeComponent} from "./home.component";
 import {CreateSparePartComponent} from "../spareParts/createSparePart/create-spare-part.component";
 import {SparePartsListComponent} from "../spareParts/sparePartsList/spare-parts-list.component";
@@ -16,6 +16,8 @@ import {
   CustomerCompanyRegisterComponent
 } from "../customerCompany/customer-company-register/customer-company-register.component";
 import {CustomerCompanyListComponent} from "../customerCompany/customer-company-list/customer-company-list.component";
+import {UpdateWorksheetComponent} from "../worksheet/updateWorksheet/updateWorksheet.component";
+import {PrintWorksheetComponent} from "../worksheet/printWorksheet/printWorksheet.component";
 
 
 
@@ -110,14 +112,14 @@ const routes: Routes = [
     path:'',
     component: HomeComponent,
     children: [{
-      path: 'worksheet',
-      component: WorksheetComponent
+      path: 'newworksheet',
+      component: AddWorksheetComponent
     }]
   },
 
   {
-    path: 'worksheet',
-    component: WorksheetComponent
+    path: 'newworksheet',
+    component: AddWorksheetComponent
 
 
   },
@@ -204,6 +206,19 @@ const routes: Routes = [
   {
     path: 'companylist',
     component: CustomerCompanyListComponent
+  },
+  {
+    path: '',
+    component: HomeComponent,
+    children: [{
+      path: 'updateworksheet',
+      component: UpdateWorksheetComponent
+    }]
+  },
+
+  {
+    path: 'updateworksheet',
+    component: UpdateWorksheetComponent
   },
 ];
 
