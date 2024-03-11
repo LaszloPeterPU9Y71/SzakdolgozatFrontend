@@ -1,0 +1,33 @@
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from "rxjs/operators";
+import {Injectable} from "@angular/core";
+import {ErrorService} from "../error.service";
+
+@Injectable()
+export class ErrorCatchingInterceptor implements HttpInterceptor {
+
+  constructor(private errorService: ErrorService) {
+  }
+
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    let observable = next.handle(request)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          let errorMsg = '';
+          if (error.error instanceof ErrorEvent) {
+            console.log('This is client side error');
+            errorMsg = `Error: ${error.error.message}`;
+          } else {
+            console.log('This is server side error');
+            errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+          }
+          console.log(errorMsg);
+          this.errorService.addErrors(error.error.errors);
+          return throwError(errorMsg);
+        })
+      );
+    return observable
+  }
+}
+

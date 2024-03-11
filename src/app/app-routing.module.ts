@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {UserRegisterComponent} from "./user/user-register/user-register.component";
-import {UserLoginComponent} from "./user/user-login/user-login.component";
-import {MainComponent} from "./main/main.component";
-import {AddWorksheetComponent} from "./worksheet/newWorksheet/addWorksheet.component";
-import {PrintWorksheetComponent} from "./worksheet/printWorksheet/printWorksheet.component";
+import {UserRegisterComponent} from "./pages/user/user-register/user-register.component";
+import {UserLoginComponent} from "./pages/user/user-login/user-login.component";
+import {MainComponent} from "./pages/main/main.component";
+import {PrintWorksheetComponent} from "./pages/worksheet/printWorksheet/printWorksheet.component";
 
 
 const routes: Routes = ([
@@ -30,7 +29,7 @@ const routes: Routes = ([
 
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(x => x.HomeModule)
+    loadChildren: () => import('./pages/home/home.module').then(x => x.HomeModule)
   }
 
 
