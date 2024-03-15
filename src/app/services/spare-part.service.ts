@@ -1,15 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface SparePartCreateRequest {
-
-  partName: string;
-  partNumber: string;
-  nettoBuyingPrice: number;
-  nettoSellingPrice: number;
-}
-
+import {SparePartCreateRequest} from "../models/spare-parts.model";
 
 @Injectable({
   providedIn: 'root'

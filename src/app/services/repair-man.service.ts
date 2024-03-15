@@ -1,17 +1,9 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {RepairMan} from "../models/repair-man.model";
 
 
-export interface RepairMan{
-  id: number;
-  name: string;
-  telNum: number;
-  email: string;
-  password: string;
-  title: string;
-  status: boolean;
-}
 
 
 

@@ -1,28 +1,10 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {CustomerCreateRequest} from "./customer-company.service";
-import {Defect} from "./defect.service";
+import {Tool} from "../models/tool.model";
 
-export interface Tool {
-  id: number;
-  name: string ;
-  typeNumber: string ;
-  itemNumber: string ;
-  serialNumber: string ;
-  dateOfReceiving: Date;
-  status: string ;
-  ownerCompanyEmployee: number ;
-}
 
-export interface CreateToolRequest{
-  name: string ;
-  typeNumber: string ;
-  itemNumber: string ;
-  serialNumber: string ;
-  ownerCompanyEmployee: number ;
-  defectsId: any[];
-}
+
 
 
 

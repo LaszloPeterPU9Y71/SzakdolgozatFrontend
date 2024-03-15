@@ -1,13 +1,10 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Defect} from "../models/defect.model";
 
 
-export interface Defect {
 
-  name: string;
-
-}
 
 @Injectable({
   providedIn: 'root'
