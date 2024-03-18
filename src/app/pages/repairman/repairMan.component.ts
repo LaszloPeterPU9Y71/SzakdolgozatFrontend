@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 
-import {RepairMan, RepairManService} from "../../../services/repair-man.service";
+import { RepairManService} from "../../services/repair-man.service";
+import {RepairMan} from "../../models/repair-man.model";
 
 @Component({
     selector: 'app-repairman',

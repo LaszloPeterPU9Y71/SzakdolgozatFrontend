@@ -1,7 +1,6 @@
 import {Component, inject} from "@angular/core";
-import {CustomerCompanyService, CustomerService} from "../../../services/customer-company.service";
+import {CustomerCompanyService} from "../../../services/customer-company.service";
 import {FormControl, FormGroup} from "@angular/forms";
-
 
 
 @Component({
@@ -15,29 +14,10 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 export class CustomerCompanyRegisterComponent {
 
-      private CustomerService = inject(CustomerService)
-      Customerform: FormGroup = new FormGroup({
-          name: new FormControl(),
-          telNum: new FormControl(),
-          email: new FormControl(),
-          title: new FormControl(),
-      })
 
-
-      onSave() {
-          this.CustomerService.createCustomer({
-              name: this.Customerform?.controls['name'].value,
-              telNum: this.Customerform?.controls['telNum'].value,
-              email: this.Customerform?.controls['email'].value,
-              title: this.Customerform?.controls['title'].value,
-              companyName: this.Companyform?.controls['companyName'].value
-          }).subscribe((response) => {
-            console.log(response)
-          })
-      }
 
     private CustomerCompanyService = inject(CustomerCompanyService)
-      Companyform : FormGroup = new FormGroup({
+          Companyform : FormGroup = new FormGroup({
           companyName: new FormControl(),
           postalCode: new FormControl(),
           town: new FormControl(),
@@ -47,6 +27,7 @@ export class CustomerCompanyRegisterComponent {
 
 
       })
+
       onSaveCustomer() {
           this.CustomerCompanyService.createCustomerCompany({
               companyName: this.Companyform?.controls['companyName'].value,

@@ -1,5 +1,6 @@
 import {Component, OnInit, } from '@angular/core';
-import {Defect, DefectService} from "../../../services/defect.service";
+import { DefectService} from "../../../services/defect.service";
+import {Defect} from "../../../models/defect.model";
 
 
 

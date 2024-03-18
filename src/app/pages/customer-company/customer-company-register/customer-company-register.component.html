@@ -1,80 +1,9 @@
 <div>
-<h2 class="text-center">Partner regisztráció</h2>
+  <h2 class="text-center">Partner cég regisztráció</h2>
 </div>
 
 <table class="Registration">
   <tr>
-    <td>
-      <div class="container">
-        <div class="row col-md-8 offset-md-2">
-          <div class="row">
-            <div class="card-header">
-              <h4 class="text-center">Alkalmazott adatai</h4>
-            </div>
-            <div class="card-body">
-              <form method="post" role="form" [formGroup]="Customerform"  >
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Teljes név</label>
-                  <label for="name"></label>
-                  <input class="form-control"
-                         id="name"
-                         name="name"
-                         placeholder="Teljes nevét írja ide!"
-                         formControlName="name"
-                         type="text"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">Telefonszám</label>
-                  <label for="telnum"></label>
-                  <input class="form-control"
-                         id="telnum"
-                         name="telnum"
-                         formControlName="telNum"
-                         placeholder="Telefonszámát írja ide"
-                         type="number"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">E-mail cím</label>
-                  <label for="email"></label>
-                  <input class="form-control"
-                         id="email"
-                         name="email"
-                         formControlName="email"
-                         placeholder="E-mail címét írja ide"
-                         type="email"
-                  />
-
-                  <br>
-                <div class="form-group mb-3">
-                  <label class="form-label">Beosztás</label>
-                  <select name="title"  formControlName="title">
-                    <option value="Beszerző" selected>Beszerző</option>
-                    <option value="Tulajdonos">Tulajdonos</option>
-                    <option value="Vezető" >Vezető</option>
-                    <option value="Munkás" >Munkás</option>
-                  </select>
-                </div>
-
-                <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="button" (click)="onSave()" >Regisztrál</button>
-                </div>
-                  <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="button" routerLink="/companylist"  >Vissza az partnerlistához</button>
-                </div>
-
-            </div>
-          </form>
-            </div>
-        </div>
-      </div>
-      </div>
-    </td>
-
-
-
     <td>
       <div class="container">
         <div class="row col-md-8 offset-md-2">
@@ -88,8 +17,9 @@
 
                 <div class="form-group mb-3">
                   <label class="form-label">Cégnév</label>
-                  <label for="name"></label>
+                  <label for="companyName"></label>
                   <input class="form-control"
+                         id="companyName"
                          name="companyName"
                          placeholder="Cégnév!"
                          formControlName="companyName"

@@ -7,8 +7,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgOptimizedImage} from "@angular/common";
 import {UserRegisterComponent} from "./pages/user/user-register/user-register.component";
 import {UserLoginComponent} from "./pages/user/user-login/user-login.component";
-import {MainComponent} from "./pages/main/main.component";
-import {HomeModule} from "./pages/home/home.module";
+import {MainComponent} from "./main/main.component";
+import {HomeModule} from "./home/home.module";
 import {ErrorCatchingInterceptor} from "./services/Interceptor/interceptor";
 import {ErrorComponent} from "./services/error/error.component";
 

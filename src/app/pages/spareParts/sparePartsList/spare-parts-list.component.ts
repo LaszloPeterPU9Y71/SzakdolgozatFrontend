@@ -1,5 +1,7 @@
 import {Component, OnInit, } from '@angular/core';
-import {SparePartCreateRequest, SparePartService} from "../../../services/spare-part.service";
+import {
+  SparePartService} from "../../../services/spare-part.service";
+import {SparePartCreateRequest} from "../../../models/spare-parts.model";
 
 
 

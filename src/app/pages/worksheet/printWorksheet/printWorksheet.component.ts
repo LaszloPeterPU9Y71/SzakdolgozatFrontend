@@ -11,11 +11,7 @@ export class PrintWorksheetComponent implements OnInit{
 
 
     ngOnInit() {
-
     }
-
-
-
 
   }
 

@@ -3,14 +3,6 @@ export interface ResponseTypes<T>{
   errors: string[];
   ok: boolean;
 }
-export interface CustomerCreateRequest {
-
-  name: string;
-  telNum: number;
-  email: string;
-  title: string;
-  companyName: string;
-}
 
 export interface CustomerCompanyCreateRequest{
 

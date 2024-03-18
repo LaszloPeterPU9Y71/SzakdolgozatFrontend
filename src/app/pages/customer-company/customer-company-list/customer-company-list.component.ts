@@ -1,6 +1,8 @@
 import {Component, OnInit, } from '@angular/core';
-import { CustomerCompanyService, CustomerService} from "../../../services/customer-company.service";
-import {CustomerCompanyCreateRequest, CustomerCreateRequest} from "../../../models/customer-company.model";
+import { CustomerCompanyService,} from "../../../services/customer-company.service";
+import {CustomerCompanyCreateRequest} from "../../../models/customer-company.model";
+import {CustomerCreateRequest} from "../../../models/customer-company-employee.model";
+import {CustomerService} from "../../../services/customer-company-employee.service";
 
 
 @Component({

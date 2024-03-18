@@ -1,6 +1,7 @@
 import {Component, OnInit, } from '@angular/core';
-import { Tool, ToolsService } from '../../../services/tools.service';
+import {  ToolsService } from '../../../services/tools.service';
 import {FormBuilder} from "@angular/forms";
+import {Tool} from "../../../models/tool.model";
 
 
 
