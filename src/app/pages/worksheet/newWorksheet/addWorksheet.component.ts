@@ -1,7 +1,11 @@
 import {Component, inject, OnInit} from "@angular/core";
-import {WorksheetService} from "../../../services/worksheet.service";
+
 import {FormControl, FormGroup} from "@angular/forms";
 import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto} from "../../../models/backend.models";
+import {CustomerCompanyService} from "../../../services/customer-company.service";
+import {CustomerService} from "../../../services/customer-company-employee.service";
+import {ToolsService} from "../../../services/tools.service";
+import {DefectService} from "../../../services/defect.service";
 
 
 @Component({
@@ -11,20 +15,18 @@ import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto} from "../../../mode
   })
 
 export class AddWorksheetComponent implements OnInit{
-worksheetService = inject(WorksheetService);
+
+
+    defectService = inject(DefectService);
+    ownerCompanyEmployeeService = inject(CustomerService);
+    ownerCompanyService = inject(CustomerCompanyService);
     selectedCompany: OwnerCompanyDto | undefined;
     employees: OwnerCompanyEmployeeDto[] = [];
     selectedEmployee: OwnerCompanyEmployeeDto| undefined;
     defects: DefectDto[] = [];
     selectedDefect: DefectDto |undefined;
 
-
-
-
-
-
     ngOnInit() {
-
     }
 
     createCompany(){
@@ -33,7 +35,7 @@ worksheetService = inject(WorksheetService);
 
       findEmployee($event: Event) {
       let value = ($event.target as HTMLInputElement).value;
-      this.worksheetService.findEmployee(value).subscribe((response) => {
+      this.ownerCompanyEmployeeService.findEmployee(value).subscribe((response) => {
         this.employees = response;
         console.log(this.employees);
         ($event.target as HTMLInputElement).value = "";
@@ -43,7 +45,7 @@ worksheetService = inject(WorksheetService);
     onEmployeeSelect(employee: OwnerCompanyEmployeeDto) {
       this.selectedEmployee = employee
       console.log(employee);
-      this.worksheetService.findCompanyById(employee.ownerCompanyId).subscribe((response: OwnerCompanyDto) =>{
+      this.ownerCompanyService.findCompanyById(employee.ownerCompanyId).subscribe((response: OwnerCompanyDto) =>{
         this.selectedCompany = response
       });
 
@@ -58,7 +60,7 @@ worksheetService = inject(WorksheetService);
 
 
 
-  private worksheetService2 = inject(WorksheetService)
+  private worksheetService2 = inject(ToolsService)
   form: FormGroup = new FormGroup({
     name: new FormControl(),
     typeNumber: new FormControl(),
@@ -83,7 +85,7 @@ worksheetService = inject(WorksheetService);
   }
   findDefect($event: Event) {
     let value = ($event.target as HTMLInputElement).value;
-    this.worksheetService.findDefect(value).subscribe((response) => {
+    this.defectService.findDefect(value).subscribe((response) => {
       this.defects = response;
       console.log(this.defects);
       ($event.target as HTMLInputElement).value = "";

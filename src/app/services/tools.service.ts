@@ -16,6 +16,17 @@ export class ToolsService {
 
   constructor(private http: HttpClient) { }
 
+  createTool(tool: {
+    itemNumber: String;
+    serialNumber: String;
+    typeNumber: String;
+    name: String;
+    id: number | undefined;
+    defectsId: number | undefined;
+  }): Observable<ToolDto>{
+    return this.http.post<ToolDto>(this.host + "tools/create", tool);
+  }
+
   getToolList(searchValue: string): Observable<ToolDto[]> {
     return this.http.get<ToolDto[]>(this.host +`/all`);
   }

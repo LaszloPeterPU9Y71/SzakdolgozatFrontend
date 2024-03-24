@@ -31,4 +31,8 @@ export class CustomerCompanyService {
 
   }
 
+  findCompanyById(id: number): Observable<OwnerCompanyDto>{
+    return this.http.get<OwnerCompanyDto>(this.host + "/find-by-id/" + id);
+  }
+
 }

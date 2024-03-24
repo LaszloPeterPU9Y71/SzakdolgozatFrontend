@@ -28,4 +28,5 @@ export class DefectService {
     return this.http.get<DefectDto[]>(this.host + "defects/name/" + name );
   }
 
+
 }
