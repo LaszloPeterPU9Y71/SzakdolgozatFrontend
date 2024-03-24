@@ -1,6 +1,7 @@
 import {Component, OnInit, } from '@angular/core';
 import { DefectService} from "../../../services/defect.service";
-import {Defect} from "../../../models/defect.model";
+
+import {DefectDto} from "../../../models/backend.models";
 
 
 
@@ -14,7 +15,7 @@ export class DefectListComponent implements  OnInit{
 
 
   searchValue = '';
-  searchList: Defect[] = [];
+  searchList: DefectDto[] = [];
 
 
 

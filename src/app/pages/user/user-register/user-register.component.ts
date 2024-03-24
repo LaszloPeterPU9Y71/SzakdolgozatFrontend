@@ -1,9 +1,9 @@
-import {Component, inject, OnInit} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {catchError} from "rxjs/operators";
-import {HttpErrorResponse, HttpParams} from "@angular/common/http";
-import {Observable, of, throwError} from "rxjs";
+
+import {of} from "rxjs";
 
 
 

@@ -1,7 +1,6 @@
 import {Component, OnInit, } from '@angular/core';
-import {
-  SparePartService} from "../../../services/spare-part.service";
-import {SparePartCreateRequest} from "../../../models/spare-parts.model";
+import {SparePartService} from "../../../services/spare-part.service";
+import {SparePartDto} from "../../../models/backend.models";
 
 
 
@@ -15,7 +14,7 @@ export class SparePartsListComponent implements  OnInit{
 
 
   searchValue = '';
-  searchList: SparePartCreateRequest[] = [];
+  searchList: SparePartDto[] = [];
 
 
 

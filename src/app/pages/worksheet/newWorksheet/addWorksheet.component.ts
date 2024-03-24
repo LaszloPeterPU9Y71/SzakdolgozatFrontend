@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from "@angular/core";
 import {WorksheetService} from "../../../services/worksheet.service";
 import {FormControl, FormGroup} from "@angular/forms";
-
+import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto} from "../../../models/backend.models";
 
 
 @Component({
@@ -12,12 +12,11 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 export class AddWorksheetComponent implements OnInit{
 worksheetService = inject(WorksheetService);
-    companies: any[] = [];
-    selectedCompany: any = null;
-    employees: any[] = [];
-    selectedEmployee: any = null;
-    defects: any[] = [];
-    selectedDefect: any = null;
+    selectedCompany: OwnerCompanyDto | undefined;
+    employees: OwnerCompanyEmployeeDto[] = [];
+    selectedEmployee: OwnerCompanyEmployeeDto| undefined;
+    defects: DefectDto[] = [];
+    selectedDefect: DefectDto |undefined;
 
 
 
@@ -28,26 +27,11 @@ worksheetService = inject(WorksheetService);
 
     }
 
-    createcompany(){
-      window.open("http://localhost:4200/addcompany", '_blank');
+    createCompany(){
+      window.open("http://localhost:4200/add-company", '_blank');
     }
 
-
-    findCompany($event: Event) {
-      let value = ($event.target as HTMLInputElement).value;
-      this.worksheetService.findCompany(value).subscribe((response) => {
-        this.companies = response;
-        console.log(this.companies);
-        ($event.target as HTMLInputElement).value = "";
-      })
-    }
-
-    onCompanySelect(company: any) {
-      this.selectedCompany = company;
-      this.companies = [];
-    }
-
-    findEmployee($event: Event) {
+      findEmployee($event: Event) {
       let value = ($event.target as HTMLInputElement).value;
       this.worksheetService.findEmployee(value).subscribe((response) => {
         this.employees = response;
@@ -55,14 +39,12 @@ worksheetService = inject(WorksheetService);
         ($event.target as HTMLInputElement).value = "";
       })
     }
-    onEmployeeSelect(employee: any) {
+
+    onEmployeeSelect(employee: OwnerCompanyEmployeeDto) {
       this.selectedEmployee = employee
       console.log(employee);
-      console.log(this.selectedCompany= employee?.ownerCompanyEntity);
-      this.worksheetService.findCompany(employee.ownerCompanyEmployee).subscribe((response) => {
-        this.companies = response;
-        console.log(this.companies)
-
+      this.worksheetService.findCompanyById(employee.ownerCompanyId).subscribe((response: OwnerCompanyDto) =>{
+        this.selectedCompany = response
       });
 
         console.log(employee);
@@ -84,6 +66,8 @@ worksheetService = inject(WorksheetService);
     serialNumber: new FormControl()
   });
 
+
+
   onSubmit() {
     console.log(this.selectedEmployee);
     this.worksheetService2.createTool({
@@ -91,8 +75,8 @@ worksheetService = inject(WorksheetService);
       typeNumber: this?.form.controls['typeNumber'].value,
       itemNumber: this?.form.controls['itemNumber'].value,
       serialNumber: this?.form.controls['serialNumber'].value,
-      ownerCompanyEmployee: this.selectedEmployee.id,
-      defectsId: this.selectedDefect.id,
+      id: this.selectedEmployee?.ownerCompanyId,
+      defectsId: this.selectedDefect?.id,
     }).subscribe((response: any) => {
       console.log(response)
     })

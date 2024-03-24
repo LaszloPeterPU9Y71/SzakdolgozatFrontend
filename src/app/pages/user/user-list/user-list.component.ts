@@ -1,19 +1,20 @@
 import {Component, OnInit} from "@angular/core";
 
-import { RepairManService} from "../../services/repair-man.service";
-import {RepairMan} from "../../models/repair-man.model";
+import { RepairManService} from "../../../services/repair-man.service";
+
+import {UserDto} from "../../../models/backend.models";
 
 @Component({
-    selector: 'app-repairman',
-    templateUrl: './repairMan.component.html',
-    styleUrls: ['repairMan.component.css']
+    selector: 'app-user',
+    templateUrl: './user-list.component.html',
+    styleUrls: ['user-list.component.css']
 })
 
-export class RepairManComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
 
     searchValue = '';
-    searchList: RepairMan[] = [];
+    searchList: UserDto[] = [];
 
 
     constructor(

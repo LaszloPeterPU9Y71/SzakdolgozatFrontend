@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {CustomerCompanyCreateRequest} from "../models/customer-company.model";
+import {OwnerCompanyDto} from "../models/backend.models";
 
 
 @Injectable({
@@ -13,21 +13,21 @@ export class CustomerCompanyService {
 
   constructor(private http: HttpClient) { }
 
-  createCustomerCompany(customerCompany: {
-    town: any;
-    street: any;
-    companyName: any;
-    postalCode: any;
-    taxNumber: any;
-    accountNumber: any
+  createCustomerCompany(ownerCompany: {
+    town: string;
+    street: string;
+    companyName: string;
+    postalCode: number;
+    taxNumber: string;
+    accountNumber: string
 
-  }): Observable<CustomerCompanyCreateRequest>{
-    return this.http.post<CustomerCompanyCreateRequest>(this.host + `/addCompany`, customerCompany)
+  }): Observable<OwnerCompanyDto>{
+    return this.http.post<OwnerCompanyDto>(this.host + `/add-company`,ownerCompany)
   }
 
 
-  getCustomerCompanyList(searchValue: string):Observable<CustomerCompanyCreateRequest[]> {
-    return this.http.get<CustomerCompanyCreateRequest[]>(this.host + `/all`);
+  getCustomerCompanyList(searchValue: string):Observable<OwnerCompanyDto[]> {
+    return this.http.get<OwnerCompanyDto[]>(this.host + `/all`);
 
   }
 

@@ -1,28 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ToolListComponent} from "../pages/tools/tool-list/tool-list.component";
-import {ToolSearchComponent} from "../pages/tools/tool-arrived/tool-search.component";
-import {ToolSearchTypenumberComponent} from "../pages/tools/tool-inprogress/tool-search-typenumber.component";
-import {ToolReadyComponent} from "../pages/tools/tool-ready/tool-ready.component";
-import {ToolClosedComponent} from "../pages/tools/tool-closed/tool-closed.component";
-import {RepairManComponent} from "../pages/repairman/repairMan.component";
-import {AddWorksheetComponent} from "../pages/worksheet/newWorksheet/addWorksheet.component";
-import {HomeComponent} from "./home.component";
-import {CreateSparePartComponent} from "../pages/spareParts/createSparePart/create-spare-part.component";
-import {SparePartsListComponent} from "../pages/spareParts/sparePartsList/spare-parts-list.component";
-import {DefectListComponent} from "../pages/defects/defectList/defect-list.component";
-import {CreateDefectComponent} from "../pages/defects/createDefect/create-defect.component";
+import {ToolListComponent} from "./pages/tools/tool-list/tool-list.component";
+import {ToolSearchComponent} from "./pages/tools/tool-arrived/tool-search.component";
+import {ToolSearchTypenumberComponent} from "./pages/tools/tool-inprogress/tool-search-typenumber.component";
+import {ToolReadyComponent} from "./pages/tools/tool-ready/tool-ready.component";
+import {ToolClosedComponent} from "./pages/tools/tool-closed/tool-closed.component";
+import {UserListComponent} from "./pages/user/user-list/user-list.component";
+import {AddWorksheetComponent} from "./pages/worksheet/newWorksheet/addWorksheet.component";
+import {HomeComponent} from "./home/home.component";
+import {CreateSparePartComponent} from "./pages/spareParts/createSparePart/create-spare-part.component";
+import {SparePartsListComponent} from "./pages/spareParts/sparePartsList/spare-parts-list.component";
+import {DefectListComponent} from "./pages/defects/defectList/defect-list.component";
+import {CreateDefectComponent} from "./pages/defects/createDefect/create-defect.component";
 import {
   CustomerCompanyRegisterComponent
-} from "../pages/customer-company/customer-company-register/customer-company-register.component";
-import {CustomerCompanyListComponent} from "../pages/customer-company/customer-company-list/customer-company-list.component";
-import {UpdateWorksheetComponent} from "../pages/worksheet/updateWorksheet/updateWorksheet.component";
+} from "./pages/customer-company/customer-company-register/customer-company-register.component";
+import {CustomerCompanyListComponent} from "./pages/customer-company/customer-company-list/customer-company-list.component";
+import {UpdateWorksheetComponent} from "./pages/worksheet/updateWorksheet/updateWorksheet.component";
 import {
   CustomerRegisterComponent
-} from "../pages/customer-company-employee/customer-company-employee-register.component";
+} from "./pages/customer-company-employee/customer-company-employee-register.component";
 
 
 const routes: Routes = [
+
   {
     path:'',
     component: HomeComponent,
@@ -55,13 +56,13 @@ const routes: Routes = [
     path:'',
     component: HomeComponent,
     children: [{
-      path: 'inprogress',
+      path: 'in-progress',
       component: ToolSearchTypenumberComponent
     }]
   },
 
   {
-    path: 'inprogress',
+    path: 'in-progress',
     component: ToolSearchTypenumberComponent,
   },
 
@@ -98,26 +99,26 @@ const routes: Routes = [
     component: HomeComponent,
     children: [{
       path: 'repairman',
-      component: RepairManComponent
+      component: UserListComponent
     }]
   },
 
   {
     path: 'repairman',
-    component: RepairManComponent,
+    component: UserListComponent,
   },
 
   {
     path:'',
     component: HomeComponent,
     children: [{
-      path: 'newworksheet',
+      path: 'new-worksheet',
       component: AddWorksheetComponent
     }]
   },
 
   {
-    path: 'newworksheet',
+    path: 'new-worksheet',
     component: AddWorksheetComponent
 
 
@@ -169,13 +170,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [{
-      path: 'adddefect',
+      path: 'add-defect',
       component: CreateDefectComponent
     }]
   },
 
   {
-    path: 'adddefect',
+    path: 'add-defect',
     component: CreateDefectComponent
   },
 
@@ -183,13 +184,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [{
-      path: 'addcompany',
+      path: 'add-company',
       component: CustomerCompanyRegisterComponent
     }]
   },
 
   {
-    path: 'addcompany',
+    path: 'add-company',
     component: CustomerCompanyRegisterComponent
   },
 
@@ -197,13 +198,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [{
-      path: 'addcompanyemployee',
+      path: 'add-company-employee',
       component: CustomerRegisterComponent
     }]
   },
 
   {
-    path: 'addcompanyemployee',
+    path: 'add-company-employee',
     component: CustomerRegisterComponent
   },
 
@@ -212,26 +213,26 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [{
-      path: 'companylist',
+      path: 'company-list',
       component: CustomerCompanyListComponent
     }]
   },
 
   {
-    path: 'companylist',
+    path: 'company-list',
     component: CustomerCompanyListComponent
   },
   {
     path: '',
     component: HomeComponent,
     children: [{
-      path: 'updateworksheet',
+      path: 'update-worksheet',
       component: UpdateWorksheetComponent
     }]
   },
 
   {
-    path: 'updateworksheet',
+    path: 'update-worksheet',
     component: UpdateWorksheetComponent
   },
 ];

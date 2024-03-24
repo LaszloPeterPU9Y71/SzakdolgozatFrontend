@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Tool} from "../models/tool.model";
+import {ToolDto} from "../models/backend.models";
 
 
 
@@ -16,29 +16,29 @@ export class ToolsService {
 
   constructor(private http: HttpClient) { }
 
-  getToolList(searchValue: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host +`/all`);
+  getToolList(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host +`/all`);
   }
 
-  getToolByName(searchValue: string): Observable<Tool[]> {
-   return this.http.get<Tool[]>(this.host + `/name=${searchValue}`);
+  getToolByName(searchValue: string): Observable<ToolDto[]> {
+   return this.http.get<ToolDto[]>(this.host + `/name/${searchValue}`);
    }
 
-  getToolByTypeNumber(searchValue: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host + `/type=${searchValue}`);
+  getToolByTypeNumber(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/type/${searchValue}`);
   }
-  getToolByItemNumber(searchValue: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host + `/item=${searchValue}`);
+  getToolByItemNumber(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/item/${searchValue}`);
   }
-  getToolBySerialNumber(searchValue: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host + `/serial=${searchValue}`);
-  }
-
-  getToolByStatus(searchValue: string): Observable<Tool[]> {
-    return this.http.get<Tool[]>(this.host + `/status=${searchValue}`);
+  getToolBySerialNumber(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/serial/${searchValue}`);
   }
 
-  updateTool(machine: Tool): Observable<string> {
+  getToolByStatus(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/status/${searchValue}`);
+  }
+
+  updateTool(machine: ToolDto): Observable<string> {
     return this.http.put<string>(this.host + `/update/${machine.id}`, machine);
   }
 

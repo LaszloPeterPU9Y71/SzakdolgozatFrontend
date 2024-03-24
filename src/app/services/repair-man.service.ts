@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {RepairMan} from "../models/repair-man.model";
+import {UserDto} from "../models/backend.models";
 
 
 
@@ -18,8 +18,8 @@ export class RepairManService{
   }
 
 
-  getRepairManList(searchValue: string): Observable<RepairMan[]>{
-    return this.http.get<RepairMan[]>(this.host + '/all')
+  getRepairManList(searchValue: string): Observable<UserDto[]>{
+    return this.http.get<UserDto[]>(this.host + '/all')
   }
 
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Defect} from "../models/defect.model";
+import {DefectDto} from "../models/backend.models";
 
 
 
@@ -16,12 +16,16 @@ export class DefectService {
 
   constructor(private http: HttpClient) { }
 
-  createDefect(defect: Defect): Observable<Defect[]> {
-   return this.http.post<Defect[]>(this.host + '/create', defect);
+    createDefect(defect: { name: string }): Observable<DefectDto[]> {
+   return this.http.post<DefectDto[]>(this.host + '/create', defect);
   }
 
-  getDefectList(searchValue: string): Observable<Defect[]> {
-    return this.http.get<Defect[]>(this.host + '/all');
+  getDefectList(searchValue: string): Observable<DefectDto[]> {
+    return this.http.get<DefectDto[]>(this.host + '/all');
+  }
+
+  findDefect(name: String): Observable<DefectDto[]> {
+    return this.http.get<DefectDto[]>(this.host + "defects/name/" + name );
   }
 
 }

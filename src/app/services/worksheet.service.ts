@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs";
-import {CreateToolRequest, Tool} from "../models/tool.model";
+import {OwnerCompanyDto, ToolDto} from "../models/backend.models";
 
 
 @Injectable({
@@ -14,15 +14,22 @@ export class WorksheetService {
 
   constructor(private http: HttpClient) { }
 
-  findCompany(name: String){
-   return this.http.get<any>(this.host + "owner/findbyname/" + name);
+  findCompanyById(id: number): Observable<OwnerCompanyDto>{
+   return this.http.get<OwnerCompanyDto>(this.host + "owner/find-by-id/" + id);
   }
   findEmployee(name: String) {
-    return this.http.get<any>(this.host + "ownercompany/findemployee/" + name);
+    return this.http.get<any>(this.host + "owner-company-employee/find-employee/" + name);
   }
 
-  createTool(tool: CreateToolRequest ): Observable<Tool>{
-    return this.http.post<Tool>(this.host + "tools/create", tool);
+  createTool(tool: {
+    itemNumber: String;
+    serialNumber: String;
+    typeNumber: String;
+    name: String;
+    id: number | undefined;
+    defectsId: number | undefined;
+  }): Observable<ToolDto>{
+    return this.http.post<ToolDto>(this.host + "tools/create", tool);
   }
 
   findDefect(name: String) {

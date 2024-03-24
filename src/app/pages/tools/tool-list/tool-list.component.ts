@@ -1,7 +1,7 @@
 import {Component, OnInit, } from '@angular/core';
 import {  ToolsService } from '../../../services/tools.service';
 import {FormBuilder} from "@angular/forms";
-import {Tool} from "../../../models/tool.model";
+import {ToolDto} from "../../../models/backend.models";
 
 
 
@@ -15,7 +15,7 @@ export class ToolListComponent implements  OnInit{
 
 
   searchValue = '';
-  searchList: Tool[] = [];
+  searchList: ToolDto[] = [];
   searchFormName = this.fb.nonNullable.group({searchValue:''});
   searchFormTypeNumber= this.fb.nonNullable.group({searchValue:''});
   searchFormStatus= this.fb.nonNullable.group({searchValue:''});
@@ -140,7 +140,7 @@ export class ToolListComponent implements  OnInit{
     this.searchValue = this.searchFormStatus.value.searchValue ?? '';
     this.fetchData();
   }
-  onStatusChange(machine: Tool, $event: Event) {
+  onStatusChange(machine: ToolDto, $event: Event) {
     const newStatus = $event.target as HTMLInputElement;
     machine.status = newStatus.value;
     this.toolsService

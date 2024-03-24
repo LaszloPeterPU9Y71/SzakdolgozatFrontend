@@ -1,38 +1,37 @@
 import {Component, OnInit, } from '@angular/core';
 import { CustomerCompanyService,} from "../../../services/customer-company.service";
-import {CustomerCompanyCreateRequest} from "../../../models/customer-company.model";
-import {CustomerCreateRequest} from "../../../models/customer-company-employee.model";
 import {CustomerService} from "../../../services/customer-company-employee.service";
+import {OwnerCompanyDto, OwnerCompanyEmployeeDto} from "../../../models/backend.models";
 
 
 @Component({
-  selector: '.app-defect-list',
+  selector: '.app-customer-company-list',
   templateUrl: './customer-company-list.component.html',
   styleUrls: ['./customer-company-list.component.scss']
 })
 export class CustomerCompanyListComponent implements  OnInit{
 
   searchValue = '';
-  searchCompany: CustomerCompanyCreateRequest[] = [];
-  searchEmployee: CustomerCreateRequest[] = [];
+  searchCompany: OwnerCompanyDto[] = [];
+  searchEmployee: OwnerCompanyEmployeeDto[] = [];
 
 
   constructor(
-    private customerComapnyService: CustomerCompanyService,
+    private customerCompanyService: CustomerCompanyService,
     private customerEmployeeService: CustomerService
   ){}
 
   ngOnInit(): void {
-    this.customerComapnyService
+    this.customerCompanyService
       .getCustomerCompanyList(this.searchValue)
-      .subscribe((searchList: CustomerCompanyCreateRequest[]) => {
+      .subscribe((searchList: OwnerCompanyDto[]) => {
         this.searchCompany = searchList
         console.log(searchList)
         console.log(this.searchValue)
       } )
     this.customerEmployeeService
       .getEmployeeList(this.searchValue)
-      .subscribe((searchList: CustomerCreateRequest[]) => {
+      .subscribe((searchList: OwnerCompanyEmployeeDto[]) => {
         this.searchEmployee = searchList
         console.log(searchList)
         console.log(this.searchValue)

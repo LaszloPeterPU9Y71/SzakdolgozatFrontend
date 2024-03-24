@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {SparePartCreateRequest} from "../models/spare-parts.model";
+import {SparePartDto} from "../models/backend.models";
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,12 @@ export class SparePartService {
 
   constructor(private http: HttpClient) { }
 
-  createSparePart(sparePart: SparePartCreateRequest): Observable<SparePartCreateRequest[]> {
-    return this.http.post<SparePartCreateRequest[]>(this.host +`/create`, sparePart);
+  createSparePart(sparePart: SparePartDto): Observable<SparePartDto[]> {
+    return this.http.post<SparePartDto[]>(this.host +`/create`, sparePart);
   }
 
-  getSparepartsList(searchValue: string): Observable<SparePartCreateRequest[]> {
-    return this.http.get<SparePartCreateRequest[]>(this.host +`/all`);
+  getSparepartsList(searchValue: string): Observable<SparePartDto[]> {
+    return this.http.get<SparePartDto[]>(this.host +`/all`);
   }
 
 }

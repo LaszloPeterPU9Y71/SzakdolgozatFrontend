@@ -10,20 +10,39 @@
               <div class="col-md-6">
                 <table class="customer">
                   <tr>
-                    <th>
-                      Tulajdonos adatai
-                      <th>
+                    <td>
+                      <b>Személy adatai</b>
+                    </td>
+                    <td>
                       <div class="autocomplete">
-                        <input placeholder="Kereső" (keyup.enter)="findCompany($event)">
+                        <input placeholder="Kereső" (keyup.enter)="findEmployee($event)">
                         <ul>
-                          <li *ngFor="let company of companies" (click)="onCompanySelect(company)">
-                            {{company.companyName}}
-                            {{company.taxNumber}}
+                          <li *ngFor="let employee of employees" (click)="onEmployeeSelect(employee)">
+                            {{employee?.name}}
+                            {{employee?.telNum}}
+                            {{employee?.email}}
+
                           </li>
                         </ul>
                       </div>
-                      </th>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Személy neve</td>
 
+                    <td>{{selectedEmployee?.name}}</td>
+                  </tr>
+                  <tr>
+                    <td>Telefonszám</td>
+                    <td>{{selectedEmployee?.telNum}}</td>
+
+                  </tr>
+                  <tr>
+                    <td>E-mail</td>
+                    <td>{{selectedEmployee?.email}}</td>
+                  <tr>
+                    <th>
+                      Cég adatai
                   </tr>
                   <tr>
                     <td>Cégnév</td>
@@ -43,45 +62,10 @@
                     <td>Utca és házszám</td>
                     <td>{{selectedCompany?.street}}</td>
                     <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <b>Személy adatai</b>
-                    </td>
-                    <td>
-                      <div class="autocomplete">
-                      <input placeholder="Kereső" (keyup.enter)="findEmployee($event)">
-                      <ul>
-                        <li *ngFor="let employee of employees" (click)="onEmployeeSelect(employee)">
-                          {{employee?.name}}
-                          {{employee?.telNum}}
-                          {{employee?.email}}
-
-                        </li>
-                      </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Személy neve</td>
-
-                    <td>{{selectedEmployee?.name}}</td>
-                  </tr>
-                  <tr>
-                    <td>Telefonszám</td>
-                    <td>{{selectedEmployee?.telNum}}</td>
-
-                  </tr>
-                  <tr>
-                    <td>E-mail</td>
-                    <td>{{selectedEmployee?.email}}</td>
-
-
-                  </tr>
                     <br>
                   <tr>
                     <td>
-                      <button class="btn btn-primary" type="button" (click)="createcompany()"   >Új ügyfél felvétele</button>
+                      <button class="btn btn-primary" type="button" (click)="createCompany()"   >Új ügyfél felvétele</button>
                     </td>
                   </tr>
                 </table>
