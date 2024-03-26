@@ -7,38 +7,29 @@
     </div>
 
     <table class="table table-striped table-bordered table-hover">
-      <thead class="table-dark">
-      <tr>
-        <th>Cégnév</th>
-        <th>Irányítószám</th>
-        <th>Város</th>
-        <th>Utca, házszám</th>
-
-        <th>Adószám</th>
-
-
-      </tr>
-      </thead>
       <tbody>
-      <tr *ngFor="let company of searchCompany" >
-        <td>{{company.companyName}}</td>
-        <td>{{company.postalCode}}</td>
-        <td>{{company.town}}</td>
-        <td>{{company.street}}</td>
-        <td>{{company.taxNumber}}</td>
-      <tr>
-        <th>Név</th>
-        <th>Telefonszám</th>
-        <th>E-mail</th>
-        <th>Beosztás</th>
-      </tr>
-      <tr *ngFor="let employee of searchEmployee" >
-        <td>{{employee.name}}</td>
-        <td>{{employee.telNum}}</td>
-        <td>{{employee.email}}</td>
-        <td>{{employee.title}}</td>
-      </tr>
+      <ng-container *ngFor="let company of searchCompany">
+        <tr>
+          <td>{{company.companyName}}</td>
+          <td>{{company.postalCode}}</td>
+          <td>{{company.town}}</td>
+          <td>{{company.street}}</td>
+          <td>{{company.taxNumber}}</td>
+        </tr>
 
+        <tr *ngFor="let employee of searchEmployee">
+          <ng-container *ngIf="employee.ownerCompanyId === company.id">
+            <td></td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.telNum}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.title}}</td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td colspan="5"></td>
+        </tr>
+      </ng-container>
       </tbody>
     </table>
     <button class="btn btn-primary" type="button" routerLink="/add-company"  >Tovább a partner felvételhez</button>

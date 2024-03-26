@@ -123,8 +123,9 @@
           <form method="post" role="form" [formGroup]="form"  >
           <table class="table border-bottom border-gray-200 mt-3">
             <thead>
-            <tr>
 
+            <tr>
+              <td></td>
               <th class="data">Megnevezés</th>
               <th class="data">Típusszám</th>
               <th class="data">Cikkszám</th>
@@ -137,6 +138,7 @@
             <tbody>
 
             <tr>
+              <td><strong>Gépadatok:</strong></td>
               <td  class="data">
                   <input placeholder="Megnevezés"
                          formControlName="name"
@@ -158,19 +160,27 @@
                        type="text"/>
               </td>
 
-
             </tr>
-            <tr >
+
+            <tr>
               <td ><strong>Hibajelenség</strong></td>
               <td colspan="2" class="defect"><input placeholder="Kereső" (keyup.enter)="findDefect($event)">
-                <ul>
-                  <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
+              <td *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
                     {{defect.name}}
-                  </li>
-                </ul>
-              </td>
+
               <td>{{selectedDefect?.name}}</td>
             </tr>
+            <tr>
+              <td><strong>Hibaleírás</strong></td>
+              <td  class="data">
+                <input placeholder="Hiba pontos leírása"
+                       formControlName="description"
+                       type="text"/>
+              </td>
+            </tr>
+
+
+
             </tbody>
           </table>
           </form>

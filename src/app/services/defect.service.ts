@@ -16,7 +16,7 @@ export class DefectService {
 
   constructor(private http: HttpClient) { }
 
-    createDefect(defect: { name: string }): Observable<DefectDto[]> {
+  createDefect(defect: { name: string }): Observable<DefectDto[]> {
    return this.http.post<DefectDto[]>(this.host + '/create', defect);
   }
 
@@ -25,7 +25,7 @@ export class DefectService {
   }
 
   findDefect(name: String): Observable<DefectDto[]> {
-    return this.http.get<DefectDto[]>(this.host + "defects/name/" + name );
+    return this.http.get<DefectDto[]>(this.host + "/name/" + name );
   }
 
 

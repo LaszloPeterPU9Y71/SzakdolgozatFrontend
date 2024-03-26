@@ -19,8 +19,7 @@ export class CustomerCompanyService {
     companyName: string;
     postalCode: number;
     taxNumber: string;
-    accountNumber: string
-
+    accountNumber: string;
   }): Observable<OwnerCompanyDto>{
     return this.http.post<OwnerCompanyDto>(this.host + `/add-company`,ownerCompany)
   }

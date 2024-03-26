@@ -26,6 +26,7 @@ export class AddWorksheetComponent implements OnInit{
     defects: DefectDto[] = [];
     selectedDefect: DefectDto |undefined;
 
+
     ngOnInit() {
     }
 
@@ -44,12 +45,9 @@ export class AddWorksheetComponent implements OnInit{
 
     onEmployeeSelect(employee: OwnerCompanyEmployeeDto) {
       this.selectedEmployee = employee
-      console.log(employee);
       this.ownerCompanyService.findCompanyById(employee.ownerCompanyId).subscribe((response: OwnerCompanyDto) =>{
         this.selectedCompany = response
       });
-
-        console.log(employee);
         this.employees = [];
       }
 
@@ -65,24 +63,27 @@ export class AddWorksheetComponent implements OnInit{
     name: new FormControl(),
     typeNumber: new FormControl(),
     itemNumber: new FormControl(),
-    serialNumber: new FormControl()
+    serialNumber: new FormControl(),
+    description: new FormControl()
   });
 
 
 
-  onSubmit() {
-    console.log(this.selectedEmployee);
-    this.worksheetService2.createTool({
-      name: this?.form.controls['name'].value,
-      typeNumber: this?.form.controls['typeNumber'].value,
-      itemNumber: this?.form.controls['itemNumber'].value,
-      serialNumber: this?.form.controls['serialNumber'].value,
-      id: this.selectedEmployee?.ownerCompanyId,
-      defectsId: this.selectedDefect?.id,
-    }).subscribe((response: any) => {
-      console.log(response)
+  onSubmit() {this.worksheetService2.createTool({
+        name: this?.form.controls['name'].value,
+        typeNumber: this?.form.controls['typeNumber'].value,
+        itemNumber: this?.form.controls['itemNumber'].value,
+        serialNumber: this?.form.controls['serialNumber'].value,
+        description: this?.form.controls['description'].value,
+        employeeId: this.selectedEmployee?.id,
+      }).subscribe((response: any) => {
+        console.log(response)
+        console.log(" ownerComapnyId: " + this.selectedEmployee?.ownerCompanyId)
+        console.log("selectedEmployeeId: " + this.selectedEmployee?.id)
+        console.log(this.selectedEmployee)
     })
   }
+
   findDefect($event: Event) {
     let value = ($event.target as HTMLInputElement).value;
     this.defectService.findDefect(value).subscribe((response) => {
@@ -93,7 +94,6 @@ export class AddWorksheetComponent implements OnInit{
   }
   onDefectSelect(defect: any) {
     this.selectedDefect = defect;
-    console.log(defect.id)
     this.defects = [];
   }
 }
