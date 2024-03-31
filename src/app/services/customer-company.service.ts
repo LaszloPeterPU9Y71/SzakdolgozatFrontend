@@ -34,4 +34,8 @@ export class CustomerCompanyService {
     return this.http.get<OwnerCompanyDto>(this.host + "/find-by-id/" + id);
   }
 
+  findCompanyByName(name: string): Observable<OwnerCompanyDto[]>{
+    return this.http.get<OwnerCompanyDto[]>(this.host + "/find-by-name/" + name);
+  }
+
 }

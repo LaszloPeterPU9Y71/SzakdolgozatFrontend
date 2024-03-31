@@ -1,8 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-
-import { RepairManService} from "../../../services/repair-man.service";
-
 import {UserDto} from "../../../models/backend.models";
+import {UserService} from "../../../services/user.service";
 
 @Component({
     selector: 'app-user',
@@ -18,11 +16,11 @@ export class UserListComponent implements OnInit {
 
 
     constructor(
-        private repairManService: RepairManService,
+        private userService: UserService,
     ) {}
 
     ngOnInit(): void {
-        this.repairManService
+        this.userService
             .getRepairManList(this.searchValue)
             .subscribe((searchList) => {
                 this.searchList = searchList

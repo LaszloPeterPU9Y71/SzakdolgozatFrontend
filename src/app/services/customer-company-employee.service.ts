@@ -16,11 +16,14 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   createCustomer(customer: {
+    ownerCompanyId: number | undefined;
     name: string;
     telNum: string;
     title: string;
-    email: string})
+    email: string
+  })
     : Observable<OwnerCompanyEmployeeDto>{
+    console.log("++++++++++" + customer.ownerCompanyId)
     return this.http.post<OwnerCompanyEmployeeDto>(this.host + `/add-employee`, customer)
   }
 
@@ -30,7 +33,7 @@ export class CustomerService {
   }
 
   findEmployee(name: String) {
-    return this.http.get<any>(this.host + "/find-employee/" + name);
+    return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + "/find-employee/" + name);
   }
 
 }

@@ -17,8 +17,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-    createUser(user: { password: string; name: string; telNum: string; title: string; email: string }): Observable<UserDto> {
+    createUser(user: {
+      password: string;
+      name: string;
+      telNum: string;
+      title: string;
+      email: string;
+      companyId: number | undefined;
+    }): Observable<UserDto> {
     return this.http.post<UserDto>(this.host +`/create`, user);
+  }
+
+  getRepairManList(searchValue: string): Observable<UserDto[]>{
+    return this.http.get<UserDto[]>(this.host + '/all')
   }
 
 }

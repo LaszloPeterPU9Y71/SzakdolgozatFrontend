@@ -1,5 +1,4 @@
 import {Component, inject, OnInit} from "@angular/core";
-
 import {FormControl, FormGroup} from "@angular/forms";
 import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto} from "../../../models/backend.models";
 import {CustomerCompanyService} from "../../../services/customer-company.service";
@@ -76,6 +75,7 @@ export class AddWorksheetComponent implements OnInit{
         serialNumber: this?.form.controls['serialNumber'].value,
         description: this?.form.controls['description'].value,
         employeeId: this.selectedEmployee?.id,
+        defectId: this.selectedDefect?.id,
       }).subscribe((response: any) => {
         console.log(response)
         console.log(" ownerComapnyId: " + this.selectedEmployee?.ownerCompanyId)
@@ -89,7 +89,7 @@ export class AddWorksheetComponent implements OnInit{
     this.defectService.findDefect(value).subscribe((response) => {
       this.defects = response;
       console.log(this.defects);
-      ($event.target as HTMLInputElement).value = "";
+     ($event.target as HTMLInputElement).value = "";
     })
   }
   onDefectSelect(defect: any) {

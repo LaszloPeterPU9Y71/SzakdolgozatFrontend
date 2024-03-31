@@ -20,6 +20,7 @@ import {UpdateWorksheetComponent} from "./pages/worksheet/updateWorksheet/update
 import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";
+import {CompanyRegisterComponent} from "./pages/company/company-register.component";
 
 
 const routes: Routes = [
@@ -234,6 +235,11 @@ const routes: Routes = [
   {
     path: 'update-worksheet',
     component: UpdateWorksheetComponent
+  },
+
+  {
+    path: 'create-company',
+    component: CompanyRegisterComponent
   },
 ];
 

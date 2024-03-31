@@ -122,62 +122,55 @@
           <p><strong>Javításre beadott gép adatai!</strong></p>
           <form method="post" role="form" [formGroup]="form"  >
           <table class="table border-bottom border-gray-200 mt-3">
-            <thead>
-
-            <tr>
-              <td></td>
-              <th class="data">Megnevezés</th>
-              <th class="data">Típusszám</th>
-              <th class="data">Cikkszám</th>
-              <th class="data">Sorszám</th>
-
-
-            </tr>
-            </thead>
-
             <tbody>
-
-            <tr>
-              <td><strong>Gépadatok:</strong></td>
-              <td  class="data">
-                  <input placeholder="Megnevezés"
-                         formControlName="name"
+              <tr>
+                <td><strong>Gépadatok:</strong></td>
+                <td  class="data">
+                    <input placeholder="Megnevezés"
+                           formControlName="name"
+                           type="text"/>
+                </td>
+                <td  class="data">
+                  <input placeholder="Típusszám"
+                         formControlName="typeNumber"
                          type="text"/>
-              </td>
-              <td  class="data">
-                <input placeholder="Típusszám"
-                       formControlName="typeNumber"
-                       type="text"/>
-              </td>
-              <td  class="data">
-                <input placeholder="Cikkszám"
-                       formControlName="itemNumber"
-                       type="text"/>
-              </td>
-              <td  class="data">
-                <input placeholder="Sorszám"
-                       formControlName="serialNumber"
-                       type="text"/>
-              </td>
+                </td>
+                <td  class="data">
+                  <input placeholder="Cikkszám"
+                         formControlName="itemNumber"
+                         type="text"/>
+                </td>
+                <td  class="data">
+                  <input placeholder="Sorszám"
+                         formControlName="serialNumber"
+                         type="text"/>
+                </td>
+              </tr>
 
-            </tr>
+              <tr>
+                <td ><strong>Hibajelenség</strong></td>
+                <td>
+                    <input placeholder="Kereső" (keyup.enter)="findDefect($event)">
+                    <ul>
+                      <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
+                        {{defect.name}}
 
-            <tr>
-              <td ><strong>Hibajelenség</strong></td>
-              <td colspan="2" class="defect"><input placeholder="Kereső" (keyup.enter)="findDefect($event)">
-              <td *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
-                    {{defect.name}}
+                      </li>
+                    </ul>
+                </td>
+                <td>
+                  {{selectedDefect?.name}}
+                </td>
 
-              <td>{{selectedDefect?.name}}</td>
-            </tr>
-            <tr>
-              <td><strong>Hibaleírás</strong></td>
-              <td  class="data">
-                <input placeholder="Hiba pontos leírása"
-                       formControlName="description"
-                       type="text"/>
-              </td>
-            </tr>
+              </tr>
+              <tr>
+                <td><strong>Hibaleírás</strong></td>
+                <td  class="data">
+                  <input placeholder="Hiba pontos leírása"
+                         formControlName="description"
+                         type="text"/>
+                </td>
+              </tr>
 
 
 

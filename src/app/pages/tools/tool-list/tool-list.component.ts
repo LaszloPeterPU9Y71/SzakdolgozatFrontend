@@ -2,6 +2,7 @@ import {Component, OnInit, } from '@angular/core';
 import {  ToolsService } from '../../../services/tools.service';
 import {FormBuilder} from "@angular/forms";
 import {ToolDto} from "../../../models/backend.models";
+import {Router} from "@angular/router";
 
 
 
@@ -14,11 +15,11 @@ export class ToolListComponent implements  OnInit{
 
 
 
+
   searchValue = '';
   searchList: ToolDto[] = [];
   searchFormName = this.fb.nonNullable.group({searchValue:''});
   searchFormTypeNumber= this.fb.nonNullable.group({searchValue:''});
-  searchFormStatus= this.fb.nonNullable.group({searchValue:''});
   searchFormSerialNumber= this.fb.nonNullable.group({searchValue:''});
   searchFormItemNumber= this.fb.nonNullable.group({searchValue:''});
 
@@ -26,7 +27,8 @@ export class ToolListComponent implements  OnInit{
 
   constructor(
     private toolsService: ToolsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -115,37 +117,23 @@ export class ToolListComponent implements  OnInit{
           console.log(searchList)
         })
   }
+
   onSearchSubmitSerialNumber(): void {
+
     this.searchValue = this.searchFormSerialNumber.value.searchValue ?? '';
     this.fetchDataSerialNumber();
   }
 
-  fetchDataStatus(): void{
-    if (this.searchValue == '') {
-      this.toolsService
-        .getToolList(this.searchValue)
-        .subscribe((searchList) => {
-          this.searchList = searchList
-          console.log(searchList)
-        })
-    }else
-      this.toolsService
-        .getToolByStatus(this.searchValue)
-        .subscribe((searchList) =>{
-          this.searchList = searchList
-          console.log(searchList)
-        })
-  }
-  onSearchSubmitStatus(): void {
-    this.searchValue = this.searchFormStatus.value.searchValue ?? '';
-    this.fetchData();
-  }
   onStatusChange(machine: ToolDto, $event: Event) {
     const newStatus = $event.target as HTMLInputElement;
     machine.status = newStatus.value;
     this.toolsService
       .updateTool(machine)
       .subscribe(console.log)
+  }
+  onClickChange(){
+
+    this.router.navigate(['/home/update-worksheet']);
   }
 
 }

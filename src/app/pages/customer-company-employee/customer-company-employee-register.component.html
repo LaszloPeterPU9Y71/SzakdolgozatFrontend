@@ -58,6 +58,27 @@
                   </select>
                 </div>
 
+
+                  <div class="autocomplete">
+                    <input placeholder="A cégét itt tudja keresni" (keyup.enter)="findCompany($event)">
+                    <ul>
+                      <li *ngFor="let company of companies"  (click)="onCompanySelect(company)">
+                        {{company?.companyName}}
+                        {{company?.postalCode}}
+                        {{company?.town}}
+                        {{company?.street}}
+                        {{company?.taxNumber}}
+
+
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="autocomplete">
+                    A kiválasztott cég neve:
+                    {{selectedCompany?.companyName}}
+                  </div>
+                  <br>
+
                 <div class="form-group mb-3">
                   <button class="btn btn-primary" type="button" (click)="onSave()" >Regisztrál</button>
                 </div>

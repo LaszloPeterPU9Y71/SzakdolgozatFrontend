@@ -2,8 +2,9 @@ import {Component, inject} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {catchError} from "rxjs/operators";
-
 import {of} from "rxjs";
+import {CompanyDto, OwnerCompanyDto} from "../../../models/backend.models";
+import {CompanyService} from "../../../services/company.service";
 
 
 
@@ -19,6 +20,11 @@ import {of} from "rxjs";
 export class UserRegisterComponent {
 
     errorfield : string[] = []
+    companies : CompanyDto[] | [] | undefined;
+    selectedCompany: CompanyDto | undefined;
+    companyService = inject(CompanyService);
+
+
 
     private userService = inject(UserService)
     form: FormGroup = new FormGroup({
@@ -30,6 +36,8 @@ export class UserRegisterComponent {
 
     });
 
+
+
     onSave() {
       this.userService.createUser({
         name: this.form?.controls['name'].value,
@@ -37,6 +45,7 @@ export class UserRegisterComponent {
         telNum: this.form?.controls['telNum'].value,
         title: this.form?.controls['title'].value,
         password: this.form?.controls['password'].value,
+        companyId: this.selectedCompany?.id,
       }).pipe(
         catchError((err, caught) => {
           const errorMessage = 'error';
@@ -47,6 +56,22 @@ export class UserRegisterComponent {
     .subscribe((response) => {
         console.log(response)
       })
+    }
+    findCompany($event: Event) {
+      let value = ($event.target as HTMLInputElement).value;
+      this.companyService.findCompanyByName(value).subscribe((response : CompanyDto[] | []) => {
+        this.companies = response;
+        console.log(this.companies);
+        ($event.target as HTMLInputElement).value = "";
+      })
+    }
+
+    onCompanySelect(company: CompanyDto) {
+      this.selectedCompany = company
+      this.companyService.findCompanyById(company.id).subscribe((response: CompanyDto | undefined) =>{
+        this.selectedCompany = response
+      });
+      this.companies = undefined;
     }
   }
 

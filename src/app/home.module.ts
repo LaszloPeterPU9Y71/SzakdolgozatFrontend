@@ -29,6 +29,7 @@ import {PrintWorksheetComponent} from "./pages/worksheet/printWorksheet/printWor
 import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";
+import {CompanyRegisterComponent} from "./pages/company/company-register.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {
     CustomerRegisterComponent,
     FooterComponent,
     UpdateWorksheetComponent,
-    PrintWorksheetComponent
+    PrintWorksheetComponent,
+    CompanyRegisterComponent
 
   ],
   imports: [

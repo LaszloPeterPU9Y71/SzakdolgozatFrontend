@@ -6,6 +6,7 @@ export interface UserDto{
     title:string;
     status: boolean;
     password: string;
+    companyId: number;
 }
 
 export interface OwnerCompanyEmployeeDto {
@@ -15,6 +16,8 @@ export interface OwnerCompanyEmployeeDto {
     email: string;
     title: string;
     ownerCompanyId: number;
+
+
 }
 
 export interface OwnerCompanyDto{
@@ -52,6 +55,19 @@ export interface ToolDto {
       status: string ;
       ownerCompanyEmployee: number;
       employeeId: number;
-      description: string
+      description: string;
+      defectId: number;
 }
+
+export interface CompanyDto{
+
+  id: number;
+  name: string;
+  postalCode: number;
+  town: string;
+  street: string;
+  taxNumber: string;
+
+}
+
 
