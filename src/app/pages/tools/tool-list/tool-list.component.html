@@ -92,12 +92,12 @@
       <tbody>
 
       <tr *ngFor="let machine of searchList" >
-        <td (click)="onClickChange()" >{{machine.id}} </td>
-        <td (click)="onClickChange()">{{machine.name}} </td>
-        <td (click)="onClickChange()">{{machine.typeNumber}} </td>
-        <td (click)="onClickChange()">{{machine.itemNumber}} </td>
-        <td (click)="onClickChange()">{{machine.serialNumber}} </td>
-        <td (click)="onClickChange()" >{{machine.dateOfReceiving}} </td>
+        <td (click)="selectOnClick(machine.id)" >{{machine.id}} </td>
+        <td (click)="selectOnClick(machine.id)">{{machine.name}} </td>
+        <td (click)="selectOnClick(machine.id)">{{machine.typeNumber}} </td>
+        <td (click)="selectOnClick(machine.id)">{{machine.itemNumber}} </td>
+        <td (click)="selectOnClick(machine.id)">{{machine.serialNumber}} </td>
+        <td (click)="selectOnClick(machine.id)" >{{machine.dateOfReceiving}} </td>
         <td >
           <select (change)="onStatusChange(machine, $event)">
             <option value="{{machine.status}}" selected>{{machine.status}}</option>

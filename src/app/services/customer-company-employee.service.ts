@@ -36,4 +36,8 @@ export class CustomerService {
     return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + "/find-employee/" + name);
   }
 
+  findEmployeeById(id: number | undefined) {
+    return this.http.get<OwnerCompanyEmployeeDto>(this.host + "/find-by-id/" + id);
+  }
+
 }

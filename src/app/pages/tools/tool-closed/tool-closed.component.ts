@@ -35,7 +35,7 @@ export class ToolClosedComponent implements OnInit {
     machine.status = newStatus.value;
     this.toolsService
       .updateTool(machine)
-      .subscribe();
+        .subscribe();
       console.log(machine);
     };
 

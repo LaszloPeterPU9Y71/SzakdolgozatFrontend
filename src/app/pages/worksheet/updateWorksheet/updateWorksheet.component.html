@@ -16,38 +16,38 @@
                   </tr>
                   <tr>
                     <td>Cégnév</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompany?.companyName}}</td>
+
                   </tr>
                   <tr>
                     <td>Irányítószám</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompany?.postalCode}}</td>
+
                   </tr>
                   <tr>
                     <td>Város</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompany?.town}}</td>
+
                   </tr>
                   <tr>
                     <td>Utca és házszám</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompany?.street}}</td>
+
                   </tr>
                   <tr>
                     <td>Személy neve</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompanyEmployee?.name}}</td>
+
                   </tr>
                   <tr>
                     <td>Telefonszám</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompanyEmployee?.telNum}}</td>
+
                   </tr>
                   <tr>
                     <td>E-mail</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{clickedCompanyEmployee?.email}}</td>
+
 
                   </tr>
                     <br>
@@ -105,48 +105,74 @@
           <p><strong>Javításre badott gép adatai!</strong></p>
           <table class="table border-bottom border-gray-200 mt-3">
             <thead>
-            <tr>
+              <tr>
 
-              <th>Megnevezés</th>
-              <th>Típusszám</th>
-              <th>Cikkszám</th>
-              <th>Sorszám</th>
-              <th>Átvétel időpontja</th>
+                <th>Megnevezés</th>
+                <th>Típusszám</th>
+                <th>Cikkszám</th>
+                <th>Sorszám</th>
+                <th>Átvétel időpontja</th>
 
-            </tr>
+              </tr>
             </thead>
             <tbody>
-            <tr>
+              <tr>
+                <td >{{clickedTool?.name}}</td>
+                <td >{{clickedTool?.typeNumber}}</td>
+                <td >{{clickedTool?.itemNumber}}</td>
+                <td >{{clickedTool?.serialNumber}}</td>
+                <td >{{clickedTool?.dateOfReceiving}}</td>
+              </tr>
 
-              <td ></td>
-              <td ></td>
-              <td ></td>
-              <td ></td>
-              <td ></td>
+            <tr>
+              <tr>
+                <td ><strong>Hibajelenség</strong></td>
+                <td>
+                  <input placeholder="Kereső" (keyup.enter)="findDefect($event)">
+                  <ul>
+                    <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
+                      {{defect.name}}
+
+                    </li>
+                  </ul>
+                </td>
+              <td>
+                {{searchDefect?.name}}
+                {{selectedDefect?.name}}
+              </td>
+
+
 
             </tr>
-            <tr>
-              <td><strong>Hibajelenség</strong></td>
-              <td colspan="6" class="defect"><input class="defect" placeholder="Keresés"> </td>
-            </tr>
+              <tr>
+                <td><strong>Hibaleírás</strong></td>
+                <td  class="data">
+                  <input placeholder="Hiba pontos leírása"
+                         type="text"/>
+                </td>
+                <td colspan="3">{{description}}</td>
+              </tr>
             <div>
-              <button class="btn btn-primary" type="button" [routerLink]="['/home/addcompany']" >Hozzáadás</button>
+              <button class="btn btn-primary" type="button" [routerLink]="['/home/add-company']" >Hozzáadás</button>
             </div>
+            </tbody>
+
+            </table>
 
             <br>
             <strong>Hozzáadott alkatrészek</strong>
 
 
-
+          <table>
             <tr>
 
-              <th>Megnevezés</th>
-              <th>Cikkszám</th>
-              <th>Nettó ár</th>
-              <th>Bruttó ár</th>
-              <th>Darabszám</th>
+              <th class="spare">Megnevezés</th>
+              <th class="spare">Cikkszám</th>
+              <th class="spare">Nettó ár</th>
+              <th class="spare">Bruttó ár</th>
+              <th class="spare">Darabszám</th>
               <th></th>
-              <th>Összesen bruttó</th>
+              <th class="spare">Összesen bruttó</th>
             </tr>
 
             <tbody>
@@ -164,7 +190,7 @@
           </table>
         </div>
 
-          <button class="btn btn-primary" type="button"  >Felvétel</button> <br>
+        <button class="btn btn-primary" type="button" (click)="onSubmit()" >Felvétel</button> <br>
           <button class="btn btn-primary" type="button" [routerLink]="['/home/']" >Főoldal</button>
 
       </div>

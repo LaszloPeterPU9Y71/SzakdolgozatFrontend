@@ -34,7 +34,7 @@ export class ToolSearchTypenumberComponent implements OnInit {
     machine.status = newStatus.value;
     this.toolsService
       .updateTool(machine)
-      .subscribe(console.log)
+        .subscribe(console.log)
   }
 }
 

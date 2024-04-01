@@ -7,6 +7,7 @@ import {ToolsService} from "../../../services/tools.service";
 import {DefectService} from "../../../services/defect.service";
 
 
+
 @Component({
     selector: 'app-user-login',
     templateUrl: './addWorksheet.component.html',
@@ -24,6 +25,7 @@ export class AddWorksheetComponent implements OnInit{
     selectedEmployee: OwnerCompanyEmployeeDto| undefined;
     defects: DefectDto[] = [];
     selectedDefect: DefectDto |undefined;
+    description: string | undefined;
 
 
     ngOnInit() {
@@ -50,13 +52,6 @@ export class AddWorksheetComponent implements OnInit{
         this.employees = [];
       }
 
-
-
-
-
-
-
-
   private worksheetService2 = inject(ToolsService)
   form: FormGroup = new FormGroup({
     name: new FormControl(),
@@ -77,10 +72,7 @@ export class AddWorksheetComponent implements OnInit{
         employeeId: this.selectedEmployee?.id,
         defectId: this.selectedDefect?.id,
       }).subscribe((response: any) => {
-        console.log(response)
-        console.log(" ownerComapnyId: " + this.selectedEmployee?.ownerCompanyId)
-        console.log("selectedEmployeeId: " + this.selectedEmployee?.id)
-        console.log(this.selectedEmployee)
+
     })
   }
 
@@ -96,6 +88,7 @@ export class AddWorksheetComponent implements OnInit{
     this.selectedDefect = defect;
     this.defects = [];
   }
+
 }
 
 

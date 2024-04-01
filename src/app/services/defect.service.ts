@@ -20,13 +20,18 @@ export class DefectService {
    return this.http.post<DefectDto[]>(this.host + '/create', defect);
   }
 
-  getDefectList(searchValue: string): Observable<DefectDto[]> {
+  getDefectList(searchValue: string |undefined): Observable<DefectDto[]> {
     return this.http.get<DefectDto[]>(this.host + '/all');
   }
 
   findDefect(name: String): Observable<DefectDto[]> {
     return this.http.get<DefectDto[]>(this.host + "/name/" + name );
   }
+
+  findDefectById(id: number | undefined): Observable<DefectDto>{
+    return this.http.get<DefectDto>(this.host + "/find-by-id/" + id)
+  }
+
 
 
 }

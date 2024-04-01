@@ -50,9 +50,15 @@ export class ToolsService {
     return this.http.get<ToolDto[]>(this.host + `/status/${searchValue}`);
   }
 
+  getToolById(id: number): Observable<ToolDto> {
+    return this.http.get<ToolDto>(this.host + `/id/` + id);
+  }
+
   updateTool(machine: ToolDto): Observable<string> {
     return this.http.put<string>(this.host + `/update/${machine.id}`, machine);
   }
+
+
 
 
 

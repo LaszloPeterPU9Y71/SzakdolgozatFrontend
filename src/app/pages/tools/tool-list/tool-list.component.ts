@@ -1,9 +1,11 @@
 import {Component, OnInit, } from '@angular/core';
 import {  ToolsService } from '../../../services/tools.service';
 import {FormBuilder} from "@angular/forms";
-import {ToolDto} from "../../../models/backend.models";
+import {OwnerCompanyDto, OwnerCompanyEmployeeDto, ToolDto} from "../../../models/backend.models";
 import {Router} from "@angular/router";
-
+import {ObjectStore} from "../../../services/object-store";
+import {CustomerService} from "../../../services/customer-company-employee.service";
+import {CustomerCompanyService} from "../../../services/customer-company.service";
 
 
 @Component({
@@ -11,33 +13,32 @@ import {Router} from "@angular/router";
   templateUrl: './tool-list.component.html',
   styleUrls: ['./tool-list.component.scss']
 })
-export class ToolListComponent implements  OnInit{
-
-
+export class ToolListComponent implements  OnInit {
 
 
   searchValue = '';
   searchList: ToolDto[] = [];
-  searchFormName = this.fb.nonNullable.group({searchValue:''});
-  searchFormTypeNumber= this.fb.nonNullable.group({searchValue:''});
-  searchFormSerialNumber= this.fb.nonNullable.group({searchValue:''});
-  searchFormItemNumber= this.fb.nonNullable.group({searchValue:''});
-
+  searchFormName = this.fb.nonNullable.group({searchValue: ''});
+  searchFormTypeNumber = this.fb.nonNullable.group({searchValue: ''});
+  searchFormSerialNumber = this.fb.nonNullable.group({searchValue: ''});
+  searchFormItemNumber = this.fb.nonNullable.group({searchValue: ''});
 
 
   constructor(
     private toolsService: ToolsService,
     private fb: FormBuilder,
-    private router: Router
-  ) {}
+    private router: Router,
+    private objectStore: ObjectStore,
+    private customerCompanyService: CustomerCompanyService
+  ) {
+  }
 
   ngOnInit(): void {
     this.fetchData();
   }
 
 
-
-  fetchData(): void{
+  fetchData(): void {
     if (this.searchValue == '') {
       this.toolsService
         .getToolList(this.searchValue)
@@ -45,10 +46,10 @@ export class ToolListComponent implements  OnInit{
           this.searchList = searchList
           console.log(searchList)
         })
-    }else
+    } else
       this.toolsService
         .getToolByName(this.searchValue)
-        .subscribe((searchList) =>{
+        .subscribe((searchList) => {
           this.searchList = searchList
           console.log(searchList)
         })
@@ -59,7 +60,7 @@ export class ToolListComponent implements  OnInit{
     this.fetchData();
   }
 
-  fetchDataTypeNumber(): void{
+  fetchDataTypeNumber(): void {
     if (this.searchValue == '') {
       this.toolsService
         .getToolList(this.searchValue)
@@ -67,20 +68,21 @@ export class ToolListComponent implements  OnInit{
           this.searchList = searchList
           console.log(searchList)
         })
-    }else
+    } else
       this.toolsService
         .getToolByTypeNumber(this.searchValue)
-        .subscribe((searchList) =>{
+        .subscribe((searchList) => {
           this.searchList = searchList
           console.log(searchList)
         })
   }
+
   onSearchSubmitTypeNumber(): void {
     this.searchValue = this.searchFormTypeNumber.value.searchValue ?? '';
     this.fetchDataTypeNumber();
   }
 
-  fetchDataItemNumber(): void{
+  fetchDataItemNumber(): void {
     if (this.searchValue == '') {
       this.toolsService
         .getToolList(this.searchValue)
@@ -88,20 +90,21 @@ export class ToolListComponent implements  OnInit{
           this.searchList = searchList
           console.log(searchList)
         })
-    }else
+    } else
       this.toolsService
         .getToolByItemNumber(this.searchValue)
-        .subscribe((searchList) =>{
+        .subscribe((searchList) => {
           this.searchList = searchList
           console.log(searchList)
         })
   }
+
   onSearchSubmitItemNumber(): void {
     this.searchValue = this.searchFormItemNumber.value.searchValue ?? '';
     this.fetchDataItemNumber();
   }
 
-  fetchDataSerialNumber(): void{
+  fetchDataSerialNumber(): void {
     if (this.searchValue == '') {
       this.toolsService
         .getToolList(this.searchValue)
@@ -109,10 +112,10 @@ export class ToolListComponent implements  OnInit{
           this.searchList = searchList
           console.log(searchList)
         })
-    }else
+    } else
       this.toolsService
         .getToolBySerialNumber(this.searchValue)
-        .subscribe((searchList) =>{
+        .subscribe((searchList) => {
           this.searchList = searchList
           console.log(searchList)
         })
@@ -129,11 +132,15 @@ export class ToolListComponent implements  OnInit{
     machine.status = newStatus.value;
     this.toolsService
       .updateTool(machine)
-      .subscribe(console.log)
+        .subscribe(console.log)
   }
-  onClickChange(){
 
-    this.router.navigate(['/home/update-worksheet']);
+  selectOnClick(id: number) {
+    this.toolsService.getToolById(id).subscribe((response: ToolDto) => {
+      this.objectStore.selectedTool = response;
+      this.router.navigate(['/home/update-worksheet']);
+    })
+
   }
 
 }
