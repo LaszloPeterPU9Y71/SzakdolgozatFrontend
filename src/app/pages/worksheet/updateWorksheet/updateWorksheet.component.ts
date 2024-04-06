@@ -1,12 +1,20 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {ToolsService} from "../../../services/tools.service";
-import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto, ToolDto} from "../../../models/backend.models";
+import {
+  DefectDto,
+  OwnerCompanyDto,
+  OwnerCompanyEmployeeDto,
+  SparePartDto,
+  ToolDto
+} from "../../../models/backend.models";
 import {CustomerCompanyService} from "../../../services/customer-company.service";
 import {CustomerService} from "../../../services/customer-company-employee.service";
 
 import {ObjectStore} from "../../../services/object-store";
 import {DefectService} from "../../../services/defect.service";
 import {AddWorksheetComponent} from "../newWorksheet/addWorksheet.component";
+import {SparePartService} from "../../../services/spare-part.service";
+
 
 @Component({
     selector: 'app-user-login',
@@ -21,10 +29,17 @@ export class UpdateWorksheetComponent {
     clickedCompany: OwnerCompanyDto | undefined;
     clickedCompanyEmployee: OwnerCompanyEmployeeDto | undefined;
     defect = '';
-    searchDefect: DefectDto | undefined;
+    searchDefect: DefectDto[] = [];
     description: string | undefined;
     defects: DefectDto[] = [];
-    selectedDefect: DefectDto |undefined;
+    selectedDefect: DefectDto[] = [];
+    newDescription: string | undefined;
+    spareparts: SparePartDto[] = [];
+    selectedSparepart: SparePartDto | undefined;
+    sumBruttoPrice: number = 0;
+
+
+
 
 
     constructor(
@@ -33,6 +48,7 @@ export class UpdateWorksheetComponent {
       private customerCompanyEmployeeService: CustomerService,
       private toolService: ToolsService,
       private defectService: DefectService,
+      private sparepartService: SparePartService,
 
     ) {
     }
@@ -41,7 +57,6 @@ export class UpdateWorksheetComponent {
     ngOnInit() {
       this.findToolById(this.objectStore.selectedTool!.id);
       this.findCustomerCompanyEmployeeById(this.objectStore.selectedTool!.employeeId);
-      this.findDefectById(this.objectStore.selectedTool!.defects)
       this.getDescription();
 
     }
@@ -68,13 +83,6 @@ export class UpdateWorksheetComponent {
       })
     }
 
-    findDefectById(id: number): void {
-      this.defectService.findDefectById(id)
-        .subscribe((defect) => {
-          this.searchDefect = defect
-
-        })
-    }
 
     getDescription(): void {
       this.description = this.objectStore.selectedTool?.description
@@ -85,20 +93,75 @@ export class UpdateWorksheetComponent {
 
   findDefect($event: Event) {
     let value = ($event.target as HTMLInputElement).value;
-    this.defectService.findDefect(value).subscribe((response) => {
+    this.defectService.findDefect(value).subscribe((response: DefectDto[]) => {
       this.defects = response;
       console.log(this.defects);
       ($event.target as HTMLInputElement).value = "";
     })
   }
   onDefectSelect(defect: DefectDto) {
-      this.searchDefect!.name = '';
-    this.selectedDefect = defect;
+    this.selectedDefect.push(defect);
     this.defects = [];
   }
+
+  onDefectRemove(index: number) {
+    this.selectedDefect.splice(index, 1);
+    this.defects = [];
+  }
+
 
 
     onSubmit() {
 
     }
+
+  setDescription($event: Event) {
+    if (this.newDescription == undefined || this.newDescription == "")
+      this.newDescription = ($event.target as HTMLInputElement).value;
+    else
+      this.newDescription = this.newDescription+ " + " +  ($event.target as HTMLInputElement).value;
+    const descriptionElement = document.getElementById("newDescription");
+      if (descriptionElement) {
+        descriptionElement.textContent = this.newDescription;
+        console.log(" EZ lett az értéke: " + this.newDescription);
+        ($event.target as HTMLInputElement).value = "";
+      }
+    }
+  descriptionRemove($event: Event){
+      this.newDescription = "";
+    const descriptionElement = document.getElementById("newDescription");
+    if (descriptionElement) {
+      descriptionElement.textContent = this.newDescription;
+    }
+
   }
+
+  findSparepartsByName($event: Event){
+      let name = ($event.target as HTMLInputElement).value;
+      this.sparepartService.getSparepartByName(name).subscribe((response: SparePartDto[]) => {
+        this.spareparts = response;
+        console.log(this.spareparts);
+        ($event.target as HTMLInputElement).value = "";
+      })
+    }
+    onSparepartSelect(sparepart: SparePartDto) {
+      this.selectedSparepart = sparepart;
+      this.spareparts = [];
+    }
+
+  calculatePrice($event: Event) {
+    if (!(($event.target as HTMLInputElement).value)) {
+      this.sumBruttoPrice = 0;
+    }
+    let quantity = parseFloat(($event.target as HTMLInputElement).value);
+    if (this.selectedSparepart && ($event.target as HTMLInputElement).value) {
+      let sumBruttoPriceCalculated = this.selectedSparepart.nettoSellingPrice * quantity;
+      this.sumBruttoPrice = sumBruttoPriceCalculated;
+
+
+
+
+
+    }
+  }
+}

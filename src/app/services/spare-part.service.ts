@@ -21,4 +21,11 @@ export class SparePartService {
     return this.http.get<SparePartDto[]>(this.host +`/all`);
   }
 
+  getSparepartByName(name: string): Observable<SparePartDto[]> {
+    return this.http.get<SparePartDto[]>(this.host +`/find-by-name/` + name);
+  }
+
+  getSparepartByNumber(name: string): Observable<SparePartDto[]> {
+    return this.http.get<SparePartDto[]>(this.host +`/find-by-number/` + name);
+  }
 }

@@ -102,7 +102,7 @@
               </table>
             </div>
           </div>
-          <p><strong>Javításre badott gép adatai!</strong></p>
+          <p><strong>Javításre beadott gép adatai!</strong></p>
           <table class="table border-bottom border-gray-200 mt-3">
             <thead>
               <tr>
@@ -137,32 +137,55 @@
                   </ul>
                 </td>
               <td>
-                {{searchDefect?.name}}
-                {{selectedDefect?.name}}
+                <ul>
+                  <li *ngFor="let addedDefects of searchDefect; index as i " (click)="onDefectRemove(i)">
+                    {{addedDefects?.name}}
+
+                  </li>
+                </ul>
               </td>
+                <td>
+
+                  <ul>
+                    <li *ngFor="let defect of selectedDefect; index as i " (click)="onDefectRemove(i)">
+                      {{defect.name}}
+
+                    </li>
+                  </ul>
+                </td>
 
 
 
             </tr>
               <tr>
-                <td><strong>Hibaleírás</strong></td>
-                <td  class="data">
-                  <input placeholder="Hiba pontos leírása"
-                         type="text"/>
-                </td>
-                <td colspan="3">{{description}}</td>
+                <td><strong>A tulajdonos hibaleírása</strong></td>
+                <td></td>
+                <td colspan="3" id="description">{{description}}</td>
+
               </tr>
-            <div>
-              <button class="btn btn-primary" type="button" [routerLink]="['/home/add-company']" >Hozzáadás</button>
-            </div>
+            <tr>
+              <td><strong>Feltárt hibák <button (click)="descriptionRemove($event)" > </button></strong></td>
+
+              <td  class="data">
+                <input placeholder="Feltárt hibák leírása" type="text" (keyup.enter)="setDescription($event)"/>
+              </td>
+              <td colspan="3" id="newDescription">{{newDescription}}</td>
+            </tr>
             </tbody>
 
             </table>
 
             <br>
-            <strong>Hozzáadott alkatrészek</strong>
-
-
+            <strong>Szükséges alkatrészek</strong>
+          <tr>
+          <input placeholder="Keresés" type="text" (keyup.enter)="findSparepartsByName($event)">
+            <ul>
+              <li *ngFor="let sparepart of spareparts" (click)="onSparepartSelect(sparepart)">
+                <span>{{sparepart.partName}}</span>
+                <span>{{sparepart.partNumber}}</span>
+              </li>
+            </ul>
+          </tr>
           <table>
             <tr>
 
@@ -177,20 +200,22 @@
 
             <tbody>
             <tr>
-              <td ><input placeholder="Keresés"></td>
-              <td ><input placeholder="Keresés"></td>
-              <td ></td>
-              <td ></td>
-              <td ></td>
-              <td ></td>
-              <td ></td>
+              <td>{{ selectedSparepart?.partName }}</td>
+              <td>{{ selectedSparepart?.partNumber }}</td>
+              <td>{{ selectedSparepart?.nettoBuyingPrice }}</td>
+              <td>{{ selectedSparepart?.nettoSellingPrice }}</td>
+              <td>
+                <input type="number" id="quantity"  (change)="calculatePrice($event)">
+              </td>
+              <td>{{sumBruttoPrice}} </td>
+
             </tr>
-          <tr>
             </tbody>
           </table>
+
         </div>
 
-        <button class="btn btn-primary" type="button" (click)="onSubmit()" >Felvétel</button> <br>
+        <button class="btn btn-primary" type="button" (click)="onSubmit()" >Szerkesztés befejezése és mentés</button> <br>
           <button class="btn btn-primary" type="button" [routerLink]="['/home/']" >Főoldal</button>
 
       </div>

@@ -30,6 +30,7 @@ import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";
 import {CompanyRegisterComponent} from "./pages/company/company-register.component";
+import {EmailService} from "./services/email.service";
 
 @NgModule({
   declarations: [

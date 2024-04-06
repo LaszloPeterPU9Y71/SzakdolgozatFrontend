@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {OwnerCompanyDto, OwnerCompanyEmployeeDto, ToolDto} from "../models/backend.models";
+import {ToolDto} from "../models/backend.models";
 
 @Injectable({
   providedIn: 'root'

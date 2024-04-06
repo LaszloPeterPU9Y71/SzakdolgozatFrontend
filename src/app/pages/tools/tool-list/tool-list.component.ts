@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {ObjectStore} from "../../../services/object-store";
 import {CustomerService} from "../../../services/customer-company-employee.service";
 import {CustomerCompanyService} from "../../../services/customer-company.service";
+import {EmailService} from "../../../services/email.service";
 
 
 @Component({
@@ -29,8 +30,9 @@ export class ToolListComponent implements  OnInit {
     private fb: FormBuilder,
     private router: Router,
     private objectStore: ObjectStore,
-    private customerCompanyService: CustomerCompanyService
-  ) {
+    private emailService: EmailService,
+
+  ){
   }
 
   ngOnInit(): void {

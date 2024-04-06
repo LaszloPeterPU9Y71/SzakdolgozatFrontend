@@ -25,7 +25,6 @@ export class AddWorksheetComponent implements OnInit{
     selectedEmployee: OwnerCompanyEmployeeDto| undefined;
     defects: DefectDto[] = [];
     selectedDefect: DefectDto |undefined;
-    description: string | undefined;
 
 
     ngOnInit() {

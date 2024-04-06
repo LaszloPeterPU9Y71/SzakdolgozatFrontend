@@ -54,8 +54,9 @@ export class ToolsService {
     return this.http.get<ToolDto>(this.host + `/id/` + id);
   }
 
-  updateTool(machine: ToolDto): Observable<string> {
-    return this.http.put<string>(this.host + `/update/${machine.id}`, machine);
+  updateTool(machine: ToolDto): Observable<ToolDto> {
+    console.log(machine)
+    return this.http.put<ToolDto>(this.host + `/update/${machine.id}`, machine);
   }
 
 
