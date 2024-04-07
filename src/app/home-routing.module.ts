@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ToolListComponent} from "./pages/tools/tool-list/tool-list.component";
-import {ToolSearchComponent} from "./pages/tools/tool-arrived/tool-search.component";
-import {ToolSearchTypenumberComponent} from "./pages/tools/tool-inprogress/tool-search-typenumber.component";
-import {ToolReadyComponent} from "./pages/tools/tool-ready/tool-ready.component";
-import {ToolClosedComponent} from "./pages/tools/tool-closed/tool-closed.component";
 import {UserListComponent} from "./pages/user/user-list/user-list.component";
 import {AddWorksheetComponent} from "./pages/worksheet/newWorksheet/addWorksheet.component";
 import {HomeComponent} from "./home/home.component";
@@ -39,61 +35,11 @@ const routes: Routes = [
     component: ToolListComponent,
   },
 
-  {
-    path:'',
-    component: HomeComponent,
-    children: [{
-      path: 'arrived',
-      component: ToolSearchComponent
-    }]
-  },
 
-  {
-    path: 'arrived',
-    component: ToolSearchComponent,
-  },
 
-  {
-    path:'',
-    component: HomeComponent,
-    children: [{
-      path: 'in-progress',
-      component: ToolSearchTypenumberComponent
-    }]
-  },
 
-  {
-    path: 'in-progress',
-    component: ToolSearchTypenumberComponent,
-  },
 
-  {
-    path:'',
-    component: HomeComponent,
-    children: [{
-      path: 'ready',
-      component: ToolReadyComponent
-    }]
-  },
 
-  {
-    path: 'ready',
-    component: ToolReadyComponent,
-  },
-
-  {
-    path:'',
-    component: HomeComponent,
-    children: [{
-      path: 'closed',
-      component: ToolClosedComponent
-    }]
-  },
-
-  {
-    path: 'closed',
-    component: ToolClosedComponent,
-  },
 
   {
     path:'',

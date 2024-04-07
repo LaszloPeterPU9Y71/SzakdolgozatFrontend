@@ -2,14 +2,10 @@ import {NgModule } from '@angular/core';
 import {HomeRoutingModule } from './home-routing.module';
 import {HomeComponent } from './home/home.component';
 import {HttpClientModule } from '@angular/common/http';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from "./pages/static-pages/header/header.component";
 import {RouterModule} from "@angular/router";
 import {ToolListComponent} from "./pages/tools/tool-list/tool-list.component";
-import {ToolSearchComponent} from "./pages/tools/tool-arrived/tool-search.component";
-import {ToolSearchTypenumberComponent} from "./pages/tools/tool-inprogress/tool-search-typenumber.component";
-import {ToolReadyComponent} from "./pages/tools/tool-ready/tool-ready.component";
-import {ToolClosedComponent} from "./pages/tools/tool-closed/tool-closed.component";
 import {UserListComponent} from "./pages/user/user-list/user-list.component";
 import {AddWorksheetComponent} from "./pages/worksheet/newWorksheet/addWorksheet.component";
 import {ToolsService} from "./services/tools.service";
@@ -37,10 +33,6 @@ import {EmailService} from "./services/email.service";
     HeaderComponent,
     HomeComponent,
     ToolListComponent,
-    ToolSearchComponent,
-    ToolSearchTypenumberComponent,
-    ToolReadyComponent,
-    ToolClosedComponent,
     UserListComponent,
     AddWorksheetComponent,
     CreateSparePartComponent,
@@ -61,7 +53,8 @@ import {EmailService} from "./services/email.service";
     HomeRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FormsModule
 
   ],
   providers: [ToolsService],

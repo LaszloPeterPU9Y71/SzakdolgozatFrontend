@@ -159,7 +159,12 @@
                     </ul>
                 </td>
                 <td>
-                  {{selectedDefect?.name}}
+                  <ul>
+                    <li *ngFor="let addedDefects of selectedDefect; index as i " (click)="onDefectRemove(i)">
+                      {{addedDefects?.name}}
+
+                    </li>
+                  </ul>
                 </td>
 
               </tr>

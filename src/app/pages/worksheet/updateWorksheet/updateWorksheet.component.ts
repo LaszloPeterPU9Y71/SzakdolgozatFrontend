@@ -35,8 +35,11 @@ export class UpdateWorksheetComponent {
     selectedDefect: DefectDto[] = [];
     newDescription: string | undefined;
     spareparts: SparePartDto[] = [];
-    selectedSparepart: SparePartDto | undefined;
+    selectedSparepart: SparePartDto[] = [];
     sumBruttoPrice: number = 0;
+    quantities: number[] = [];
+    sumBruttoPrices: number[] = [];
+
 
 
 
@@ -145,23 +148,28 @@ export class UpdateWorksheetComponent {
       })
     }
     onSparepartSelect(sparepart: SparePartDto) {
-      this.selectedSparepart = sparepart;
+      this.selectedSparepart.push(sparepart);
       this.spareparts = [];
     }
 
-  calculatePrice($event: Event) {
-    if (!(($event.target as HTMLInputElement).value)) {
-      this.sumBruttoPrice = 0;
+    onSparepartRemove(index: number){
+      this.selectedSparepart.splice(index, 1);
+      this.spareparts = [];
     }
-    let quantity = parseFloat(($event.target as HTMLInputElement).value);
-    if (this.selectedSparepart && ($event.target as HTMLInputElement).value) {
-      let sumBruttoPriceCalculated = this.selectedSparepart.nettoSellingPrice * quantity;
-      this.sumBruttoPrice = sumBruttoPriceCalculated;
+
+  calculatePrice(index: number) {
+    const quantity = this.quantities[index];
+    const sparepart = this.selectedSparepart[index];
+
+    if (quantity && sparepart) {
+      const price = sparepart.nettoSellingPrice;
+      const sumBruttoPrice = price * quantity;
+      this.sumBruttoPrice += sumBruttoPrice;
 
 
-
-
-
+      this.sumBruttoPrices[index] = sumBruttoPrice;
     }
   }
+
+
 }

@@ -24,7 +24,8 @@ export class AddWorksheetComponent implements OnInit{
     employees: OwnerCompanyEmployeeDto[] = [];
     selectedEmployee: OwnerCompanyEmployeeDto| undefined;
     defects: DefectDto[] = [];
-    selectedDefect: DefectDto |undefined;
+    selectedDefect: DefectDto[] = [];
+
 
 
     ngOnInit() {
@@ -69,7 +70,7 @@ export class AddWorksheetComponent implements OnInit{
         serialNumber: this?.form.controls['serialNumber'].value,
         description: this?.form.controls['description'].value,
         employeeId: this.selectedEmployee?.id,
-        defectId: this.selectedDefect?.id,
+        defects: this.selectedDefect,
       }).subscribe((response: any) => {
 
     })
@@ -77,14 +78,19 @@ export class AddWorksheetComponent implements OnInit{
 
   findDefect($event: Event) {
     let value = ($event.target as HTMLInputElement).value;
-    this.defectService.findDefect(value).subscribe((response) => {
+    this.defectService.findDefect(value).subscribe((response: DefectDto[]) => {
       this.defects = response;
       console.log(this.defects);
-     ($event.target as HTMLInputElement).value = "";
+      ($event.target as HTMLInputElement).value = "";
     })
   }
-  onDefectSelect(defect: any) {
-    this.selectedDefect = defect;
+  onDefectSelect(defect: DefectDto) {
+    this.selectedDefect.push(defect);
+    this.defects = [];
+  }
+
+  onDefectRemove(index: number) {
+    this.selectedDefect.splice(index, 1);
     this.defects = [];
   }
 

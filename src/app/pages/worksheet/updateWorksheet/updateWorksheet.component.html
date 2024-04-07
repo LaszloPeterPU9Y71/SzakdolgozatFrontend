@@ -164,7 +164,7 @@
 
               </tr>
             <tr>
-              <td><strong>Feltárt hibák <button (click)="descriptionRemove($event)" > </button></strong></td>
+              <td><strong>Feltárt hibák <button (click)="descriptionRemove($event)" >Törlés </button></strong></td>
 
               <td  class="data">
                 <input placeholder="Feltárt hibák leírása" type="text" (keyup.enter)="setDescription($event)"/>
@@ -199,17 +199,26 @@
             </tr>
 
             <tbody>
-            <tr>
-              <td>{{ selectedSparepart?.partName }}</td>
-              <td>{{ selectedSparepart?.partNumber }}</td>
-              <td>{{ selectedSparepart?.nettoBuyingPrice }}</td>
-              <td>{{ selectedSparepart?.nettoSellingPrice }}</td>
-              <td>
-                <input type="number" id="quantity"  (change)="calculatePrice($event)">
-              </td>
-              <td>{{sumBruttoPrice}} </td>
-
+            <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index" >
+              <td>{{ addedSpareparts?.partName }}</td>
+              <td>{{ addedSpareparts?.partNumber }}</td>
+              <td>{{ addedSpareparts?.nettoBuyingPrice }}</td>
+              <td>{{ addedSpareparts?.nettoSellingPrice }}</td>
+              <input type="number" [(ngModel)]="quantities[i]" (input)="calculatePrice(i)" />
+              <td></td>
+              <td>{{sumBruttoPrices[i]}}</td>
             </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td colspan="2">Javítás teljes bruttó összege:</td>
+
+              <td><strong>{{sumBruttoPrice}}</strong></td>
+            </tr>
+
+
             </tbody>
           </table>
 

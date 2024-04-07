@@ -6,6 +6,14 @@
       <h1> Összes gép </h1>
     </div>
 
+    <div class="status-buttons">
+      <button (click)="fetchData()">Összes</button>
+      <button (click)="filterByStatus('Beérkezett')">Beérkezett</button>
+      <button (click)="filterByStatus('Folyamatban')">Folyamatban</button>
+      <button (click)="filterByStatus('Kész')">Kész</button>
+      <button (click)="filterByStatus('Lezárt')">Lezárt</button>
+    </div>
+
     <table class="table table-striped table-bordered table-hover">
       <thead class="table-dark">
       <tr>
@@ -91,7 +99,7 @@
       </thead>
       <tbody>
 
-      <tr *ngFor="let machine of searchList" >
+      <tr *ngFor="let machine of searchList | slice: (currentPage - 1) * pageSize : currentPage * pageSize" >
         <td (click)="selectOnClick(machine.id)" >{{machine.id}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.name}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.typeNumber}} </td>
@@ -110,6 +118,11 @@
       </tr>
       </tbody>
     </table>
+    <div class="pagination">
+      <button (click)="onPreviousPage()">Előző oldal</button>
+      <span> {{ currentPage }}  /  {{ totalPages }} </span>
+      <button (click)="onNextPage()">Következő oldal</button>
+    </div>
   </div>
 
 

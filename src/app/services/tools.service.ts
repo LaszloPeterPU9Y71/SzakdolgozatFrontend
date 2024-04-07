@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {ToolDto} from "../models/backend.models";
+import {DefectDto, ToolDto} from "../models/backend.models";
 
 
 
@@ -23,7 +23,7 @@ export class ToolsService {
     name: string;
     employeeId: number | undefined;
     description: string;
-    defectId: number | undefined;
+    defects: DefectDto[];
   }): Observable<ToolDto>{
     return this.http.post<ToolDto>(this.host + "/create", tool);
   }
@@ -54,9 +54,8 @@ export class ToolsService {
     return this.http.get<ToolDto>(this.host + `/id/` + id);
   }
 
-  updateTool(machine: ToolDto): Observable<ToolDto> {
-    console.log(machine)
-    return this.http.put<ToolDto>(this.host + `/update/${machine.id}`, machine);
+  updateStatus(machine: ToolDto): Observable<ToolDto> {
+    return this.http.put<ToolDto>(this.host + `/update-status/${machine.id}`, machine);
   }
 
 
