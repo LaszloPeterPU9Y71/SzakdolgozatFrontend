@@ -12,7 +12,6 @@ import {CustomerService} from "../../../services/customer-company-employee.servi
 
 import {ObjectStore} from "../../../services/object-store";
 import {DefectService} from "../../../services/defect.service";
-import {AddWorksheetComponent} from "../newWorksheet/addWorksheet.component";
 import {SparePartService} from "../../../services/spare-part.service";
 
 
@@ -29,10 +28,11 @@ export class UpdateWorksheetComponent {
     clickedCompany: OwnerCompanyDto | undefined;
     clickedCompanyEmployee: OwnerCompanyEmployeeDto | undefined;
     defect = '';
-    searchDefect: DefectDto[] = [];
+    searchDefect: DefectDto[] = [] ;
     description: string | undefined;
     defects: DefectDto[] = [];
     selectedDefect: DefectDto[] = [];
+    addedDefects: DefectDto[] = [];
     newDescription: string | undefined;
     spareparts: SparePartDto[] = [];
     selectedSparepart: SparePartDto[] = [];
@@ -53,11 +53,13 @@ export class UpdateWorksheetComponent {
       private defectService: DefectService,
       private sparepartService: SparePartService,
 
+
     ) {
     }
 
 
     ngOnInit() {
+      this.getAddedDefects();
       this.findToolById(this.objectStore.selectedTool!.id);
       this.findCustomerCompanyEmployeeById(this.objectStore.selectedTool!.employeeId);
       this.getDescription();
@@ -67,6 +69,8 @@ export class UpdateWorksheetComponent {
     findToolById(id: number) {
       this.toolService.getToolById(id).subscribe((response: ToolDto) => {
         this.clickedTool = response;
+        console.log(response)
+
       })
     }
 
@@ -85,6 +89,22 @@ export class UpdateWorksheetComponent {
         }
       })
     }
+
+  getAddedDefects(): DefectDto[] {
+    const selectedDefectIds = this.objectStore.selectedTool?.defectIds;
+
+    if (selectedDefectIds && selectedDefectIds.length > 0) {
+      for (const index of selectedDefectIds) {
+        if (this.defects[index]) {
+
+          this.addedDefects.push(this.defects[index]);
+        }
+      }
+    }
+
+
+    return this.addedDefects;
+  }
 
 
     getDescription(): void {
@@ -114,9 +134,7 @@ export class UpdateWorksheetComponent {
 
 
 
-    onSubmit() {
 
-    }
 
   setDescription($event: Event) {
     if (this.newDescription == undefined || this.newDescription == "")
@@ -141,6 +159,7 @@ export class UpdateWorksheetComponent {
 
   findSparepartsByName($event: Event){
       let name = ($event.target as HTMLInputElement).value;
+
       this.sparepartService.getSparepartByName(name).subscribe((response: SparePartDto[]) => {
         this.spareparts = response;
         console.log(this.spareparts);
@@ -152,24 +171,36 @@ export class UpdateWorksheetComponent {
       this.spareparts = [];
     }
 
+  findSparepartsByItemNumber($event: Event){
+    let itemNumber  = ($event.target as HTMLInputElement).value;
+    this.sparepartService.getSparepartByNumber(itemNumber).subscribe((response: SparePartDto[]) => {
+      this.spareparts = response;
+      console.log(this.spareparts);
+      ($event.target as HTMLInputElement).value = "";
+    })
+  }
     onSparepartRemove(index: number){
       this.selectedSparepart.splice(index, 1);
       this.spareparts = [];
     }
 
   calculatePrice(index: number) {
+    console.log(index);
     const quantity = this.quantities[index];
+    console.log(quantity);
     const sparepart = this.selectedSparepart[index];
 
-    if (quantity && sparepart) {
+    if (quantity >= 0 && sparepart) {
       const price = sparepart.nettoSellingPrice;
       const sumBruttoPrice = price * quantity;
-      this.sumBruttoPrice += sumBruttoPrice;
-
-
       this.sumBruttoPrices[index] = sumBruttoPrice;
+      this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
+
+      console.log(sumBruttoPrice);
     }
   }
+  onSubmit() {
 
+  }
 
 }

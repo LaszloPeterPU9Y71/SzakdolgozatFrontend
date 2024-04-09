@@ -1,9 +1,11 @@
 import {Component, OnInit, } from '@angular/core';
 import {ToolsService } from '../../../services/tools.service';
 import {FormBuilder} from "@angular/forms";
-import {ToolDto} from "../../../models/backend.models";
+import {OwnerCompanyEmployeeDto, ToolDto} from "../../../models/backend.models";
 import {Router} from "@angular/router";
 import {ObjectStore} from "../../../services/object-store";
+import {CustomerService} from "../../../services/customer-company-employee.service";
+
 
 
 
@@ -21,9 +23,12 @@ export class ToolListComponent implements  OnInit {
   searchFormTypeNumber = this.fb.nonNullable.group({searchValue: ''});
   searchFormSerialNumber = this.fb.nonNullable.group({searchValue: ''});
   searchFormItemNumber = this.fb.nonNullable.group({searchValue: ''});
+  searchFormCustomerEmployee = this.fb.nonNullable.group({searchValue: ''});
   currentPage: number = 1;
-  pageSize: number = 50;
+  pageSize: number = 20;
   totalPages: number = 0;
+
+
 
 
   constructor(
@@ -31,6 +36,8 @@ export class ToolListComponent implements  OnInit {
     private fb: FormBuilder,
     private router: Router,
     private objectStore: ObjectStore,
+    private customerCompanyEmployeeService: CustomerService,
+
 
 
   ){
@@ -42,6 +49,8 @@ export class ToolListComponent implements  OnInit {
   }
 
 
+
+
   fetchData(): void {
     if (this.searchValue == '') {
       this.toolsService
@@ -49,6 +58,7 @@ export class ToolListComponent implements  OnInit {
         .subscribe((searchList) => {
           this.searchList = searchList
           console.log(searchList)
+
           this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
         })
     } else
@@ -60,6 +70,8 @@ export class ToolListComponent implements  OnInit {
           this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
         })
   }
+
+
 
   onSearchSubmitName(): void {
     this.searchValue = this.searchFormName.value.searchValue ?? '';
@@ -82,6 +94,8 @@ export class ToolListComponent implements  OnInit {
           console.log(searchList)
         })
   }
+
+
 
   onSearchSubmitTypeNumber(): void {
     this.searchValue = this.searchFormTypeNumber.value.searchValue ?? '';
@@ -129,7 +143,6 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitSerialNumber(): void {
-
     this.searchValue = this.searchFormSerialNumber.value.searchValue ?? '';
     this.fetchDataSerialNumber();
   }
@@ -143,6 +156,7 @@ export class ToolListComponent implements  OnInit {
   }
 
   filterByStatus(status: string): void {
+    this.currentPage = 1;
     this.toolsService
       .getToolByStatus(status)
       .subscribe((searchList) => {

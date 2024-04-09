@@ -138,8 +138,8 @@
                 </td>
               <td>
                 <ul>
-                  <li *ngFor="let addedDefects of searchDefect; index as i " (click)="onDefectRemove(i)">
-                    {{addedDefects?.name}}
+                  <li *ngFor="let addedDefects of addedDefects; index as i " (click)="onDefectRemove(i)">
+                    {{addedDefects}}
 
                   </li>
                 </ul>
@@ -178,7 +178,8 @@
             <br>
             <strong>Szükséges alkatrészek</strong>
           <tr>
-          <input placeholder="Keresés" type="text" (keyup.enter)="findSparepartsByName($event)">
+            <input placeholder="Keresés névre" type="text" (keyup.enter)="findSparepartsByName($event)">
+            <input placeholder="Keresés cikkszámra" type="text" (keyup.enter)="findSparepartsByItemNumber($event)">
             <ul>
               <li *ngFor="let sparepart of spareparts" (click)="onSparepartSelect(sparepart)">
                 <span>{{sparepart.partName}}</span>
@@ -199,11 +200,11 @@
             </tr>
 
             <tbody>
-            <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index" >
-              <td>{{ addedSpareparts?.partName }}</td>
-              <td>{{ addedSpareparts?.partNumber }}</td>
-              <td>{{ addedSpareparts?.nettoBuyingPrice }}</td>
-              <td>{{ addedSpareparts?.nettoSellingPrice }}</td>
+            <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index"   >
+              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} </td>
+              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partNumber }}</td>
+              <td >{{ addedSpareparts?.nettoBuyingPrice }}</td>
+              <td >{{ addedSpareparts?.nettoSellingPrice }}</td>
               <input type="number" [(ngModel)]="quantities[i]" (input)="calculatePrice(i)" />
               <td></td>
               <td>{{sumBruttoPrices[i]}}</td>

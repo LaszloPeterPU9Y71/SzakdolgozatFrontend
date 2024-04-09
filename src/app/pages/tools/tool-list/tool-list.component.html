@@ -21,6 +21,22 @@
         <th class="noSearch">ID
           <br><br>
         </th>
+        <th>Tulajdonos
+          <form
+            [formGroup]="searchFormCustomerEmployee"
+            class="searchBar"
+            (input)="onSearchSubmitName()"
+
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInput"
+            />
+          </form>
+
+        </th>
         <th>Megnevezés
           <form
             [formGroup]="searchFormName"
@@ -100,7 +116,9 @@
       <tbody>
 
       <tr *ngFor="let machine of searchList | slice: (currentPage - 1) * pageSize : currentPage * pageSize" >
+
         <td (click)="selectOnClick(machine.id)" >{{machine.id}} </td>
+        <td (click)="selectOnClick(machine.employeeId)" >{{ machine.employeeId }}</td>
         <td (click)="selectOnClick(machine.id)">{{machine.name}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.typeNumber}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.itemNumber}} </td>
