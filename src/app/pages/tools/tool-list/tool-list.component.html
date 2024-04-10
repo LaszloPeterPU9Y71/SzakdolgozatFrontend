@@ -117,8 +117,8 @@
 
       <tr *ngFor="let machine of searchList | slice: (currentPage - 1) * pageSize : currentPage * pageSize" >
 
-        <td (click)="selectOnClick(machine.id)" >{{machine.id}} </td>
-        <td (click)="selectOnClick(machine.employeeId)" >{{ machine.employeeId }}</td>
+        <td (click)="selectOnClick(machine.id)" >{{machine.identifier}} </td>
+        <td (click)="selectOnClick(machine.id)" >{{machine.employeeName}}</td>
         <td (click)="selectOnClick(machine.id)">{{machine.name}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.typeNumber}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.itemNumber}} </td>

@@ -28,7 +28,6 @@ export class UpdateWorksheetComponent {
     clickedCompany: OwnerCompanyDto | undefined;
     clickedCompanyEmployee: OwnerCompanyEmployeeDto | undefined;
     defect = '';
-    searchDefect: DefectDto[] = [] ;
     description: string | undefined;
     defects: DefectDto[] = [];
     selectedDefect: DefectDto[] = [];
@@ -70,6 +69,10 @@ export class UpdateWorksheetComponent {
       this.toolService.getToolById(id).subscribe((response: ToolDto) => {
         this.clickedTool = response;
         console.log(response)
+        this.defectService.findDefectById(response.defects).subscribe((response: DefectDto[])=> {
+          this.addedDefects=response;
+        })
+
 
       })
     }
@@ -91,7 +94,7 @@ export class UpdateWorksheetComponent {
     }
 
   getAddedDefects(): DefectDto[] {
-    const selectedDefectIds = this.objectStore.selectedTool?.defectIds;
+    const selectedDefectIds = this.objectStore.selectedTool?.defects;
 
     if (selectedDefectIds && selectedDefectIds.length > 0) {
       for (const index of selectedDefectIds) {

@@ -55,8 +55,10 @@ export interface ToolDto {
       status: string ;
       ownerCompanyEmployee: number;
       employeeId: number;
+      employeeName: string;
       description: string;
-      defectIds: number[];
+      defects: number[];
+      identifier: string;
 }
 
 export interface CompanyDto{

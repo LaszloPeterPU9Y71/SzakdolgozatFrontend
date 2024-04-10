@@ -136,14 +136,16 @@
                     </li>
                   </ul>
                 </td>
+
               <td>
                 <ul>
-                  <li *ngFor="let addedDefects of addedDefects; index as i " (click)="onDefectRemove(i)">
-                    {{addedDefects}}
 
+                  <li *ngFor="let addedDefects of addedDefects; index as i " (click)="onDefectRemove(i)">
+                    {{addedDefects.name}}
                   </li>
                 </ul>
               </td>
+                <td>Feltárt hiba:</td>
                 <td>
 
                   <ul>
