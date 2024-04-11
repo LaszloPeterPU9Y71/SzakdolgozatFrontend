@@ -51,7 +51,7 @@ export interface ToolDto {
       typeNumber: string ;
       itemNumber: string ;
       serialNumber: string ;
-      dateOfReceiving: Date;
+      dateOfReceiving: string;
       status: string ;
       ownerCompanyEmployee: number;
       employeeId: number;
@@ -59,6 +59,7 @@ export interface ToolDto {
       description: string;
       defects: number[];
       identifier: string;
+      ownerCompanyName: string;
 }
 
 export interface CompanyDto{

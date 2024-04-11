@@ -36,7 +36,7 @@ export class ToolListComponent implements  OnInit {
     private fb: FormBuilder,
     private router: Router,
     private objectStore: ObjectStore,
-    private customerCompanyEmployeeService: CustomerService,
+
 
 
 

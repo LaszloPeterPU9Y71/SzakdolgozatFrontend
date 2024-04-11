@@ -18,8 +18,20 @@
       <thead class="table-dark">
       <tr>
 
-        <th class="noSearch">ID
-          <br><br>
+        <th class="noSearch">Azonosító
+          <form
+            [formGroup]="searchFormCustomerEmployee"
+            class="searchBarId"
+            (input)="onSearchSubmitName()"
+
+          >
+            <input
+              type="text"
+              placeholder="Keresés"
+              formControlName="searchValue"
+              class="searchBarInputId"
+            />
+          </form>
         </th>
         <th>Tulajdonos
           <form
@@ -118,7 +130,7 @@
       <tr *ngFor="let machine of searchList | slice: (currentPage - 1) * pageSize : currentPage * pageSize" >
 
         <td (click)="selectOnClick(machine.id)" >{{machine.identifier}} </td>
-        <td (click)="selectOnClick(machine.id)" >{{machine.employeeName}}</td>
+        <td (click)="selectOnClick(machine.id)" >{{machine.employeeName}}<br>{{machine.ownerCompanyName}}</td>
         <td (click)="selectOnClick(machine.id)">{{machine.name}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.typeNumber}} </td>
         <td (click)="selectOnClick(machine.id)">{{machine.itemNumber}} </td>
