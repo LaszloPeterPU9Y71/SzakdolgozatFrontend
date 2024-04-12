@@ -23,7 +23,7 @@ export class ToolsService {
     name: string;
     employeeId: number | undefined;
     description: string;
-    defects: DefectDto[];
+    defects: number[];
   }): Observable<ToolDto>{
     return this.http.post<ToolDto>(this.host + "/create", tool);
   }

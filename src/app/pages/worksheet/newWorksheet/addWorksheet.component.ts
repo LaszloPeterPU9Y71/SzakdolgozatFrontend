@@ -24,7 +24,9 @@ export class AddWorksheetComponent implements OnInit{
     employees: OwnerCompanyEmployeeDto[] = [];
     selectedEmployee: OwnerCompanyEmployeeDto| undefined;
     defects: DefectDto[] = [];
-    selectedDefect: DefectDto[] = [];
+    selectedDefectsIds: number[]= [];
+    selectedDefects: DefectDto[] = [];
+
 
 
 
@@ -70,7 +72,7 @@ export class AddWorksheetComponent implements OnInit{
         serialNumber: this?.form.controls['serialNumber'].value,
         description: this?.form.controls['description'].value,
         employeeId: this.selectedEmployee?.id,
-        defects: this.selectedDefect,
+        defects: this.selectedDefectsIds
       }).subscribe((response: any) => {
 
     })
@@ -85,12 +87,14 @@ export class AddWorksheetComponent implements OnInit{
     })
   }
   onDefectSelect(defect: DefectDto) {
-    this.selectedDefect.push(defect);
+    this.selectedDefectsIds.push(defect.id);
+    this.selectedDefects.push(defect);
     this.defects = [];
   }
 
   onDefectRemove(index: number) {
-    this.selectedDefect.splice(index, 1);
+    this.selectedDefects.splice(index, 1);
+
     this.defects = [];
   }
 
