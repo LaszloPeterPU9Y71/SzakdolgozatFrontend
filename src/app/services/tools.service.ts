@@ -42,6 +42,12 @@ export class ToolsService {
   getToolByItemNumber(searchValue: string): Observable<ToolDto[]> {
     return this.http.get<ToolDto[]>(this.host + `/item/${searchValue}`);
   }
+
+  getToolByIdentifier(searchValue: string): Observable<ToolDto[]> {
+    const encodedSearchValue = encodeURIComponent(searchValue);
+    return this.http.get<ToolDto[]>(this.host + "/identifier/" + encodedSearchValue);
+  }
+
   getToolBySerialNumber(searchValue: string): Observable<ToolDto[]> {
     return this.http.get<ToolDto[]>(this.host + `/serial/${searchValue}`);
   }

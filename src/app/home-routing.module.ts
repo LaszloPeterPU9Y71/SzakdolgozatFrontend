@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ToolListComponent} from "./pages/tools/tool-list/tool-list.component";
 import {UserListComponent} from "./pages/user/user-list/user-list.component";
-import {AddWorksheetComponent} from "./pages/worksheet/newWorksheet/addWorksheet.component";
+import {AddWorksheetComponent} from "./pages/worksheet/new-worksheet/add-worksheet.component";
 import {HomeComponent} from "./home/home.component";
-import {CreateSparePartComponent} from "./pages/spareParts/createSparePart/create-spare-part.component";
-import {SparePartsListComponent} from "./pages/spareParts/sparePartsList/spare-parts-list.component";
+import {CreateSparePartComponent} from "./pages/spareParts/create-sparepart/create-spare-part.component";
+import {SparePartsListComponent} from "./pages/spareParts/spareparts-list/spare-parts-list.component";
 import {DefectListComponent} from "./pages/defects/defectList/defect-list.component";
-import {CreateDefectComponent} from "./pages/defects/createDefect/create-defect.component";
+import {CreateDefectComponent} from "./pages/defects/create-defect/create-defect.component";
 import {
   CustomerCompanyRegisterComponent
 } from "./pages/customer-company/customer-company-register/customer-company-register.component";
 import {CustomerCompanyListComponent} from "./pages/customer-company/customer-company-list/customer-company-list.component";
-import {UpdateWorksheetComponent} from "./pages/worksheet/updateWorksheet/updateWorksheet.component";
+import {UpdateWorksheetComponent} from "./pages/worksheet/update-worksheet/update-worksheet.component";
 import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";

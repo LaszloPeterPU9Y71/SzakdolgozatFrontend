@@ -32,7 +32,7 @@ export class CustomerService {
 
   }
 
-  findEmployee(name: String) {
+  findEmployeeByName(name: String) {
     return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + "/find-employee/" + name);
   }
 

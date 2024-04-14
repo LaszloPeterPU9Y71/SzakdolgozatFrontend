@@ -10,8 +10,8 @@ import {DefectService} from "../../../services/defect.service";
 
 @Component({
     selector: 'app-user-login',
-    templateUrl: './addWorksheet.component.html',
-    styleUrls: ['./addWorksheet.component.scss']
+    templateUrl: './add-worksheet.component.html',
+    styleUrls: ['./add-worksheet.component.scss']
   })
 
 export class AddWorksheetComponent implements OnInit{
@@ -39,7 +39,7 @@ export class AddWorksheetComponent implements OnInit{
 
       findEmployee($event: Event) {
       let value = ($event.target as HTMLInputElement).value;
-      this.ownerCompanyEmployeeService.findEmployee(value).subscribe((response) => {
+      this.ownerCompanyEmployeeService.findEmployeeByName(value).subscribe((response) => {
         this.employees = response;
         console.log(this.employees);
         ($event.target as HTMLInputElement).value = "";

@@ -4,6 +4,7 @@ import {FormBuilder} from "@angular/forms";
 import {ToolDto} from "../../../models/backend.models";
 import {Router} from "@angular/router";
 import {ObjectStore} from "../../../services/object-store";
+import {CustomerService} from "../../../services/customer-company-employee.service";
 
 
 @Component({
@@ -21,9 +22,11 @@ export class ToolListComponent implements  OnInit {
   searchFormSerialNumber = this.fb.nonNullable.group({searchValue: ''});
   searchFormItemNumber = this.fb.nonNullable.group({searchValue: ''});
   searchFormCustomerEmployee = this.fb.nonNullable.group({searchValue: ''});
+  searchFormIdentifier = this.fb.nonNullable.group({searchValue: ''});
   currentPage: number = 1;
   pageSize: number = 20;
   totalPages: number = 0;
+
 
 
 
@@ -32,11 +35,7 @@ export class ToolListComponent implements  OnInit {
     private toolsService: ToolsService,
     private fb: FormBuilder,
     private router: Router,
-    private objectStore: ObjectStore,
-
-
-
-
+    private objectStore: ObjectStore
   ){
   }
 
@@ -119,6 +118,28 @@ export class ToolListComponent implements  OnInit {
   onSearchSubmitItemNumber(): void {
     this.searchValue = this.searchFormItemNumber.value.searchValue ?? '';
     this.fetchDataItemNumber();
+  }
+
+  fetchDataIdentifier(): void {
+    if (this.searchValue == '') {
+      this.toolsService
+        .getToolList(this.searchValue)
+        .subscribe((searchList) => {
+          this.searchList = searchList
+          console.log(searchList)
+        })
+    } else
+      this.toolsService
+        .getToolByIdentifier(this.searchValue)
+        .subscribe((searchList) => {
+          this.searchList = searchList
+          console.log(searchList)
+        })
+  }
+
+  onSearchSubmitIdentifier(): void {
+    this.searchValue = this.searchFormIdentifier.value.searchValue ?? '';
+    this.fetchDataIdentifier();
   }
 
   fetchDataSerialNumber(): void {

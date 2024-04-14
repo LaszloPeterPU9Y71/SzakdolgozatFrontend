@@ -17,8 +17,8 @@ import {SparePartService} from "../../../services/spare-part.service";
 
 @Component({
     selector: 'app-user-login',
-    templateUrl: './updateWorksheet.component.html',
-    styleUrls: ['./updateWorksheet.component.scss']
+    templateUrl: './update-worksheet.component.html',
+    styleUrls: ['./update-worksheet.component.scss']
   })
 
 export class UpdateWorksheetComponent {
