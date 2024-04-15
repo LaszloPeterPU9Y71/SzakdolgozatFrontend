@@ -23,7 +23,6 @@ export class CustomerService {
     email: string
   })
     : Observable<OwnerCompanyEmployeeDto>{
-    console.log("++++++++++" + customer.ownerCompanyId)
     return this.http.post<OwnerCompanyEmployeeDto>(this.host + `/add-employee`, customer)
   }
 

@@ -173,6 +173,18 @@
               </td>
               <td colspan="3" id="newDescription">{{newDescription}}</td>
             </tr>
+              <tr>
+                <td><strong>A gép státusza: </strong></td>
+                <td >
+                  <select (change)="onStatusChange(clickedTool, $event)">
+                    <option >{{clickedTool?.status}}</option>
+                    <option value="Folyamatban">Folyamatban</option>
+                    <option value="Kész">Kész</option>
+                    <option value="Lezárt" >Lezárt</option>
+                    <option value="Beérkezett" >Beérkezett</option>
+                  </select>
+                </td>
+              </tr>
             </tbody>
 
             </table>
@@ -189,6 +201,7 @@
               </li>
             </ul>
           </tr>
+
           <table>
             <tr>
 

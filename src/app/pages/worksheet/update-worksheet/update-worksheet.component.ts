@@ -92,7 +92,16 @@ export class UpdateWorksheetComponent {
         }
       })
     }
+  onStatusChange(machine: ToolDto | undefined, $event: Event) {
+    if(machine){
+    const newStatus = $event.target as HTMLInputElement;
+    machine.status = newStatus.value;
+    this.toolService
+      .updateStatus(machine)
+      .subscribe(console.log)
+  }
 
+    }
   getAddedDefects(): DefectDto[] {
     const selectedDefectIds = this.objectStore.selectedTool?.defects;
 
@@ -202,6 +211,8 @@ export class UpdateWorksheetComponent {
       console.log(sumBruttoPrice);
     }
   }
+
+
   onSubmit() {
 
   }

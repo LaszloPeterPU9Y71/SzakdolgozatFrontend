@@ -23,9 +23,11 @@ export class ToolListComponent implements  OnInit {
   searchFormItemNumber = this.fb.nonNullable.group({searchValue: ''});
   searchFormCustomerEmployee = this.fb.nonNullable.group({searchValue: ''});
   searchFormIdentifier = this.fb.nonNullable.group({searchValue: ''});
+  searchFormCustomerCompany = this.fb.nonNullable.group({searchValue: ''});
   currentPage: number = 1;
   pageSize: number = 20;
   totalPages: number = 0;
+
 
 
 
@@ -63,13 +65,14 @@ export class ToolListComponent implements  OnInit {
         .subscribe((searchList) => {
           this.searchList = searchList
           console.log(searchList)
-          this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
+
         })
   }
 
 
 
   onSearchSubmitName(): void {
+    this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormName.value.searchValue ?? '';
     this.fetchData();
   }
@@ -94,6 +97,7 @@ export class ToolListComponent implements  OnInit {
 
 
   onSearchSubmitTypeNumber(): void {
+    this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormTypeNumber.value.searchValue ?? '';
     this.fetchDataTypeNumber();
   }
@@ -116,6 +120,7 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitItemNumber(): void {
+    this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormItemNumber.value.searchValue ?? '';
     this.fetchDataItemNumber();
   }
@@ -138,6 +143,7 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitIdentifier(): void {
+    this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormIdentifier.value.searchValue ?? '';
     this.fetchDataIdentifier();
   }
@@ -161,6 +167,7 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitSerialNumber(): void {
+    this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormSerialNumber.value.searchValue ?? '';
     this.fetchDataSerialNumber();
   }
