@@ -1,5 +1,5 @@
-<div>
-<h2 class="text-center">Partner regisztráció</h2>
+<div class="container">
+  <h2 class="text-center">Partner regisztráció</h2>
 </div>
 
 <table class="Registration">
@@ -12,11 +12,10 @@
               <h4 class="text-center">Alkalmazott adatai</h4>
             </div>
             <div class="card-body">
-              <form method="post" role="form" [formGroup]="Customerform"  >
+              <form method="post" role="form" [formGroup]="Customerform">
 
                 <div class="form-group mb-3">
-                  <label class="form-label">Teljes név</label>
-                  <label for="name"></label>
+                  <label class="form-label" for="name">Teljes név</label>
                   <input class="form-control"
                          id="name"
                          name="name"
@@ -26,8 +25,7 @@
                   />
                 </div>
                 <div class="form-group mb-3">
-                  <label class="form-label">Telefonszám</label>
-                  <label for="telnum"></label>
+                  <label class="form-label" for="telnum">Telefonszám</label>
                   <input class="form-control"
                          id="telnum"
                          name="telnum"
@@ -37,8 +35,7 @@
                   />
                 </div>
                 <div class="form-group mb-3">
-                  <label class="form-label">E-mail cím</label>
-                  <label for="email"></label>
+                  <label class="form-label" for="email">E-mail cím</label>
                   <input class="form-control"
                          id="email"
                          name="email"
@@ -46,54 +43,42 @@
                          placeholder="E-mail címét írja ide"
                          type="email"
                   />
-
-                  <br>
+                </div>
                 <div class="form-group mb-3">
-                  <label class="form-label">Beosztás</label>
-                  <select name="title"  formControlName="title">
+                  <label class="form-label" for="title">Beosztás</label>
+                  <select name="title" formControlName="title" class="form-control">
                     <option value="Beszerző" selected>Beszerző</option>
                     <option value="Tulajdonos">Tulajdonos</option>
-                    <option value="Vezető" >Vezető</option>
-                    <option value="Munkás" >Munkás</option>
-                    <option value="Magánszemély" >Magánszemély</option>
+                    <option value="Vezető">Vezető</option>
+                    <option value="Munkás">Munkás</option>
+                    <option value="Magánszemély">Magánszemély</option>
                   </select>
                 </div>
 
-
-                  <div class="autocomplete">
-                    <input placeholder="A cégét itt tudja keresni" (keyup.enter)="findCompany($event)">
-                    <ul>
-                      <li *ngFor="let company of companies"  (click)="onCompanySelect(company)">
-                        {{company?.companyName}}
-                        {{company?.postalCode}}
-                        {{company?.town}}
-                        {{company?.street}}
-                        {{company?.taxNumber}}
-
-
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="autocomplete">
-                    A kiválasztott cég neve:
-                    {{selectedCompany?.companyName}}
-                  </div>
-                  <br>
+                <div class="autocomplete">
+                  <input placeholder="A cégét itt tudja keresni" (keyup.enter)="findCompany($event)">
+                  <ul>
+                    <li *ngFor="let company of companies" (click)="onCompanySelect(company)">
+                      {{company?.companyName}} {{company?.postalCode}} {{company?.town}} {{company?.street}} {{company?.taxNumber}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="autocomplete">
+                  A kiválasztott cég neve: {{selectedCompany?.companyName}}
+                </div>
 
                 <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="button" (click)="onSave()" >Regisztrál</button>
+                  <button class="btn btn-primary" type="button" (click)="onSave()">Regisztrál</button>
                 </div>
-                  <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="button" routerLink="/company-list"  >Vissza az partnerlistához</button>
+                <div class="form-group mb-3">
+                  <button class="btn btn-primary" type="button" routerLink="/company-list">Vissza az partnerlistához</button>
                 </div>
 
+              </form>
             </div>
-          </form>
-            </div>
+          </div>
         </div>
-      </div>
       </div>
     </td>
   </tr>
 </table>
-

@@ -26,7 +26,10 @@ import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";
 import {CompanyRegisterComponent} from "./pages/company/company-register.component";
-import {EmailService} from "./services/email.service";
+import {LoginService} from "./services/login.service";
+
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +48,7 @@ import {EmailService} from "./services/email.service";
     FooterComponent,
     UpdateWorksheetComponent,
     PrintWorksheetComponent,
-    CompanyRegisterComponent
+    CompanyRegisterComponent,
 
   ],
   imports: [
@@ -54,7 +57,7 @@ import {EmailService} from "./services/email.service";
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
 
   ],
   providers: [ToolsService],

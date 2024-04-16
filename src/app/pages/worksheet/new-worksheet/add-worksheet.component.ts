@@ -9,7 +9,7 @@ import {DefectService} from "../../../services/defect.service";
 
 
 @Component({
-    selector: 'app-user-login',
+    selector: 'app-add-worksheet',
     templateUrl: './add-worksheet.component.html',
     styleUrls: ['./add-worksheet.component.scss']
   })

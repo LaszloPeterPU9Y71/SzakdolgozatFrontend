@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 
 
   @Component({
-    selector: 'app-user-login',
+    selector: 'app-print-worksheet',
     templateUrl: './print-worksheet.component.html',
     styleUrls: ['./print-worksheet.component.scss']
   })

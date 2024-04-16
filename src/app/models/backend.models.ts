@@ -72,5 +72,9 @@ export interface CompanyDto{
   taxNumber: string;
 
 }
+export interface CredentialDto{
 
+  email: string;
+  password: string;
+}
 
