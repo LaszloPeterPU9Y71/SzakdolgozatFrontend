@@ -26,7 +26,7 @@ import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";
 import {CompanyRegisterComponent} from "./pages/company/company-register.component";
-import {LoginService} from "./services/login.service";
+import {AuthenticationService} from "./services/authentication.service";
 
 
 

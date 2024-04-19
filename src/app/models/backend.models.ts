@@ -60,6 +60,10 @@ export interface ToolDto {
       defects: number[];
       identifier: string;
       ownerCompanyName: string;
+      isWarranty: boolean | undefined;
+      isWarrantyTicket: boolean | undefined;
+      isInvoice: boolean | undefined;
+      isRegistration: boolean | undefined;
 }
 
 export interface CompanyDto{

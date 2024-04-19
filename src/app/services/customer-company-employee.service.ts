@@ -1,8 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 
 import {OwnerCompanyEmployeeDto} from "../models/backend.models";
+import {Router} from "@angular/router";
+import {catchError} from "rxjs/operators";
+import {AuthenticationService} from "./authentication.service";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +16,11 @@ export class CustomerService {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private loginService: AuthenticationService
+  ) { }
 
   createCustomer(customer: {
     ownerCompanyId: number | undefined;
@@ -23,20 +30,60 @@ export class CustomerService {
     email: string
   })
     : Observable<OwnerCompanyEmployeeDto>{
-    return this.http.post<OwnerCompanyEmployeeDto>(this.host + `/add-employee`, customer)
+    return this.http.post<OwnerCompanyEmployeeDto>(this.host + `/add-employee`, customer,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
   }
 
   getEmployeeList(searchValue: string):Observable<OwnerCompanyEmployeeDto[]> {
-    return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + `/all`);
+    return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + `/all`,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
 
   }
 
   findEmployeeByName(name: String) {
-    return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + "/find-employee/" + name);
+    return this.http.get<OwnerCompanyEmployeeDto[]>(this.host + "/find-employee/" + name,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
   }
 
   findEmployeeById(id: number | undefined) {
-    return this.http.get<OwnerCompanyEmployeeDto>(this.host + "/find-by-id/" + id);
+    return this.http.get<OwnerCompanyEmployeeDto>(this.host + "/find-by-id/" + id,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
   }
 
 }

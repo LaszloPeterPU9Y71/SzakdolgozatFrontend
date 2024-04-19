@@ -45,7 +45,7 @@
                   />
                 </div>
                 <div class="form-group mb-3">
-                  <label class="form-label" for="title">Beosztás</label>
+                  <label class="form-label" >Beosztás</label>
                   <select name="title" formControlName="title" class="form-control">
                     <option value="Beszerző" selected>Beszerző</option>
                     <option value="Tulajdonos">Tulajdonos</option>
@@ -64,7 +64,10 @@
                   </ul>
                 </div>
                 <div class="autocomplete">
-                  A kiválasztott cég neve: {{selectedCompany?.companyName}}
+                  <label class="form-label" >
+                    A kiválasztott cég neve: {{selectedCompany?.companyName}}
+                  </label>
+
                 </div>
 
                 <div class="form-group mb-3">

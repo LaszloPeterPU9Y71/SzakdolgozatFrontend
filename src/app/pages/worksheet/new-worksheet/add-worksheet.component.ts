@@ -5,7 +5,8 @@ import {CustomerCompanyService} from "../../../services/customer-company.service
 import {CustomerService} from "../../../services/customer-company-employee.service";
 import {ToolsService} from "../../../services/tools.service";
 import {DefectService} from "../../../services/defect.service";
-
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 
 @Component({
@@ -16,16 +17,20 @@ import {DefectService} from "../../../services/defect.service";
 
 export class AddWorksheetComponent implements OnInit{
 
-
-    defectService = inject(DefectService);
-    ownerCompanyEmployeeService = inject(CustomerService);
-    ownerCompanyService = inject(CustomerCompanyService);
-    selectedCompany: OwnerCompanyDto | undefined;
-    employees: OwnerCompanyEmployeeDto[] = [];
-    selectedEmployee: OwnerCompanyEmployeeDto| undefined;
-    defects: DefectDto[] = [];
-    selectedDefectsIds: number[]= [];
-    selectedDefects: DefectDto[] = [];
+  defectService = inject(DefectService);
+  ownerCompanyEmployeeService = inject(CustomerService);
+  ownerCompanyService = inject(CustomerCompanyService);
+  selectedCompany: OwnerCompanyDto | undefined;
+  employees: OwnerCompanyEmployeeDto[] = [];
+  selectedEmployee: OwnerCompanyEmployeeDto| undefined;
+  defects: DefectDto[] = [];
+  selectedDefectsIds: number[]= [];
+  selectedDefects: DefectDto[] = [];
+  router: Router | undefined;
+  warrantyIsChecked: boolean = false;
+  warrantyTicketIsChecked: boolean = false;
+  invoiceIsChecked: boolean = false;
+  registrationIsChecked: boolean = false;
 
 
 
@@ -60,22 +65,31 @@ export class AddWorksheetComponent implements OnInit{
     typeNumber: new FormControl(),
     itemNumber: new FormControl(),
     serialNumber: new FormControl(),
-    description: new FormControl()
+    description: new FormControl(),
+
   });
 
 
 
-  onSubmit() {this.worksheetService2.createTool({
-        name: this?.form.controls['name'].value,
-        typeNumber: this?.form.controls['typeNumber'].value,
-        itemNumber: this?.form.controls['itemNumber'].value,
-        serialNumber: this?.form.controls['serialNumber'].value,
-        description: this?.form.controls['description'].value,
-        employeeId: this.selectedEmployee?.id,
-        defects: this.selectedDefectsIds
-      }).subscribe((response: any) => {
 
-    })
+  onSubmit() {
+
+    this.worksheetService2.createTool({
+      name: this?.form.controls['name'].value,
+      typeNumber: this?.form.controls['typeNumber'].value,
+      itemNumber: this?.form.controls['itemNumber'].value,
+      serialNumber: this?.form.controls['serialNumber'].value,
+      description: this?.form.controls['description'].value,
+      employeeId: this.selectedEmployee?.id,
+      defects: this.selectedDefectsIds,
+      isWarranty: this.warrantyIsChecked,
+      isWarrantyTicket: this.warrantyTicketIsChecked,
+      isInvoice: this.invoiceIsChecked,
+      isRegistration: this.registrationIsChecked,
+    }).subscribe(() => {
+    //  window.location.reload();
+
+      });
   }
 
   findDefect($event: Event) {
@@ -94,7 +108,6 @@ export class AddWorksheetComponent implements OnInit{
 
   onDefectRemove(index: number) {
     this.selectedDefects.splice(index, 1);
-
     this.defects = [];
   }
 

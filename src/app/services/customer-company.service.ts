@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {OwnerCompanyDto} from "../models/backend.models";
+import {Router} from "@angular/router";
+import {catchError} from "rxjs/operators";
+import {AuthenticationService} from "./authentication.service";
 
 
 @Injectable({
@@ -11,7 +14,11 @@ import {OwnerCompanyDto} from "../models/backend.models";
 export class CustomerCompanyService {
   host = 'http://localhost:8080/api/v1/owner';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private loginService: AuthenticationService
+  ) { }
 
   createCustomerCompany(ownerCompany: {
     town: string;
@@ -21,21 +28,61 @@ export class CustomerCompanyService {
     taxNumber: string;
     accountNumber: string;
   }): Observable<OwnerCompanyDto>{
-    return this.http.post<OwnerCompanyDto>(this.host + `/add-company`,ownerCompany)
+    return this.http.post<OwnerCompanyDto>(this.host + `/add-company`,ownerCompany,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
   }
 
 
   getCustomerCompanyList(searchValue: string):Observable<OwnerCompanyDto[]> {
-    return this.http.get<OwnerCompanyDto[]>(this.host + `/all`);
+    return this.http.get<OwnerCompanyDto[]>(this.host + `/all`,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
 
   }
 
   findCompanyById(id: number | undefined): Observable<OwnerCompanyDto>{
-    return this.http.get<OwnerCompanyDto>(this.host + "/find-by-id/" + id);
+    return this.http.get<OwnerCompanyDto>(this.host + "/find-by-id/" + id,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
   }
 
   findCompanyByName(name: string): Observable<OwnerCompanyDto[]>{
-    return this.http.get<OwnerCompanyDto[]>(this.host + "/find-by-name/" + name);
+    return this.http.get<OwnerCompanyDto[]>(this.host + "/find-by-name/" + name,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        console.log("error?", err, caught)
+        return of()
+      }))
   }
 
 }

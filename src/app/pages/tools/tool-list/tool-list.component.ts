@@ -53,16 +53,15 @@ export class ToolListComponent implements  OnInit {
       this.toolsService
         .getToolList(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
-          console.log(searchList)
-
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
           this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
         })
     } else
       this.toolsService
         .getToolByName(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
 
         })
@@ -81,14 +80,16 @@ export class ToolListComponent implements  OnInit {
       this.toolsService
         .getToolList(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
     } else
       this.toolsService
         .getToolByTypeNumber(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
   }
@@ -106,14 +107,16 @@ export class ToolListComponent implements  OnInit {
       this.toolsService
         .getToolList(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
     } else
       this.toolsService
         .getToolByItemNumber(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
   }
@@ -129,14 +132,16 @@ export class ToolListComponent implements  OnInit {
       this.toolsService
         .getToolList(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
     } else
       this.toolsService
         .getToolByIdentifier(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
   }
@@ -152,14 +157,16 @@ export class ToolListComponent implements  OnInit {
       this.toolsService
         .getToolList(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
         })
     } else
       this.toolsService
         .getToolBySerialNumber(this.searchValue)
         .subscribe((searchList) => {
-          this.searchList = searchList
+          this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
+
           console.log(searchList)
 
         })
@@ -184,9 +191,7 @@ export class ToolListComponent implements  OnInit {
     this.toolsService
       .getToolByStatus(status)
       .subscribe((searchList) => {
-        this.searchList = searchList
-        console.log(searchList)
-        console.log(status)
+        this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
         this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
       })
 

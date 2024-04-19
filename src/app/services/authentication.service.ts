@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthenticationService {
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -24,11 +24,20 @@ export class LoginService {
     return this.http.post<string>("http://localhost:8080/api/v1/login", {}, {
       headers: this.getAuthenticationHeader(email, password),
       responseType: "json"
-    },)
+    })
       .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
         console.log("error?", err, caught)
         return of()
       }))
+  }
+
+  logout(){
+    localStorage.setItem("email", "")
+    localStorage.setItem("password", "")
+    this.router.navigate(["/login"])
   }
 
 }

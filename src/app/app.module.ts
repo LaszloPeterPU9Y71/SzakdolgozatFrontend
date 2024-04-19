@@ -10,7 +10,7 @@ import {UserLoginComponent} from "./pages/login/user-login/user-login.component"
 import {MainComponent} from "./pages/login/main.component";
 
 import {HomeModule} from "./home.module";
-import {LoginService} from "./services/login.service";
+import {AuthenticationService} from "./services/authentication.service";
 
 
 @NgModule({

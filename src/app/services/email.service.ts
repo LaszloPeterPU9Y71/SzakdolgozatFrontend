@@ -23,6 +23,7 @@ export class EmailService {
       error => {
         console.error('Hiba történt az üzenet küldése közben:', error);
       }
-    );
+    )
+
   }
 }
