@@ -8,9 +8,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {UserRegisterComponent} from "./pages/user/user-register/user-register.component";
 import {UserLoginComponent} from "./pages/login/user-login/user-login.component";
 import {MainComponent} from "./pages/login/main.component";
-
 import {HomeModule} from "./home.module";
-import {AuthenticationService} from "./services/authentication.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -30,6 +29,8 @@ import {AuthenticationService} from "./services/authentication.service";
     NgOptimizedImage,
     FormsModule,
     HomeModule,
+    BrowserAnimationsModule
+
 
 
   ],

@@ -26,7 +26,10 @@ import {
   CustomerRegisterComponent
 } from "./pages/customer-company-employee/customer-company-employee-register.component";
 import {CompanyRegisterComponent} from "./pages/company/company-register.component";
-import {AuthenticationService} from "./services/authentication.service";
+
+import {ErrorPopupComponent} from "./error-popup/error-popup.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -49,6 +52,7 @@ import {AuthenticationService} from "./services/authentication.service";
     UpdateWorksheetComponent,
     PrintWorksheetComponent,
     CompanyRegisterComponent,
+    ErrorPopupComponent
 
   ],
   imports: [
@@ -58,6 +62,9 @@ import {AuthenticationService} from "./services/authentication.service";
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+
 
   ],
   providers: [ToolsService],

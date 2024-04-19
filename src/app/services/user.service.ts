@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {UserDto} from "../models/backend.models";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
+import {PopupService} from "./error-popup.service";
 
 
 
@@ -20,9 +21,12 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private loginService: AuthenticationService
+    private loginService: AuthenticationService,
+    private errorPopup: PopupService,
   ) {
   }
+
+  httpErrorResponse: HttpErrorResponse | undefined ;
 
   createUser(user: {
     password: string;
@@ -35,11 +39,13 @@ export class UserService {
     return this.http.post<UserDto>(this.host + `/create`, user)
       .pipe(catchError((err, caught) => {
         if (err.status === 401) {
-          this.router.navigate(["/login"])
+          this.router.navigate(["/login"]);
         }
-        console.log("error?", err, caught)
-        return of()
-      }))
+
+          this.errorPopup.openErrorDialog(err.error);
+
+          return of()
+         }))
   }
 
   getRepairManList(searchValue: string): Observable<UserDto[]> {
@@ -51,7 +57,9 @@ export class UserService {
         if (err.status === 401) {
           this.router.navigate(["/login"])
         }
+
         console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
 

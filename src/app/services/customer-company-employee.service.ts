@@ -6,6 +6,7 @@ import {OwnerCompanyEmployeeDto} from "../models/backend.models";
 import {Router} from "@angular/router";
 import {catchError} from "rxjs/operators";
 import {AuthenticationService} from "./authentication.service";
+import {PopupService} from "./error-popup.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,7 +20,8 @@ export class CustomerService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private loginService: AuthenticationService
+    private loginService: AuthenticationService,
+    private errorPopup: PopupService
   ) { }
 
   createCustomer(customer: {
@@ -38,7 +40,7 @@ export class CustomerService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -52,7 +54,7 @@ export class CustomerService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
 
@@ -67,7 +69,7 @@ export class CustomerService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -81,7 +83,7 @@ export class CustomerService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }

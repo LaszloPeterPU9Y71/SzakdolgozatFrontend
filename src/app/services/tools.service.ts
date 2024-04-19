@@ -5,6 +5,8 @@ import {DefectDto, ToolDto} from "../models/backend.models";
 import {AuthenticationService} from "./authentication.service";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {ErrorPopupComponent} from "../error-popup/error-popup.component";
+import {PopupService} from "./error-popup.service";
 
 
 
@@ -17,9 +19,12 @@ import {Router} from "@angular/router";
 export class ToolsService {
   host = 'http://localhost:8080/api/v1/tools';
 
+
   constructor(private http: HttpClient,
               private loginService: AuthenticationService,
-              private router: Router) { }
+              private router: Router,
+              private errorPopup: PopupService,
+  ) { }
 
   createTool(tool: {
     itemNumber: string;
@@ -42,7 +47,7 @@ export class ToolsService {
       if(err.status === 401){
         this.router.navigate(["/login"])
       }
-      console.log("error?", err, caught)
+      this.errorPopup.openErrorDialog(err.error);
       return of()
     }))
   }
@@ -56,7 +61,7 @@ export class ToolsService {
           if(err.status === 401){
             this.router.navigate(["/login"])
           }
-          console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
           return of()
         }))
   }
@@ -70,7 +75,7 @@ export class ToolsService {
       if(err.status === 401){
         this.router.navigate(["/login"])
       }
-      console.log("error?", err, caught)
+    this.errorPopup.openErrorDialog(err.error);
       return of()
     }))
    }
@@ -84,7 +89,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -97,7 +102,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -112,7 +117,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -126,7 +131,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -141,7 +146,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -155,7 +160,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -169,7 +174,7 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }

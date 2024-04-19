@@ -87,7 +87,7 @@ export class AddWorksheetComponent implements OnInit{
       isInvoice: this.invoiceIsChecked,
       isRegistration: this.registrationIsChecked,
     }).subscribe(() => {
-    //  window.location.reload();
+      window.location.reload();
 
       });
   }

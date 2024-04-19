@@ -5,6 +5,7 @@ import {CompanyDto} from "../models/backend.models";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
+import {PopupService} from "./error-popup.service";
 
 
 @Injectable({
@@ -17,7 +18,8 @@ export class CompanyService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private loginService: AuthenticationService
+    private loginService: AuthenticationService,
+    private errorPopup: PopupService
   ) { }
 
   createCompany(company: {
@@ -33,7 +35,7 @@ export class CompanyService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -47,7 +49,7 @@ export class CompanyService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -61,7 +63,7 @@ export class CompanyService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }

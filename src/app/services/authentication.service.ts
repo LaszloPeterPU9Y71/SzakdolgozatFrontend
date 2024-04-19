@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {of} from "rxjs";
 import {Router} from "@angular/router";
+import {PopupService} from "./error-popup.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ import {Router} from "@angular/router";
 export class AuthenticationService {
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private errorPopup: PopupService,
+              ) {
+
   }
 
   getAuthenticationHeader(email: string, password: string) {
@@ -29,7 +33,7 @@ export class AuthenticationService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }

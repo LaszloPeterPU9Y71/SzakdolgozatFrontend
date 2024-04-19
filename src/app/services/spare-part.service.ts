@@ -5,6 +5,7 @@ import {SparePartDto} from "../models/backend.models";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
+import {PopupService} from "./error-popup.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class SparePartService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private loginService: AuthenticationService
+    private loginService: AuthenticationService,
+  private errorPopup: PopupService,
   ) { }
 
   createSparePart(sparePart: SparePartDto): Observable<SparePartDto[]> {
@@ -29,7 +31,7 @@ export class SparePartService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -43,7 +45,7 @@ export class SparePartService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -57,7 +59,7 @@ export class SparePartService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
@@ -71,7 +73,7 @@ export class SparePartService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        console.log("error?", err, caught)
+        this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
