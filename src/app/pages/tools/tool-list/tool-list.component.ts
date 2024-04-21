@@ -1,9 +1,11 @@
 import {Component, OnInit, } from '@angular/core';
 import {ToolsService } from '../../../services/tools.service';
 import {FormBuilder} from "@angular/forms";
-import {ToolDto} from "../../../models/backend.models";
+import {ToolDto, UserDto} from "../../../models/backend.models";
 import {Router} from "@angular/router";
 import {ObjectStore} from "../../../services/object-store";
+import {AddWorksheetComponent} from "../../worksheet/new-worksheet/add-worksheet.component";
+import {UserService} from "../../../services/user.service";
 
 
 @Component({
@@ -26,6 +28,7 @@ export class ToolListComponent implements  OnInit {
   currentPage: number = 1;
   pageSize: number = 20;
   totalPages: number = 0;
+  loggedInUser: UserDto | undefined
 
 
 
@@ -36,12 +39,17 @@ export class ToolListComponent implements  OnInit {
     private toolsService: ToolsService,
     private fb: FormBuilder,
     private router: Router,
-    private objectStore: ObjectStore
+    private objectStore: ObjectStore,
+    private userService: UserService,
+
+
   ){
   }
 
   ngOnInit(): void {
     this.fetchData();
+    this.findUserByEmail();
+
 
   }
 
@@ -168,6 +176,14 @@ export class ToolListComponent implements  OnInit {
           this.searchList = searchList.sort((a, b) => b.identifier.localeCompare(a.identifier));
 
           console.log(searchList)
+
+        })
+  }
+
+  findUserByEmail() {
+    this.userService.getRepairManByEmail(localStorage.getItem("email")!)
+        .subscribe((response : UserDto) => {
+          this.loggedInUser = response;
 
         })
   }

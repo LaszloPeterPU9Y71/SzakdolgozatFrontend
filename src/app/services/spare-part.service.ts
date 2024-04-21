@@ -22,7 +22,12 @@ export class SparePartService {
   private errorPopup: PopupService,
   ) { }
 
-  createSparePart(sparePart: SparePartDto): Observable<SparePartDto[]> {
+  createSparePart(sparePart: {
+    partNumber: string;
+    nettoSellingPrice: number;
+    partName: string;
+    nettoBuyingPrice: number;
+  }): Observable<SparePartDto[]> {
     return this.http.post<SparePartDto[]>(this.host +`/create`, sparePart,{
       headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
       responseType: "json"

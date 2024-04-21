@@ -81,21 +81,20 @@
                   <td>Utca és házszám</td>
 
                   <td>Attila utca 49</td>
-                </tr>
                 <tr>
                   <td>Személy neve</td>
 
-                  <td>László Péter</td>
+                  <td>{{loggedInUser?.name}}</td>
                 </tr>
                 <tr>
                   <td>Telefonszám</td>
 
-                  <td>706211429</td>
+                  <td>{{loggedInUser?.telNum}}</td>
                 </tr>
                 <tr>
                   <td>E-mail</td>
 
-                  <td>szerviz@szerszamkucko.hu</td>
+                  <td>{{loggedInUser?.email}}</td>
                 </tr>
                 <br><br><br>
 
@@ -166,10 +165,10 @@
 
               </tr>
             <tr>
-              <td><strong>Feltárt hibák <button (click)="descriptionRemove($event)" >Törlés </button></strong></td>
+              <td><strong>Megjegyzés <button (click)="descriptionRemove($event)" >Törlés </button></strong></td>
 
               <td  class="data">
-                <input placeholder="Feltárt hibák leírása" type="text" (keyup.enter)="setDescription($event)"/>
+                <input placeholder="Megjegyzés" type="text" (keyup.enter)="setDescription($event)"/>
               </td>
               <td colspan="3" id="newDescription">{{newDescription}}</td>
             </tr>
@@ -188,6 +187,24 @@
             </tbody>
 
             </table>
+          <table>
+            <tr>
+              <td ><label for="warranty">Garanciális a gép?</label></td>
+              <td class="checkbox"><input type="checkbox" [(ngModel)]="warrantyIsChecked" id="warranty"></td>
+            </tr>
+            <tr>
+              <td><label for="warrantyTicket">Behozta a jótállási jegy?</label></td>
+              <td class="checkbox"><input type="checkbox" [(ngModel)]="warrantyTicketIsChecked" id="warrantyTicket"></td>
+            </tr>
+            <tr>
+              <td ><label for="invoice">Behozta a számlamásolat?</label></td>
+              <td class="checkbox"><input type="checkbox" [(ngModel)]="invoiceIsChecked" id="invoice"></td>
+            </tr>
+            <tr>
+              <td><label for="registration">Behozta a regisztráció igazolását?</label></td>
+              <td class="checkbox"><input type="checkbox" [(ngModel)]="registrationIsChecked" id="registration"></td>
+            </tr>
+          </table>
 
             <br>
             <strong>Szükséges alkatrészek</strong>
@@ -216,7 +233,7 @@
 
             <tbody>
             <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index"   >
-              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} </td>
+              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} {{clickedTool?.spareParts}} </td>
               <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partNumber }}</td>
               <td >{{ addedSpareparts?.nettoBuyingPrice }}</td>
               <td >{{ addedSpareparts?.nettoSellingPrice }}</td>
@@ -240,8 +257,8 @@
 
         </div>
 
-        <button class="btn btn-primary" type="button" (click)="onSubmit()" >Szerkesztés befejezése és mentés</button> <br>
-          <button class="btn btn-primary" type="button" [routerLink]="['/home/']" >Főoldal</button>
+        <button class="btn btn-primary" type="button" (click)="onDataChange(clickedTool, $event)">Szerkesztés befejezése és mentés</button><br>
+        <button class="btn btn-primary" type="button" [routerLink]="['/home']">Főoldal</button>
 
       </div>
     </div>

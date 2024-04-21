@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {DefectDto, ToolDto} from "../models/backend.models";
+import {ToolDto} from "../models/backend.models";
 import {AuthenticationService} from "./authentication.service";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {ErrorPopupComponent} from "../error-popup/error-popup.component";
+
 import {PopupService} from "./error-popup.service";
 
 
@@ -34,10 +34,11 @@ export class ToolsService {
     employeeId: number | undefined;
     description: string;
     defects: number[];
-    isWarranty: boolean | undefined;
-    isWarrantyTicket: boolean | undefined;
-    isInvoice: boolean | undefined;
-    isRegistration: boolean | undefined;
+    isWarranty: boolean;
+    isWarrantyTicket: boolean;
+    isInvoice: boolean;
+    isRegistration: boolean;
+    addedSpareparts: number[] ;
   }): Observable<ToolDto>{
     return this.http.post<ToolDto>(this.host + "/create", tool,{
       headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
@@ -174,11 +175,25 @@ export class ToolsService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        this.errorPopup.openErrorDialog(err.error);
+        this.errorPopup.openErrorDialog(err.error.text);
+        console.log(err, caught)
         return of()
       }))
   }
-
+  updateToolData(machine: ToolDto): Observable<ToolDto> {
+    return this.http.put<ToolDto>(this.host + `/update-tool-data/${machine.id}`, machine ,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error.text);
+        console.log(err, caught)
+        return of()
+      }))
+  }
 
 
 

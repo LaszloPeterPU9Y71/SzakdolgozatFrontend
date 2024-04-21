@@ -26,8 +26,6 @@ export class UserService {
   ) {
   }
 
-  httpErrorResponse: HttpErrorResponse | undefined ;
-
   createUser(user: {
     password: string;
     name: string;
@@ -64,4 +62,22 @@ export class UserService {
       }))
 
   }
+
+  getRepairManByEmail(searchValue: string): Observable<UserDto> {
+          return this.http.get<UserDto>(this.host + '/find-user-by-email/' + searchValue,{
+              headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+              responseType: "json"
+          })
+              .pipe(catchError((err, caught) => {
+                  if (err.status === 401) {
+                      this.router.navigate(["/login"])
+                  }
+
+                  console.log("error?", err, caught)
+                  this.errorPopup.openErrorDialog(err.error);
+                  return of()
+              }))
+
+  }
+
 }

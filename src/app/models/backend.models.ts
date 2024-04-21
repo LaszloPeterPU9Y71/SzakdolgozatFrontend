@@ -39,6 +39,7 @@ export interface DefectDto {
 }
 
 export interface SparePartDto {
+      id: number;
       partName: string;
       partNumber: string;
       nettoBuyingPrice: number;
@@ -56,14 +57,17 @@ export interface ToolDto {
       ownerCompanyEmployee: number;
       employeeId: number;
       employeeName: string;
-      description: string;
+      description: string | undefined;
       defects: number[];
       identifier: string;
       ownerCompanyName: string;
-      isWarranty: boolean | undefined;
-      isWarrantyTicket: boolean | undefined;
-      isInvoice: boolean | undefined;
-      isRegistration: boolean | undefined;
+      isWarranty: boolean;
+      isWarrantyTicket: boolean;
+      isInvoice: boolean;
+      isRegistration: boolean;
+      spareParts: number[];
+
+
 }
 
 export interface CompanyDto{

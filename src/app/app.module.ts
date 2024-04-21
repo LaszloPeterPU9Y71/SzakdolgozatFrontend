@@ -29,7 +29,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgOptimizedImage,
     FormsModule,
     HomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+
 
 
 

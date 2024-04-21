@@ -33,7 +33,7 @@ export class AuthenticationService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        this.errorPopup.openErrorDialog(err.error);
+        this.errorPopup.openErrorDialog("Hibás e-mail cím vagy jelszó");
         return of()
       }))
   }

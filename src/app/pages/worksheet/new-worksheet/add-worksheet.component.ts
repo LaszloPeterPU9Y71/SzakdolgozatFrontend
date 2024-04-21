@@ -1,12 +1,14 @@
 import {Component, inject, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto} from "../../../models/backend.models";
+import {DefectDto, OwnerCompanyDto, OwnerCompanyEmployeeDto, UserDto} from "../../../models/backend.models";
 import {CustomerCompanyService} from "../../../services/customer-company.service";
 import {CustomerService} from "../../../services/customer-company-employee.service";
 import {ToolsService} from "../../../services/tools.service";
 import {DefectService} from "../../../services/defect.service";
 import {Router} from "@angular/router";
-import {Location} from "@angular/common";
+
+import {UserService} from "../../../services/user.service";
+
 
 
 @Component({
@@ -20,6 +22,7 @@ export class AddWorksheetComponent implements OnInit{
   defectService = inject(DefectService);
   ownerCompanyEmployeeService = inject(CustomerService);
   ownerCompanyService = inject(CustomerCompanyService);
+  userService = inject(UserService);
   selectedCompany: OwnerCompanyDto | undefined;
   employees: OwnerCompanyEmployeeDto[] = [];
   selectedEmployee: OwnerCompanyEmployeeDto| undefined;
@@ -31,11 +34,15 @@ export class AddWorksheetComponent implements OnInit{
   warrantyTicketIsChecked: boolean = false;
   invoiceIsChecked: boolean = false;
   registrationIsChecked: boolean = false;
+  loggedInUser: UserDto | undefined;
+
+
 
 
 
 
     ngOnInit() {
+      this.findUserByEmail();
     }
 
     createCompany(){
@@ -50,6 +57,14 @@ export class AddWorksheetComponent implements OnInit{
         ($event.target as HTMLInputElement).value = "";
       })
     }
+
+  findUserByEmail() {
+    this.userService.getRepairManByEmail(localStorage.getItem("email")!)
+        .subscribe((response : UserDto) => {
+      this.loggedInUser = response;
+
+    })
+  }
 
     onEmployeeSelect(employee: OwnerCompanyEmployeeDto) {
       this.selectedEmployee = employee
@@ -86,8 +101,9 @@ export class AddWorksheetComponent implements OnInit{
       isWarrantyTicket: this.warrantyTicketIsChecked,
       isInvoice: this.invoiceIsChecked,
       isRegistration: this.registrationIsChecked,
+      addedSpareparts: [],
     }).subscribe(() => {
-      window.location.reload();
+      window.location.href = "http://localhost:4200/home/tools";
 
       });
   }

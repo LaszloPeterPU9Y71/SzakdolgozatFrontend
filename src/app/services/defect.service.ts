@@ -76,7 +76,7 @@ export class DefectService {
         if(err.status === 401){
           this.router.navigate(["/login"])
         }
-        this.errorPopup.openErrorDialog(err.error);
+        this.errorPopup.openErrorDialog("Ehhez a géphez még nem vettek fel hibajelenséget");
         return of()
       }))
   }
