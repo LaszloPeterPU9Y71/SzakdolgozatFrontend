@@ -38,7 +38,7 @@ export class ToolsService {
     isWarrantyTicket: boolean;
     isInvoice: boolean;
     isRegistration: boolean;
-    addedSpareparts: number[] ;
+
   }): Observable<ToolDto>{
     return this.http.post<ToolDto>(this.host + "/create", tool,{
       headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
@@ -181,9 +181,15 @@ export class ToolsService {
       }))
   }
   updateToolData(machine: ToolDto): Observable<ToolDto> {
+    console.log("+++", machine)
+    const convMap = {};
+    machine.spareParts.forEach((val: number, key: number) => {
+      convMap[key.toString()] = val;
+    });
     return this.http.put<ToolDto>(this.host + `/update-tool-data/${machine.id}`, machine ,{
       headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
       responseType: "json"
+
     })
       .pipe(catchError((err, caught) => {
         if(err.status === 401){

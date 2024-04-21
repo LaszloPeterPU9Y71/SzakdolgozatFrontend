@@ -1,4 +1,21 @@
-input{
-  width: 200px;
+.card {
+  margin-top: 50px; /* Térköz a felső rész és a kártya között */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
 }
 
+.card-header h4 {
+  margin-bottom: 0; /* Távolság a kártya fejléce és a címe között */
+}
+
+.form-label {
+  font-weight: bold; /* Félkövér címkék */
+}
+
+.form-control {
+  margin-bottom: 15px; /* Térköz az input mezők között */
+}
+
+.btn {
+  width: 100%; /* Teljes szélességű gombok */
+}

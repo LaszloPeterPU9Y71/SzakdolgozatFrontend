@@ -65,24 +65,16 @@ export interface ToolDto {
       isWarrantyTicket: boolean;
       isInvoice: boolean;
       isRegistration: boolean;
-      spareParts: number[];
+      spareParts: Map<number, number>;
 
 
 }
 
 export interface CompanyDto{
-
   id: number;
   name: string;
   postalCode: number;
   town: string;
   street: string;
   taxNumber: string;
-
 }
-export interface CredentialDto{
-
-  email: string;
-  password: string;
-}
-

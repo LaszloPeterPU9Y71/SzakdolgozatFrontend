@@ -101,7 +101,7 @@ export class AddWorksheetComponent implements OnInit{
       isWarrantyTicket: this.warrantyTicketIsChecked,
       isInvoice: this.invoiceIsChecked,
       isRegistration: this.registrationIsChecked,
-      addedSpareparts: [],
+
     }).subscribe(() => {
       window.location.href = "http://localhost:4200/home/tools";
 

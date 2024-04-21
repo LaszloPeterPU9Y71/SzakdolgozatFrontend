@@ -1,20 +1,13 @@
 
-.button {
-  padding: 4px 18px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 0px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  border-radius: 12px 12px 0px 0px;
-
+.navbar {
+  padding: 10px 0;
 }
-.button:hover {
-  background-color: #888888;
-  color: white;
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  margin: 0 5px;
 }

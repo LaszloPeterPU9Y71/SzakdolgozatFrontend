@@ -44,8 +44,9 @@ export class UpdateWorksheetComponent {
   invoiceIsChecked: boolean = this.objectStore.selectedTool?.isInvoice!;
   registrationIsChecked: boolean = this.objectStore.selectedTool?.isRegistration!;
   loggedInUser: UserDto | undefined;
-  addedSpareparts : number[] = [];
+  addedSpareparts : Map<number, number> = new Map<number, number>
   quantity : number | undefined;
+  index: number | undefined;
 
 
 
@@ -199,13 +200,11 @@ export class UpdateWorksheetComponent {
 
   onSparepartSelect(sparepart: SparePartDto) {
     this.selectedSparepart.push(sparepart);
-    this.addedSpareparts.push(sparepart.id)
     this.spareparts = [];
   }
 
   onSparepartRemove(index: number) {
     this.selectedSparepart.splice(index, 1);
-    this.addedSpareparts.splice(index, 1);
     this.spareparts = [];
   }
 
@@ -221,9 +220,11 @@ export class UpdateWorksheetComponent {
 
 
   calculatePrice(index: number) {
+    this.index = index
     console.log(index);
     this.quantity = this.quantities[index];
     console.log(this.quantities);
+    console.log(this.quantity);
     const sparepart = this.selectedSparepart[index];
 
     if (this.quantity >= 0 && sparepart) {
@@ -231,21 +232,21 @@ export class UpdateWorksheetComponent {
       const sumBruttoPrice = price * this.quantity;
       this.sumBruttoPrices[index] = sumBruttoPrice;
       this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
-
-
+      this.addedSpareparts.set(this.selectedSparepart[index].id, this.quantity)
+      console.log(this.addedSpareparts)
     }
   }
 
 
-  onDataChange(machine: ToolDto | undefined, $event: Event) {
+  onDataChange(machine: ToolDto | undefined) {
     if (machine) {
-      //EZ mindig hozzáadja a szöveget is, így annyira nem jó.
+
       machine.description = "Tulajdonos megjegyzése: " + machine.description! + "    A mi megjegyzésünk: " + this.newDescription!;
       machine.isWarranty = this.warrantyIsChecked
       machine.isInvoice = this.invoiceIsChecked
       machine.isRegistration = this.registrationIsChecked
       machine.isWarrantyTicket = this.warrantyTicketIsChecked
-      machine.spareParts = this.addedSpareparts;
+      machine.spareParts = this.addedSpareparts
 
 
 
@@ -255,14 +256,8 @@ export class UpdateWorksheetComponent {
       this.toolService
         .updateToolData(machine)
         .subscribe()
-      console.log(machine)
-      console.log(this.selectedDefect)
-      console.log( this.clickedTool)
-      console.log(this.addedDefects)
-      console.log(this.defects)
-      console.log( this.selectedSparepart)
-      console.log( this.description)
-      console.log( this.newDescription)
+
+
 
     }
    // window.location.href = 'http://localhost:4200/home/tools'

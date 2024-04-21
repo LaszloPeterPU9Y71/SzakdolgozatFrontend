@@ -1,13 +1,31 @@
-@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+.container {
+  margin-top: 20px;
+}
 
+h1 {
+  margin-bottom: 20px;
+}
+
+.status-buttons {
+  margin-bottom: 20px;
+}
+
+.searchBarId,
+.searchBar,
+.nosearch {
+  margin: 0;
+}
+
+.searchBarInputId,
 .searchBarInput {
-  color: black;
-  width: 100px;
+  width: 100%;
+  margin-bottom: 5px;
 }
 
-.searchBarInputId{
-  width: 70px;
+.pagination {
+  margin-top: 20px;
 }
 
-
-
+.text-center {
+  text-align: center;
+}

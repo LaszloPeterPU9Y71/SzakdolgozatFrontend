@@ -233,7 +233,7 @@
 
             <tbody>
             <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index"   >
-              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} {{clickedTool?.spareParts}} </td>
+              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} </td>
               <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partNumber }}</td>
               <td >{{ addedSpareparts?.nettoBuyingPrice }}</td>
               <td >{{ addedSpareparts?.nettoSellingPrice }}</td>
@@ -257,7 +257,7 @@
 
         </div>
 
-        <button class="btn btn-primary" type="button" (click)="onDataChange(clickedTool, $event)">Szerkesztés befejezése és mentés</button><br>
+        <button class="btn btn-primary" type="button" (click)="onDataChange(clickedTool)">Szerkesztés befejezése és mentés</button><br>
         <button class="btn btn-primary" type="button" [routerLink]="['/home']">Főoldal</button>
 
       </div>

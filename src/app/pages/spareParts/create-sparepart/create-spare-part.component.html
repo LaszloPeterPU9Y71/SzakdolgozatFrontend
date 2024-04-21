@@ -1,77 +1,38 @@
-<table class="Registration">
-  <tr>
-    <td>
-      <div class="container">
-        <div class="row col-md-8 offset-md-2">
-          <div class="row">
-            <div class="card-header">
-              <h2 class="text-center">Alkatrész bevételezés</h2>
-              <h4 class="text-center">Alkatrész adatai</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">Alkatrész bevételezés</h2>
+          <h4 class="text-center">Alkatrész adatai</h4>
+        </div>
+        <div class="card-body">
+          <form method="post" role="form" [formGroup]="form">
+            <div class="form-group">
+              <label class="form-label">Megnevezés</label>
+              <input class="form-control" id="partName" name="partName" placeholder="Megnevezés" formControlName="partName" type="text" />
             </div>
-            <div class="card-body">
-              <form method="post" role="form" [formGroup]="form"  >
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Megnevezés</label>
-                  <label for="partName"></label>
-                  <input class="form-control"
-                         id="partName"
-                         name="partName"
-                         placeholder="Megnevezés"
-                         formControlName="partName"
-                         type="text"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">Cikkszám</label>
-                  <label for="partNumber"></label>
-                  <input class="form-control"
-                         id="partNumber"
-                         name="partNumber"
-                         formControlName="partNumber"
-                         placeholder="Cikkszám"
-                         type="text"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">Beszerzési ár</label>
-                  <label for="nettoBuyingPrice"></label>
-                  <input class="form-control"
-                         id="nettoBuyingPrice"
-                         name="nettoBuyingPrice"
-                         formControlName="nettoBuyingPrice"
-                         placeholder="Beszerzési ár"
-                         type="number"
-                  />
-
-                </div>
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Eladási ár</label>
-                  <label for="nettoSellingPrice"></label>
-                  <input class="form-control"
-                         id="nettoSellingPrice"
-                         name="nettoSellingPrice"
-                         formControlName="nettoSellingPrice"
-                         placeholder="Eladási ár"
-                         type="number"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="button" (click)="onSave()" >Alkatrész felvétel</button>
-                </div>
-                <div>
-                  <button class="btn btn-primary" type="button" routerLink="/spareparts"  >Vissza az alkatrészlistához</button>
-                </div>
-              </form>
+            <div class="form-group">
+              <label class="form-label">Cikkszám</label>
+              <input class="form-control" id="partNumber" name="partNumber" formControlName="partNumber" placeholder="Cikkszám" type="text" />
             </div>
-          </div>
+            <div class="form-group">
+              <label class="form-label">Beszerzési ár</label>
+              <input class="form-control" id="nettoBuyingPrice" name="nettoBuyingPrice" formControlName="nettoBuyingPrice" placeholder="Beszerzési ár" type="number" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Eladási ár</label>
+              <input class="form-control" id="nettoSellingPrice" name="nettoSellingPrice" formControlName="nettoSellingPrice" placeholder="Eladási ár" type="number" />
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" type="button" (click)="onSave()">Alkatrész felvétel</button>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" type="button" routerLink="/spareparts">Vissza az alkatrészlistához</button>
+            </div>
+          </form>
         </div>
       </div>
-    </td>
-
-  </tr>
-
-</table>
-
-
+    </div>
+  </div>
+</div>

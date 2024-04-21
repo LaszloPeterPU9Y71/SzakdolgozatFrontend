@@ -1,36 +1,15 @@
 body {
-  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Háttérszín */
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  margin-top: 100px; /* Felső térköz */
 }
 
 .welcome-message {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.main-buttons {
-  text-align: center;
+  margin-bottom: 30px; /* Alul térköz */
 }
 
 .main-buttons button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.main-buttons button:hover {
-  background-color: #0056b3;
+  width: 150px; /* Gombok szélessége */
 }

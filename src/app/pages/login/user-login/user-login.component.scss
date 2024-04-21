@@ -1,24 +1,20 @@
-.container {
-  margin-top: 50px;
-}
-
 .col-second {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 5px;
-  padding: 20px;
+  margin-top: 50px; /* Térköz a felső rész és a tartalom között */
 }
 
-.form-group {
-  margin-bottom: 20px;
+h2 {
+  margin-bottom: 30px; /* Térköz a cím és a form között */
 }
 
-.forget {
-  font-size: 14px;
+.btn {
+  font-size: 16px; /* Gombok szövegének mérete */
+  border-radius: 5px; /* Gombok kerekített sarkai */
 }
 
 .btn-block {
-  width: 50%;
-  display: block;
-  margin: 0 auto;
+  width: 100%; /* Teljes szélességű gombok */
+}
+
+.form-control {
+  margin-bottom: 15px; /* Térköz az input mezők között */
 }

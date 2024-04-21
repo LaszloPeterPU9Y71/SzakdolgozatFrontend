@@ -1,33 +1,37 @@
-
-
-  <div class="container">
-    <div class="row">
-      <h1> Összes alkatrész </h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center">Összes alkatrész</h1>
     </div>
-
-    <table class="table table-striped table-bordered table-hover">
-      <thead class="table-dark">
-      <tr>
-        <th>Megnevezés</th>
-        <th>Cikkszám</th>
-        <th>Beszerzési ár</th>
-        <th>Eladási ár</th>
-
-      </tr>
-
-      </thead>
-      <tbody>
-
-
-      <tr *ngFor="let sparePart of searchList" >
-        <td>{{sparePart.partName}} </td>
-        <td>{{sparePart.partNumber}} </td>
-        <td>{{sparePart.nettoBuyingPrice + " Ft"}} </td>
-        <td>{{sparePart.nettoSellingPrice + " Ft"}} </td>
-      </tr>
-      </tbody>
-    </table>
-    <button class="btn btn-primary" type="button" routerLink="/spareparts2"  >Tovább az alkatrész felvételhez</button>
   </div>
 
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+          <th>Megnevezés</th>
+          <th>Cikkszám</th>
+          <th>Beszerzési ár</th>
+          <th>Eladási ár</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sparePart of searchList">
+          <td>{{ sparePart.partName }}</td>
+          <td>{{ sparePart.partNumber }}</td>
+          <td>{{ sparePart.nettoBuyingPrice | currency:'HUF' }}</td>
+          <td>{{ sparePart.nettoSellingPrice | currency:'HUF' }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <button class="btn btn-primary" type="button" routerLink="/spareparts2">Tovább az alkatrész felvételhez</button>
+    </div>
+  </div>
+</div>
 

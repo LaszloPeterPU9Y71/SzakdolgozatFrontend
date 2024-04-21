@@ -1,182 +1,108 @@
-
-
-  <div class="container">
-    <div class="row">
-      <div>Bejelentkezve: {{loggedInUser?.name}}</div>
-      <h1> Összes gép </h1>
-    </div>
-
-    <div class="status-buttons">
-      <button (click)="fetchData()">Összes</button>
-      <button (click)="filterByStatus('Beérkezett')">Beérkezett</button>
-      <button (click)="filterByStatus('Folyamatban')">Folyamatban</button>
-      <button (click)="filterByStatus('Felküldve')">Felküldve</button>
-      <button (click)="filterByStatus('Visszaérkezett')">Visszaérkezett</button>
-      <button (click)="filterByStatus('Kiajánlott')">Kiajánlott</button>
-      <button (click)="filterByStatus('Elfogadva')">Elfogadva</button>
-      <button (click)="filterByStatus('Kiértesítve')">Kiértesítve</button>
-      <button (click)="filterByStatus('Lezárt')">Lezárt</button>
-
-    </div>
-
-    <table class="table table-striped table-bordered table-hover">
-      <thead class="table-dark">
-      <tr>
-
-        <th class="noSearch">Azonosító
-          <form
-            [formGroup]="searchFormIdentifier"
-            class="searchBarId"
-            (input)="onSearchSubmitIdentifier()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInputId"
-            />
-          </form>
-        </th>
-        <th>Személy neve
-          <form
-            [formGroup]="searchFormCustomerEmployee"
-            class="searchBar"
-            (input)="onSearchSubmitName()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
-
-        </th>
-        <th>Cég neve
-          <form
-            [formGroup]="searchFormCustomerCompany"
-            class="searchBar"
-            (input)="onSearchSubmitItemNumber()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
-        </th>
-        <th>Megnevezés
-          <form
-            [formGroup]="searchFormName"
-            class="searchBar"
-            (input)="onSearchSubmitName()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
-        </th>
-        <th>Típusszám
-          <form
-            [formGroup]="searchFormTypeNumber"
-            class="searchBar"
-            (input)="onSearchSubmitTypeNumber()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
-        </th>
-        <th>Cikkszám
-          <form
-            [formGroup]="searchFormItemNumber"
-            class="searchBar"
-            (input)="onSearchSubmitItemNumber()"
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
-        </th>
-        <th>Sorszám
-          <form
-            [formGroup]="searchFormSerialNumber"
-            class="searchBar"
-            (input)="onSearchSubmitSerialNumber()"
-
-
-          >
-            <input
-              type="text"
-              placeholder="Keresés"
-              formControlName="searchValue"
-              class="searchBarInput"
-            />
-          </form>
-        </th>
-
-        <th class="nosearch">
-
-          Átvétel időpontja
-
-
-        </th>
-
-        <th>Státusz
-        </th>
-
-
-      </tr>
-
-      </thead>
-      <tbody>
-
-      <tr *ngFor="let machine of searchList | slice: (currentPage - 1) * pageSize : currentPage * pageSize" >
-
-        <td (click)="selectOnClick(machine.id)">{{machine.identifier}} </td>
-        <td (click)="selectOnClick(machine.id)">{{machine.employeeName}}
-        <td (click)="selectOnClick(machine.id)">{{machine.ownerCompanyName}}</td>
-        <td (click)="selectOnClick(machine.id)">{{machine.name}} </td>
-        <td (click)="selectOnClick(machine.id)">{{machine.typeNumber}} </td>
-        <td (click)="selectOnClick(machine.id)">{{machine.itemNumber}} </td>
-        <td (click)="selectOnClick(machine.id)">{{machine.serialNumber}} </td>
-        <td (click)="selectOnClick(machine.id)" >{{machine.dateOfReceiving}} </td>
-        <td >
-          <select (change)="onStatusChange(machine, $event)">
-            <option value="{{machine.status}}" selected>{{machine.status}}</option>
-            <option value="Folyamatban">Folyamatban</option>
-            <option value="Kész">Kész</option>
-            <option value="Lezárt" >Lezárt</option>
-            <option value="Beérkezett" >Beérkezett</option>
-            <option value="Felküldve" >Felküldve</option>
-            <option value="Visszaérkezett" >Visszaérkezett</option>
-            <option value="Kiajánlott" >Kiajánlott</option>
-           </select>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="pagination">
-      <button (click)="onPreviousPage()">Előző oldal</button>
-      <span> {{ currentPage }}  /  {{ totalPages }} </span>
-      <button (click)="onNextPage()">Következő oldal</button>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div>Bejelentkezve: {{ loggedInUser?.name }}</div>
+      <h1 class="text-center">Összes gép</h1>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="status-buttons">
+        <button class="btn btn-primary" (click)="fetchData()">Összes</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Beérkezett')">Beérkezett</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Folyamatban')">Folyamatban</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Felküldve')">Felküldve</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Visszaérkezett')">Visszaérkezett</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Kiajánlott')">Kiajánlott</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Elfogadva')">Elfogadva</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Kiértesítve')">Kiértesítve</button>
+        <button class="btn btn-primary" (click)="filterByStatus('Lezárt')">Lezárt</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+          <th class="noSearch">Azonosító
+            <form [formGroup]="searchFormIdentifier" class="searchBarId" (input)="onSearchSubmitIdentifier()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInputId">
+            </form>
+          </th>
+          <th>Személy neve
+            <form [formGroup]="searchFormCustomerEmployee" class="searchBar" (input)="onSearchSubmitName()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInput">
+            </form>
+          </th>
+          <th>Cég neve
+            <form [formGroup]="searchFormCustomerCompany" class="searchBar" (input)="onSearchSubmitItemNumber()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInput">
+            </form>
+          </th>
+          <th>Megnevezés
+            <form [formGroup]="searchFormName" class="searchBar" (input)="onSearchSubmitName()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInput">
+            </form>
+          </th>
+          <th>Típusszám
+            <form [formGroup]="searchFormTypeNumber" class="searchBar" (input)="onSearchSubmitTypeNumber()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInput">
+            </form>
+          </th>
+          <th>Cikkszám
+            <form [formGroup]="searchFormItemNumber" class="searchBar" (input)="onSearchSubmitItemNumber()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInput">
+            </form>
+          </th>
+          <th>Sorszám
+            <form [formGroup]="searchFormSerialNumber" class="searchBar" (input)="onSearchSubmitSerialNumber()">
+              <input type="text" placeholder="Keresés" formControlName="searchValue" class="form-control searchBarInput">
+            </form>
+          </th>
+          <th class="nosearch">Átvétel időpontja</th>
+          <th>Státusz</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let machine of searchList | slice: (currentPage - 1) * pageSize : currentPage * pageSize">
+          <td (click)="selectOnClick(machine.id)">{{ machine.identifier }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.employeeName }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.ownerCompanyName }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.name }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.typeNumber }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.itemNumber }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.serialNumber }}</td>
+          <td (click)="selectOnClick(machine.id)">{{ machine.dateOfReceiving }}</td>
+          <td>
+            <select class="form-control" (change)="onStatusChange(machine, $event)">
+              <option value="{{ machine.status }}" selected>{{ machine.status }}</option>
+              <option value="Folyamatban">Folyamatban</option>
+              <option value="Kész">Kész</option>
+              <option value="Lezárt">Lezárt</option>
+              <option value="Beérkezett">Beérkezett</option>
+              <option value="Felküldve">Felküldve</option>
+              <option value="Visszaérkezett">Visszaérkezett</option>
+              <option value="Kiajánlott">Kiajánlott</option>
+            </select>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <div class="pagination">
+        <button class="btn btn-primary" (click)="onPreviousPage()">Előző oldal</button>
+        <span>{{ currentPage }} / {{ totalPages }}</span>
+        <button class="btn btn-primary" (click)="onNextPage()">Következő oldal</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 

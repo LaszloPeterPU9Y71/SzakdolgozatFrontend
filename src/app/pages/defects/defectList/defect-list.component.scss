@@ -1,4 +1,11 @@
-table{
-  width: 200px;
+.container {
+  margin-top: 50px; /* Térköz a felső rész és a tartalom között */
 }
 
+h1 {
+  margin-bottom: 30px; /* Térköz a cím és a táblázat között */
+}
+
+.btn {
+  margin-top: 30px; /* Térköz a táblázat és a gomb között */
+}

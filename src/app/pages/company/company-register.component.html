@@ -1,90 +1,38 @@
-<div>
-  <h2 class="text-center">Műhely regisztráció</h2>
-</div>
-
-<table class="Registration">
-  <tr>
-    <td>
-      <div class="container">
-        <div class="row col-md-8 offset-md-2">
-          <div class="row">
-            <div class="card-header">
-
-              <h4 class="text-center">Műhely adatai</h4>
-            </div>
-            <div class="card-body">
-              <form method="post" role="form" [formGroup]="Companyform"  >
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Cégnév</label>
-                  <label for="companyName"></label>
-                  <input class="form-control"
-                         id="companyName"
-                         name="companyName"
-                         placeholder="Cégnév!"
-                         formControlName="companyName"
-                         type="text"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">Irányítószám</label>
-                  <label for="postalCode"></label>
-                  <input class="form-control"
-                         id="postalCode"
-                         name="postalCode"
-                         formControlName="postalCode"
-                         placeholder="Irányítószám"
-                         type="number"
-                  />
-                </div>
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Város</label>
-                  <label for="town"></label>
-                  <input class="form-control"
-                         id="town"
-                         name="town"
-                         formControlName="town"
-                         placeholder="Településnév"
-                         type="text"
-                  />
-                </div>
-
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Utca és házszám</label>
-                  <label for="street"></label>
-                  <input class="form-control"
-                         id="street"
-                         name="street"
-                         formControlName="street"
-                         placeholder="Utca és házszám"
-                         type="text"
-                  />
-
-                </div>
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Adószám</label>
-                  <label for="taxNumber"></label>
-                  <input class="form-control"
-                         id="taxNumber"
-                         name="taxNumber"
-                         formControlName="taxNumber"
-                         placeholder="Adószám!"
-                         type="text"
-                  /><br>
-
-                    <div class="form-group mb-3">
-                      <button class="btn btn-primary" type="button" (click)="onSaveCompany()" >Regisztrál</button>
-                    </div>
-                  </div>
-                 </form>
-                </div>
-            </div>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Műhely adatai</h4>
         </div>
-    </td>
-  </tr>
-</table>
-
+        <div class="card-body">
+          <form method="post" role="form" [formGroup]="Companyform">
+            <div class="mb-3">
+              <label class="form-label">Cégnév</label>
+              <input class="form-control" id="companyName" name="companyName" placeholder="Cégnév!" formControlName="companyName" type="text" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Irányítószám</label>
+              <input class="form-control" id="postalCode" name="postalCode" formControlName="postalCode" placeholder="Irányítószám" type="number" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Város</label>
+              <input class="form-control" id="town" name="town" formControlName="town" placeholder="Településnév" type="text" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Utca és házszám</label>
+              <input class="form-control" id="street" name="street" formControlName="street" placeholder="Utca és házszám" type="text" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Adószám</label>
+              <input class="form-control" id="taxNumber" name="taxNumber" formControlName="taxNumber" placeholder="Adószám!" type="text" />
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-primary" type="button" (click)="onSaveCompany()">Regisztrál</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

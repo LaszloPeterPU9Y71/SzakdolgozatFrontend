@@ -1,81 +1,44 @@
-.container {
-  margin: 20px auto;
-  width: 80%;
+.card {
+  margin-top: 50px; /* Térköz a felső rész és a lap között */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
 }
 
-.text-center {
-  text-align: center;
-}
-
-.Registration {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.Registration td {
-  padding: 20px;
-}
-
-.card-header {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px 5px 0 0;
-}
-
-.card-body {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  padding: 20px;
-  border-radius: 0 0 5px 5px;
-}
-
-.form-group {
-  margin-bottom: 20px;
+.card-header h4 {
+  margin-bottom: 0; /* Távolság a kártya fejléce és a címe között */
 }
 
 .form-label {
-  font-weight: bold;
+  font-weight: bold; /* Félkövér címkék */
 }
 
 .autocomplete {
-  margin-top: 20px;
+  position: relative; /* Relatív pozícionálás az autocomplete-nek */
 }
 
 .autocomplete input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
+  width: 100%; /* Teljes szélességű input mező */
+  padding: 10px; /* Belső térköz az input mezőben */
+  margin-bottom: 10px; /* Térköz az input mezők között */
 }
 
 .autocomplete ul {
-  list-style: none;
-  padding: 0;
+  position: absolute; /* Abszolút pozícionálás a lista számára */
+  z-index: 1000; /* Legfelül helyezkedjen el a többi elem felett */
+  background-color: #fff; /* Háttérszín */
+  border: 1px solid #ccc; /* Keret */
+  border-radius: 5px; /* Kerekített sarkok */
+  padding: 0; /* Belső térköz a lista elemek között */
+  margin: 0; /* Margó eltávolítása */
+  list-style: none; /* Felsorolás eltávolítása */
+  width: 100%; /* Teljes szélességű lista */
 }
 
 .autocomplete ul li {
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-  cursor: pointer;
+  padding: 10px; /* Belső térköz az elemek között */
+  cursor: pointer; /* Mutató átállítása */
 }
 
 .autocomplete ul li:hover {
-  background-color: #e9ecef;
+  background-color: #f0f0f0; /* Háttérszín a hover állapotban */
 }
-
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-

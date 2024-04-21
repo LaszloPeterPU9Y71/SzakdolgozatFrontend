@@ -1,104 +1,57 @@
-<table class="Registration">
-  <tr>
-    <td>
-      <div class="container">
-        <div class="row col-md-8 offset-md-2">
-          <div class="row">
-            <div class="card-header">
-              <h2 class="text-center">Regisztráció</h2>
-              <h4 class="text-center">Alkalmazott adatai</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">Regisztráció</h2>
+          <h4 class="text-center">Alkalmazott adatai</h4>
+        </div>
+        <div class="card-body">
+          <form method="post" role="form" [formGroup]="form">
+            <div class="form-group mb-3">
+              <label class="form-label">Teljes név</label>
+              <input class="form-control" id="name" name="name" placeholder="Teljes nevét írja ide!" formControlName="name" type="text">
             </div>
-            <div class="card-body">
-              <form method="post" role="form" [formGroup]="form"  >
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Teljes név</label>
-                  <label for="name"></label>
-                  <input class="form-control"
-                         id="name"
-                         name="name"
-                         placeholder="Teljes nevét írja ide!"
-                         formControlName="name"
-                         type="text"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">Telefonszám</label>
-                  <label for="telnum"></label>
-                  <input class="form-control"
-                         id="telnum"
-                         name="telnum"
-                         formControlName="telNum"
-                         placeholder="Telefonszámát írja ide"
-                         type="number"
-                  />
-                </div>
-                <div class="form-group mb-3">
-                  <label class="form-label">E-mail cím</label>
-                  <label for="email"></label>
-                  <input class="form-control"
-                         id="email"
-                         name="email"
-                         formControlName="email"
-                         placeholder="E-mail címét írja ide"
-                         type="email"
-                  />
-
-                </div>
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Jelszó</label>
-                  <label for="password"></label>
-                  <input class="form-control"
-                         id="password"
-                         name="password"
-                         formControlName="password"
-                         placeholder="Jelszavát írja ide!"
-                         type="password"
-                  />
-                </div>
-
-                <div class="form-group mb-3">
-                  <label class="form-label">Beosztás</label>
-                  <select name="title"  formControlName="title">
-                    <option value="Szerelő" selected>Szerelő</option>
-                    <option value="Műhelyvezető">Műhelyvezető</option>
-                    <option value="Vezető" >Vezető</option>
-                    <option value="Eladó" >Eladó</option>
-                  </select>
-                </div>
-
-                <div class="autocomplete">
-                  <input placeholder="A cégét itt tudja keresni" (keyup.enter)="findCompany($event)">
-                  <ul>
-                    <li *ngFor="let company of companies"  (click)="onCompanySelect(company)">
-                      {{company?.name}}
-                      {{company?.postalCode}}
-                      {{company?.town}}
-                      {{company?.street}}
-                      {{company?.taxNumber}}
-
-
-                    </li>
-                  </ul>
-                </div>
-                <div class="autocomplete">
-                  A kiválasztott cég neve:
-                  {{selectedCompany?.name}}
-                </div>
-                <br>
-
-
-                <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="button"  (click)="onSave()" >Regisztrál</button>
-                  <span>Regisztráltál már? <a routerLink="/login" >Lépj be itt!</a></span>
-                </div>
-              </form>
+            <div class="form-group mb-3">
+              <label class="form-label">Telefonszám</label>
+              <input class="form-control" id="telnum" name="telnum" formControlName="telNum" placeholder="Telefonszámát írja ide" type="number">
             </div>
-          </div>
+            <div class="form-group mb-3">
+              <label class="form-label">E-mail cím</label>
+              <input class="form-control" id="email" name="email" formControlName="email" placeholder="E-mail címét írja ide" type="email">
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label">Jelszó</label>
+              <input class="form-control" id="password" name="password" formControlName="password" placeholder="Jelszavát írja ide!" type="password">
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label">Beosztás</label>
+              <select class="form-control" name="title" formControlName="title">
+                <option value="Szerelő" selected>Szerelő</option>
+                <option value="Műhelyvezető">Műhelyvezető</option>
+                <option value="Vezető">Vezető</option>
+                <option value="Eladó">Eladó</option>
+              </select>
+            </div>
+            <div class="autocomplete">
+              <input placeholder="A cégét itt tudja keresni" (keyup.enter)="findCompany($event)">
+              <ul>
+                <li *ngFor="let company of companies" (click)="onCompanySelect(company)">
+                  {{company?.name}} {{company?.postalCode}} {{company?.town}} {{company?.street}} {{company?.taxNumber}}
+                </li>
+              </ul>
+            </div>
+            <div class="autocomplete">
+              A kiválasztott cég neve: {{selectedCompany?.name}}
+            </div>
+            <br>
+            <div class="form-group mb-3">
+              <button class="btn btn-primary" type="button" (click)="onSave()">Regisztrál</button>
+              <span>Regisztráltál már? <a routerLink="/login">Lépj be itt!</a></span>
+            </div>
+          </form>
         </div>
       </div>
-    </td>
-
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
