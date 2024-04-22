@@ -5,6 +5,7 @@ import {catchError} from "rxjs/operators";
 import {of} from "rxjs";
 import {CompanyDto, OwnerCompanyDto} from "../../../models/backend.models";
 import {CompanyService} from "../../../services/company.service";
+import {Router} from "@angular/router";
 
 
 
@@ -23,6 +24,7 @@ export class UserRegisterComponent {
     companies : CompanyDto[] | [] | undefined;
     selectedCompany: CompanyDto | undefined;
     companyService = inject(CompanyService);
+    router= inject(Router);
 
 
 
@@ -55,7 +57,9 @@ export class UserRegisterComponent {
 
     .subscribe((response) => {
         console.log(response)
+
       })
+      this.router.navigate(['/login'])
     }
     findCompany($event: Event) {
       let value = ($event.target as HTMLInputElement).value;

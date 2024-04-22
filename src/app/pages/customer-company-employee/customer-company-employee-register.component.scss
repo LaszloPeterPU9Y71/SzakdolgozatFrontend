@@ -1,44 +1,26 @@
-.card {
-  margin-top: 50px; /* Térköz a felső rész és a lap között */
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
+/* A táblázat szélességének beállítása */
+.Registration {
+  width: 100%;
 }
 
-.card-header h4 {
-  margin-bottom: 0; /* Távolság a kártya fejléce és a címe között */
+/* A form elemek elrendezésének formázása */
+.container {
+  margin-top: 20px;
+}
+
+.card-header {
+  background-color: #007bff; /* Kék háttérszín a kártya fejlécéhez */
+  color: #fff; /* Fehér szöveg a kártya fejlécéhez */
+}
+
+.card-body {
+  padding: 20px; /* Belső térköz a kártya tartalmához */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Térköz a form elemek között */
 }
 
 .form-label {
-  font-weight: bold; /* Félkövér címkék */
-}
-
-.autocomplete {
-  position: relative; /* Relatív pozícionálás az autocomplete-nek */
-}
-
-.autocomplete input {
-  width: 100%; /* Teljes szélességű input mező */
-  padding: 10px; /* Belső térköz az input mezőben */
-  margin-bottom: 10px; /* Térköz az input mezők között */
-}
-
-.autocomplete ul {
-  position: absolute; /* Abszolút pozícionálás a lista számára */
-  z-index: 1000; /* Legfelül helyezkedjen el a többi elem felett */
-  background-color: #fff; /* Háttérszín */
-  border: 1px solid #ccc; /* Keret */
-  border-radius: 5px; /* Kerekített sarkok */
-  padding: 0; /* Belső térköz a lista elemek között */
-  margin: 0; /* Margó eltávolítása */
-  list-style: none; /* Felsorolás eltávolítása */
-  width: 100%; /* Teljes szélességű lista */
-}
-
-.autocomplete ul li {
-  padding: 10px; /* Belső térköz az elemek között */
-  cursor: pointer; /* Mutató átállítása */
-}
-
-.autocomplete ul li:hover {
-  background-color: #f0f0f0; /* Háttérszín a hover állapotban */
+  font-weight: bold; /* Félkövér szöveg a címke elemekhez */
 }

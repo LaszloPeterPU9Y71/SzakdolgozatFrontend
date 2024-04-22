@@ -1,6 +1,7 @@
 import {Component, inject} from "@angular/core";
 import {DefectService} from "../../../services/defect.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 
@@ -15,6 +16,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 export class CreateDefectComponent {
 
+    router = inject(Router)
+
 
     private defectService = inject(DefectService)
     form: FormGroup = new FormGroup({
@@ -28,6 +31,7 @@ export class CreateDefectComponent {
         name: this.form?.controls["name"].value,
       }).subscribe((response) => {
         console.log(response);
+        this.router.navigate(['/home/defects'])
       })
     }
   }

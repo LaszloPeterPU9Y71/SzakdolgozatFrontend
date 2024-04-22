@@ -1,7 +1,11 @@
 
 .navbar {
   padding: 10px 0;
+  background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
+  background-size: cover;
+
 }
+
 
 .navbar-nav {
   display: flex;
@@ -9,5 +13,7 @@
 }
 
 .btn {
-  margin: 0 5px;
+  margin: 10px 5px;
 }
+
+

@@ -1,11 +1,27 @@
 .container {
-  margin-top: 50px; /* Felső térköz */
+  margin-top: 20px;
 }
 
-h1 {
-  margin-bottom: 30px; /* Alul térköz */
+h1.text-center {
+  margin-bottom: 20px;
 }
 
-.btn {
-  margin-top: 30px; /* Térköz a táblázat és a gomb között */
+
+.row.buttons-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.row.buttons-row button {
+  margin: 0 10px;
+}
+
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+.table th {
+  text-align: center;
+  vertical-align: middle;
 }

@@ -14,6 +14,8 @@ import {ObjectStore} from "../../../services/object-store";
 import {DefectService} from "../../../services/defect.service";
 import {SparePartService} from "../../../services/spare-part.service";
 import {UserService} from "../../../services/user.service";
+import {forkJoin} from "rxjs";
+import {EmailService} from "../../../services/email.service";
 
 
 @Component({
@@ -44,12 +46,10 @@ export class UpdateWorksheetComponent {
   invoiceIsChecked: boolean = this.objectStore.selectedTool?.isInvoice!;
   registrationIsChecked: boolean = this.objectStore.selectedTool?.isRegistration!;
   loggedInUser: UserDto | undefined;
-  addedSpareparts : Map<number, number> = new Map<number, number>
-  quantity : number | undefined;
-  index: number | undefined;
-
-
-
+  addedSparepartsIds: number[] = []
+  addedSparePartsQuantities: number[] = [];
+  quantity: number | undefined;
+  index: number = 0;
 
 
   constructor(
@@ -59,7 +59,7 @@ export class UpdateWorksheetComponent {
     private toolService: ToolsService,
     private defectService: DefectService,
     private sparepartService: SparePartService,
-    private userService: UserService
+    private userService: UserService,
   ) {
   }
 
@@ -69,7 +69,9 @@ export class UpdateWorksheetComponent {
     this.findToolById(this.objectStore.selectedTool!.id);
     this.findCustomerCompanyEmployeeById(this.objectStore.selectedTool!.employeeId);
     this.getDescription();
-    this.findUserByEmail()
+    this.findUserByEmail();
+    this.getQuantities();
+
 
   }
 
@@ -118,7 +120,6 @@ export class UpdateWorksheetComponent {
         .updateStatus(machine)
         .subscribe(console.log)
     }
-
   }
 
   getAddedDefects(): DefectDto[] {
@@ -145,13 +146,24 @@ export class UpdateWorksheetComponent {
     }
   }
 
-  findDefect($event: Event) {
+  getDefect($event: Event) {
     let value = ($event.target as HTMLInputElement).value;
     this.defectService.findDefect(value).subscribe((response: DefectDto[]) => {
       this.defects = response;
-      console.log(this.defects);
       ($event.target as HTMLInputElement).value = "";
     })
+  }
+
+
+  getQuantities(): void {
+    this.toolService.getSparePartsMap(this.objectStore.selectedTool!).subscribe((response: Map<number, number>) => {
+
+      console.log(new Map(Object.entries(response)).keys())
+      console.log(new Map(Object.entries(response)).values())
+      console.log(new Map(Object.entries(response)));
+
+    })
+
   }
 
   onDefectSelect(defect: DefectDto) {
@@ -218,48 +230,65 @@ export class UpdateWorksheetComponent {
   }
 
 
-
   calculatePrice(index: number) {
     this.index = index
-    console.log(index);
     this.quantity = this.quantities[index];
-    console.log(this.quantities);
-    console.log(this.quantity);
     const sparepart = this.selectedSparepart[index];
-
     if (this.quantity >= 0 && sparepart) {
       const price = sparepart.nettoSellingPrice;
       const sumBruttoPrice = price * this.quantity;
       this.sumBruttoPrices[index] = sumBruttoPrice;
       this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
-      this.addedSpareparts.set(this.selectedSparepart[index].id, this.quantity)
-      console.log(this.addedSpareparts)
+      this.addedSparePartsQuantities[index] = this.quantity;
+      this.addedSparepartsIds[index] = (this.selectedSparepart[index].id)
     }
   }
 
 
   onDataChange(machine: ToolDto | undefined) {
     if (machine) {
+      if(!this.description){
+        machine.description = this.newDescription!;
+      }else if(this.description){
+        machine.description = machine.description + " + " + this.newDescription
+      }
+      machine.isWarranty = this.warrantyIsChecked;
+      machine.isInvoice = this.invoiceIsChecked;
+      machine.isRegistration = this.registrationIsChecked;
+      machine.isWarrantyTicket = this.warrantyTicketIsChecked;
+      console.log(this.quantities)
+      console.log(this.quantity)
+      console.log(this.addedSparepartsIds)
+      console.log(this.addedSparePartsQuantities)
 
-      machine.description = "Tulajdonos megjegyzése: " + machine.description! + "    A mi megjegyzésünk: " + this.newDescription!;
-      machine.isWarranty = this.warrantyIsChecked
-      machine.isInvoice = this.invoiceIsChecked
-      machine.isRegistration = this.registrationIsChecked
-      machine.isWarrantyTicket = this.warrantyTicketIsChecked
-      machine.spareParts = this.addedSpareparts
+      if(this.addedSparePartsQuantities && this.addedSparepartsIds) {
+        if (this.addedSparePartsQuantities.length === this.addedSparepartsIds.length) {
+          for (var i = 0; i < this.addedSparePartsQuantities.length; i++) {
+            if (this.addedSparepartsIds[i].hasOwnProperty('123')) {
+              Object.fromEntries(machine.sparePartsMap.set(this.addedSparePartsQuantities[i], this.addedSparepartsIds[i]));
+            } else {
+              console.error("A 'addedSparepartsIds' tömb " + i + ". indexű eleménél hiányzik az 'id' tulajdonság.");
+            }
+          }
+        } else {
+          console.error("A 'addedSparePartsQuantities' és 'addedSparepartsIds' tömbök hossza nem egyezik meg.");
+        }
+      }
 
-
-
-
+      console.log(this.quantities)
+      console.log(this.quantity)
+      console.log(this.addedSparepartsIds)
+      console.log(this.addedSparePartsQuantities)
+      console.log(machine?.sparePartsMap)
 
 
       this.toolService
-        .updateToolData(machine)
+        .updateToolData(machine!)
         .subscribe()
 
 
-
     }
-   // window.location.href = 'http://localhost:4200/home/tools'
+    // window.location.href = 'http://localhost:4200/home/tools'
   }
 }
+

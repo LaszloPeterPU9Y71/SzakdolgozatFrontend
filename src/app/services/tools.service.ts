@@ -24,7 +24,8 @@ export class ToolsService {
               private loginService: AuthenticationService,
               private router: Router,
               private errorPopup: PopupService,
-  ) { }
+  ) {
+  }
 
   createTool(tool: {
     itemNumber: string;
@@ -39,68 +40,69 @@ export class ToolsService {
     isInvoice: boolean;
     isRegistration: boolean;
 
-  }): Observable<ToolDto>{
-    return this.http.post<ToolDto>(this.host + "/create", tool,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
-        responseType: "json"
-    })
-  .pipe(catchError((err, caught) => {
-      if(err.status === 401){
-        this.router.navigate(["/login"])
-      }
-      this.errorPopup.openErrorDialog(err.error);
-      return of()
-    }))
-  }
-
-  getToolList(searchValue: string): Observable<ToolDto[]> {
-    return this.http.get<ToolDto[]>(this.host +`/all`, {
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+  }): Observable<ToolDto> {
+    return this.http.post<ToolDto>(this.host + "/create", tool, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
       .pipe(catchError((err, caught) => {
-          if(err.status === 401){
-            this.router.navigate(["/login"])
-          }
-        this.errorPopup.openErrorDialog(err.error);
-          return of()
-        }))
-  }
-
-  getToolByName(searchValue: string): Observable<ToolDto[]> {
-   return this.http.get<ToolDto[]>(this.host + `/name/${searchValue}`,{
-     headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
-     responseType: "json"
-   })
-  .pipe(catchError((err, caught) => {
-      if(err.status === 401){
-        this.router.navigate(["/login"])
-      }
-    this.errorPopup.openErrorDialog(err.error);
-      return of()
-    }))
-   }
-
-  getToolByTypeNumber(searchValue: string): Observable<ToolDto[]> {
-    return this.http.get<ToolDto[]>(this.host + `/type/${searchValue}`,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
-      responseType: "json"
-    })
-      .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error);
         return of()
       }))
   }
-  getToolByItemNumber(searchValue: string): Observable<ToolDto[]> {
-    return this.http.get<ToolDto[]>(this.host + `/item/${searchValue}`,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+
+  getToolList(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/all`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
       .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error);
+        return of()
+      }))
+  }
+
+  getToolByName(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/name/${searchValue}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if (err.status === 401) {
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error);
+        return of()
+      }))
+  }
+
+  getToolByTypeNumber(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/type/${searchValue}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if (err.status === 401) {
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error);
+        return of()
+      }))
+  }
+
+  getToolByItemNumber(searchValue: string): Observable<ToolDto[]> {
+    return this.http.get<ToolDto[]>(this.host + `/item/${searchValue}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error);
@@ -110,12 +112,12 @@ export class ToolsService {
 
   getToolByIdentifier(searchValue: string): Observable<ToolDto[]> {
     const encodedSearchValue = encodeURIComponent(searchValue);
-    return this.http.get<ToolDto[]>(this.host + "/identifier/" + encodedSearchValue,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+    return this.http.get<ToolDto[]>(this.host + "/identifier/" + encodedSearchValue, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
       .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error);
@@ -124,12 +126,12 @@ export class ToolsService {
   }
 
   getToolBySerialNumber(searchValue: string): Observable<ToolDto[]> {
-    return this.http.get<ToolDto[]>(this.host + `/serial/${searchValue}`,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+    return this.http.get<ToolDto[]>(this.host + `/serial/${searchValue}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
       .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error);
@@ -138,13 +140,13 @@ export class ToolsService {
   }
 
   getToolByStatus(searchValue: string): Observable<ToolDto[]> {
-    return this.http.get<ToolDto[]>(this.host + `/status/${searchValue}`,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+    return this.http.get<ToolDto[]>(this.host + `/status/${searchValue}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
 
       .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error);
@@ -154,11 +156,11 @@ export class ToolsService {
 
   getToolById(id: number): Observable<ToolDto> {
     return this.http.get<ToolDto>(this.host + `/id/` + id, {
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
       .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error);
@@ -167,32 +169,12 @@ export class ToolsService {
   }
 
   updateStatus(machine: ToolDto): Observable<ToolDto> {
-    return this.http.put<ToolDto>(this.host + `/update-status/${machine.id}`, machine ,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+    return this.http.put<ToolDto>(this.host + `/update-status/${machine.id}`, machine, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
     })
       .pipe(catchError((err, caught) => {
-        if(err.status === 401){
-          this.router.navigate(["/login"])
-        }
-        this.errorPopup.openErrorDialog(err.error.text);
-        console.log(err, caught)
-        return of()
-      }))
-  }
-  updateToolData(machine: ToolDto): Observable<ToolDto> {
-    console.log("+++", machine)
-    const convMap = {};
-    machine.spareParts.forEach((val: number, key: number) => {
-      convMap[key.toString()] = val;
-    });
-    return this.http.put<ToolDto>(this.host + `/update-tool-data/${machine.id}`, machine ,{
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
-      responseType: "json"
-
-    })
-      .pipe(catchError((err, caught) => {
-        if(err.status === 401){
+        if (err.status === 401) {
           this.router.navigate(["/login"])
         }
         this.errorPopup.openErrorDialog(err.error.text);
@@ -201,12 +183,52 @@ export class ToolsService {
       }))
   }
 
+  updateToolData(machine: ToolDto, ): Observable<ToolDto> {
+    return this.http.put<ToolDto>(this.host + `/update-tool-data/${machine.id}`, machine, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
+      responseType: "json"
 
+    })
+      .pipe(catchError((err, caught) => {
+        if (err.status === 401) {
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error.text);
+        console.log(err, caught)
+        return of()
+      }))
+  }
 
+  getSparePartsMap(machine: ToolDto): Observable<Map<number,number>> {
+      return this.http.get<Map<number,number>>(this.host + `/get-quantity/${machine.id}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
+      responseType: "json"
 
+    })
+      .pipe(catchError((err, caught) => {
+        if (err.status === 401) {
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error.text);
+        console.log(err, caught)
+        return of()
+      }))
+  }
 
+ /* getSparePartsIds(machine: ToolDto): Observable<number[]> {
+    return this.http.get<number[]>(this.host + `/get-spareparts-ids/${machine.id}`, {
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
+      responseType: "json"
 
-
-
+    })
+      .pipe(catchError((err, caught) => {
+        if (err.status === 401) {
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error.text);
+        console.log(err, caught)
+        return of()
+      }))
+  }*/
 
 }

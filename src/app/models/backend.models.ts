@@ -65,7 +65,7 @@ export interface ToolDto {
       isWarrantyTicket: boolean;
       isInvoice: boolean;
       isRegistration: boolean;
-      spareParts: Map<number, number>;
+      sparePartsMap: Map<number, number>
 
 
 }

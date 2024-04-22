@@ -82,4 +82,17 @@ export class SparePartService {
         return of()
       }))
   }
+  getSparepartById(id: number): Observable<SparePartDto[]> {
+    return this.http.get<SparePartDto[]>(this.host +`/id/` + id,{
+      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
+      responseType: "json"
+    })
+      .pipe(catchError((err, caught) => {
+        if(err.status === 401){
+          this.router.navigate(["/login"])
+        }
+        this.errorPopup.openErrorDialog(err.error);
+        return of()
+      }))
+  }
 }

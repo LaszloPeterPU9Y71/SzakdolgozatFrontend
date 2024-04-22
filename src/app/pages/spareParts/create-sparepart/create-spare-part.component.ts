@@ -1,6 +1,7 @@
 import {Component, inject} from "@angular/core";
 import {SparePartService} from "../../../services/spare-part.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 
@@ -15,6 +16,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 export class CreateSparePartComponent {
 
+    router = inject(Router)
 
     private sparePartService = inject(SparePartService)
     form: FormGroup = new FormGroup({
@@ -32,6 +34,7 @@ export class CreateSparePartComponent {
         nettoSellingPrice: this.form?.controls['nettoSellingPrice'].value,
       }).subscribe((response) => {
         console.log(response)
+        this.router.navigate(['/home/spareparts'])
       })
     }
   }

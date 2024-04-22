@@ -4,7 +4,6 @@
       <div class="card">
         <div class="card-header">
           <h2 class="text-center">Alkatrész bevételezés</h2>
-          <h4 class="text-center">Alkatrész adatai</h4>
         </div>
         <div class="card-body">
           <form method="post" role="form" [formGroup]="form">
@@ -24,11 +23,9 @@
               <label class="form-label">Eladási ár</label>
               <input class="form-control" id="nettoSellingPrice" name="nettoSellingPrice" formControlName="nettoSellingPrice" placeholder="Eladási ár" type="number" />
             </div>
-            <div class="form-group">
-              <button class="btn btn-primary btn-block" type="button" (click)="onSave()">Alkatrész felvétel</button>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary btn-block" type="button" routerLink="/spareparts">Vissza az alkatrészlistához</button>
+            <div class="btn-group">
+              <button class="btn btn-primary" type="button" (click)="onSave()">Alkatrész felvétel</button>
+              <button class="btn btn-primary" type="button" routerLink="/spareparts">Vissza az alkatrészlistához</button>
             </div>
           </form>
         </div>

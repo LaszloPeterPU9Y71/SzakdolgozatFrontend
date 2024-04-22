@@ -7,7 +7,20 @@ h1 {
 }
 
 .status-buttons {
-  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.status-buttons button {
+  margin: 20px 5px;
+}
+
+.status-buttons button:first-child {
+  margin-left: 0;
+}
+
+.status-buttons button:last-child {
+  margin-right: 0;
 }
 
 .searchBarId,
@@ -26,6 +39,19 @@ h1 {
   margin-top: 20px;
 }
 
-.text-center {
+.text-center-h1 {
   text-align: center;
+  background-color: blue;
+  color: seashell;
+  border-radius: 5px;
+}
+
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.status{
+  width: 150px;
+
 }

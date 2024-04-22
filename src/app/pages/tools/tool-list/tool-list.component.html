@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <div>Bejelentkezve: {{ loggedInUser?.name }}</div>
-      <h1 class="text-center">Összes gép</h1>
+      <h1 class="text-center-h1">Behozott gépek listája</h1>
     </div>
   </div>
 
@@ -75,8 +75,8 @@
           <td (click)="selectOnClick(machine.id)">{{ machine.typeNumber }}</td>
           <td (click)="selectOnClick(machine.id)">{{ machine.itemNumber }}</td>
           <td (click)="selectOnClick(machine.id)">{{ machine.serialNumber }}</td>
-          <td (click)="selectOnClick(machine.id)">{{ machine.dateOfReceiving }}</td>
-          <td>
+          <td class="status" (click)="selectOnClick(machine.id)">{{ machine.dateOfReceiving }}</td>
+          <td class="status">
             <select class="form-control" (change)="onStatusChange(machine, $event)">
               <option value="{{ machine.status }}" selected>{{ machine.status }}</option>
               <option value="Folyamatban">Folyamatban</option>

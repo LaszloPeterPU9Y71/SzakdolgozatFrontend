@@ -127,7 +127,7 @@
               <tr>
                 <td ><strong>Hibajelenség</strong></td>
                 <td>
-                  <input placeholder="Kereső" (keyup.enter)="findDefect($event)">
+                  <input placeholder="Kereső" (keyup.enter)="getDefect($event)">
                   <ul>
                     <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
                       {{defect.name}}
@@ -178,9 +178,12 @@
                   <select (change)="onStatusChange(clickedTool, $event)">
                     <option >{{clickedTool?.status}}</option>
                     <option value="Folyamatban">Folyamatban</option>
+                    <option value="Lezárt">Lezárt</option>
+                    <option value="Beérkezett">Beérkezett</option>
+                    <option value="Felküldve">Felküldve</option>
+                    <option value="Visszaérkezett">Visszaérkezett</option>
+                    <option value="Kiajánlott">Kiajánlott</option>
                     <option value="Kész">Kész</option>
-                    <option value="Lezárt" >Lezárt</option>
-                    <option value="Beérkezett" >Beérkezett</option>
                   </select>
                 </td>
               </tr>
@@ -232,12 +235,12 @@
             </tr>
 
             <tbody>
-            <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index"   >
+            <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index"    >
               <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} </td>
               <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partNumber }}</td>
               <td >{{ addedSpareparts?.nettoBuyingPrice }}</td>
               <td >{{ addedSpareparts?.nettoSellingPrice }}</td>
-              <input type="number" [(ngModel)]="quantities[i]" (input)="calculatePrice(i)" />
+              <input type="number" [(ngModel)]="quantities[i]"  (input)="calculatePrice(i)" />
               <td></td>
               <td>{{sumBruttoPrices[i]}}</td>
             </tr>
