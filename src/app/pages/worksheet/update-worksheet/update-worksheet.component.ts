@@ -50,6 +50,7 @@ export class UpdateWorksheetComponent {
   addedSparePartsQuantities: number[] = [];
   quantity: number | undefined;
   index: number = 0;
+  sparePartsMap: Map<SparePartDto, number> = new Map();
 
 
   constructor(
@@ -70,7 +71,7 @@ export class UpdateWorksheetComponent {
     this.findCustomerCompanyEmployeeById(this.objectStore.selectedTool!.employeeId);
     this.getDescription();
     this.findUserByEmail();
-    this.getQuantities();
+    this.getSparePartsMap();
 
 
   }
@@ -155,12 +156,23 @@ export class UpdateWorksheetComponent {
   }
 
 
-  getQuantities(): void {
+  getSparePartsMap(): void {
+    let x: Map<SparePartDto, number> = new Map();
     this.toolService.getSparePartsMap(this.objectStore.selectedTool!).subscribe((response: Map<number, number>) => {
+      let sparePartsMap:Map<string, number> = new Map(Object.entries(response))
 
-      console.log(new Map(Object.entries(response)).keys())
-      console.log(new Map(Object.entries(response)).values())
-      console.log(new Map(Object.entries(response)));
+      console.log(sparePartsMap);
+      for(let key of Array.from(sparePartsMap.keys())) {
+        let amount = sparePartsMap.get(key);
+        this.sparepartService.getSparepartById(+key).subscribe((response: SparePartDto | undefined) => {
+          if (response === undefined) {
+            return;
+          }
+          this.sparePartsMap.set(response, amount!)
+
+        })
+
+      }
 
     })
 
@@ -256,30 +268,8 @@ export class UpdateWorksheetComponent {
       machine.isInvoice = this.invoiceIsChecked;
       machine.isRegistration = this.registrationIsChecked;
       machine.isWarrantyTicket = this.warrantyTicketIsChecked;
-      console.log(this.quantities)
-      console.log(this.quantity)
-      console.log(this.addedSparepartsIds)
-      console.log(this.addedSparePartsQuantities)
 
-      if(this.addedSparePartsQuantities && this.addedSparepartsIds) {
-        if (this.addedSparePartsQuantities.length === this.addedSparepartsIds.length) {
-          for (var i = 0; i < this.addedSparePartsQuantities.length; i++) {
-            if (this.addedSparepartsIds[i].hasOwnProperty('123')) {
-              Object.fromEntries(machine.sparePartsMap.set(this.addedSparePartsQuantities[i], this.addedSparepartsIds[i]));
-            } else {
-              console.error("A 'addedSparepartsIds' tömb " + i + ". indexű eleménél hiányzik az 'id' tulajdonság.");
-            }
-          }
-        } else {
-          console.error("A 'addedSparePartsQuantities' és 'addedSparepartsIds' tömbök hossza nem egyezik meg.");
-        }
-      }
 
-      console.log(this.quantities)
-      console.log(this.quantity)
-      console.log(this.addedSparepartsIds)
-      console.log(this.addedSparePartsQuantities)
-      console.log(machine?.sparePartsMap)
 
 
       this.toolService

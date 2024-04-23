@@ -82,8 +82,8 @@ export class SparePartService {
         return of()
       }))
   }
-  getSparepartById(id: number): Observable<SparePartDto[]> {
-    return this.http.get<SparePartDto[]>(this.host +`/id/` + id,{
+  getSparepartById(id: number): Observable<SparePartDto> {
+    return this.http.get<SparePartDto>(this.host +`/id/` + id,{
       headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!,localStorage.getItem("password")!),
       responseType: "json"
     })

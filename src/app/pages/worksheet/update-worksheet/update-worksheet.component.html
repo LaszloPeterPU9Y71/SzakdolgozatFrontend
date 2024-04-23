@@ -262,8 +262,9 @@
 
         <button class="btn btn-primary" type="button" (click)="onDataChange(clickedTool)">Szerkesztés befejezése és mentés</button><br>
         <button class="btn btn-primary" type="button" [routerLink]="['/home']">Főoldal</button>
-
+        {{this.sparePartsMap | json}}
       </div>
     </div>
   </div>
 </div>
+
