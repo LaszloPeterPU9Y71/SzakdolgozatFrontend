@@ -1,20 +1,26 @@
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
-
-
-
-.defect{
-  width: fit-content;
+body {
+  background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.customer{
-  width:  450px;
+.card{
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .service{
   width: 400px;
 
 }
-
 .spare{
   width: 400px;
 }

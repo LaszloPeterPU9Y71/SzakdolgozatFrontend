@@ -1,12 +1,12 @@
 body {
   height: 100vh;
-  font-family: Arial, sans-serif;
+
   margin: 0;
   padding: 0;
   background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
-  background-size: auto 150%; /* Automatikus szélesség, teljes magasság */
-  background-repeat: repeat-y; /* Csak függőleges ismétlődés */
-  background-position: center; /* Középre igazítás */
+  background-size: auto 150%;
+  background-repeat: repeat-y;
+  background-position: center;
   position: relative;
 
 }

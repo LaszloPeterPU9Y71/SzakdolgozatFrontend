@@ -1,29 +1,39 @@
-.card {
-  margin-top: 50px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: rgba(244, 244, 244, 0.6);
-}
-.card-header h4 {
-  margin-bottom: 0;
-  background-color: #007bff;
-  border-radius: 10px;
-  height: 40px;
+body {
+  background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
 }
 
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
 
 .form-label {
   font-weight: bold;
 }
 
-.form-control {
-  margin-bottom: 15px;
-}
-
-.btn {
+.btn-primary {
   width: 100%;
 }
+
