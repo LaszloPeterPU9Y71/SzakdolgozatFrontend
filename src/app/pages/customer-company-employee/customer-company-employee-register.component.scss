@@ -1,26 +1,39 @@
-/* A táblázat szélességének beállítása */
-.Registration {
-  width: 100%;
+
+body {
+  background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* A form elemek elrendezésének formázása */
-.container {
-  margin-top: 20px;
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
-  background-color: #007bff; /* Kék háttérszín a kártya fejlécéhez */
-  color: #fff; /* Fehér szöveg a kártya fejlécéhez */
-}
-
-.card-body {
-  padding: 20px; /* Belső térköz a kártya tartalmához */
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .form-group {
-  margin-bottom: 20px; /* Térköz a form elemek között */
+  margin-bottom: 20px;
 }
 
 .form-label {
-  font-weight: bold; /* Félkövér szöveg a címke elemekhez */
+  font-weight: bold;
+}
+
+.btn-primary {
+  width: 100%;
 }

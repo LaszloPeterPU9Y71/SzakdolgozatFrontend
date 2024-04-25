@@ -1,11 +1,53 @@
-.container {
-  margin-top: 50px; /* Térköz a felső rész és a tartalom között */
+.table{
+  background-color: rgba(244, 244, 244, 0.8);
 }
 
+
 h1 {
-  margin-bottom: 30px; /* Térköz a cím és a táblázat között */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  color: black;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: rgba(244, 244, 244, 0);
+  text-align: center;
+
+}
+
+th {
+  background-color: #007bff;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+  background-color: rgba(244, 244, 244, 0);
+}
+
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .btn {
-  margin-top: 30px; /* Térköz a táblázat és a gomb között */
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
 }

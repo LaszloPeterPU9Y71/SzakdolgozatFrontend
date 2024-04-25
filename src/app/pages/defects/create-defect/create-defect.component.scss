@@ -1,21 +1,29 @@
 .card {
-  margin-top: 50px; /* Térköz a felső rész és a kártya között */
+  margin-top: 50px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgba(244, 244, 244, 0.6);
+}
+.card-header h4 {
+  margin-bottom: 0;
+  background-color: #007bff;
+  border-radius: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
-.card-header h4 {
-  margin-bottom: 0; /* Távolság a kártya fejléce és a címe között */
-}
 
 .form-label {
-  font-weight: bold; /* Félkövér címkék */
+  font-weight: bold;
 }
 
 .form-control {
-  margin-bottom: 15px; /* Térköz az input mezők között */
+  margin-bottom: 15px;
 }
 
 .btn {
-  width: 100%; /* Teljes szélességű gombok */
+  width: 100%;
 }
