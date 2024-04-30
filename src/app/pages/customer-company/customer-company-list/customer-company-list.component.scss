@@ -30,6 +30,7 @@ table {
   border-collapse: collapse;
   margin-bottom: 20px;
 
+
 }
 
 th, td {
@@ -69,4 +70,23 @@ tr:nth-child(even) {
 
 .btn:hover {
   background-color: #0056b3;
+}
+
+.person
+ {
+  background-color: #007bff;
+  text-align: center;
+  color: white;
+  height: 50px;
+
+
+}
+.comapnies
+{
+  background-color: #007bff;
+  text-align: center;
+  color: white;
+  height: 50px;
+  border-radius:  10px 10px 0px 0px;
+
 }

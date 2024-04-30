@@ -29,6 +29,37 @@ body {
   margin-left: 80px;
 }
 
+table.customer,
+table.service {
+  border: 1px black;
+  margin-bottom: 20px;
+}
+
+table.customer td,
+table.customer th,
+table.service td,
+table.service th {
+  text-align: left;
+}
+
+table.customer td:first-child,
+table.service td:first-child {
+  width: 200px;
+
+}
+
+table.customer th,
+table.service th {
+  background-color: #007bff;
+  color: white;
+}
+
+
+table.customer tr,
+table.service tr {
+  margin-bottom: 20px;
+}
+
 
 
 
