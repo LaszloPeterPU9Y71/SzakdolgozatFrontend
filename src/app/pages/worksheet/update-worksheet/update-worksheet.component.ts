@@ -4,7 +4,7 @@ import {
   DefectDto,
   OwnerCompanyDto,
   OwnerCompanyEmployeeDto,
-  SparePartDto,
+  SparePartDto, SparepartsWithAmount,
   ToolDto, UserDto
 } from "../../../models/backend.models";
 import {CustomerCompanyService} from "../../../services/customer-company.service";
@@ -19,10 +19,10 @@ import {EmailService} from "../../../services/email.service";
 
 
 @Component({
-    selector: 'app-update-worksheet',
-    templateUrl: './update-worksheet.component.html',
-    styleUrls: ['./update-worksheet.component.scss']
-  })
+  selector: 'app-update-worksheet',
+  templateUrl: './update-worksheet.component.html',
+  styleUrls: ['./update-worksheet.component.scss']
+})
 
 export class UpdateWorksheetComponent {
 
@@ -37,7 +37,6 @@ export class UpdateWorksheetComponent {
   addedDefects: DefectDto[] = [];
   newDescription: string = "";
   spareparts: SparePartDto[] = [];
-  selectedSparepart: SparePartDto[] = [];
   sumBruttoPrice: number = 0;
   quantities: number[] = [];
   sumBruttoPrices: number[] = [];
@@ -50,7 +49,7 @@ export class UpdateWorksheetComponent {
   addedSparePartsQuantities: number[] = [];
   quantity: number | undefined;
   index: number = 0;
-  sparePartsMap: Map<SparePartDto, number> = new Map();
+  selectedSparepart: SparepartsWithAmount[] = [];
 
 
   constructor(
@@ -157,24 +156,17 @@ export class UpdateWorksheetComponent {
 
 
   getSparePartsMap(): void {
-    let x: Map<SparePartDto, number> = new Map();
-    this.toolService.getSparePartsMap(this.objectStore.selectedTool!).subscribe((response: Map<number, number>) => {
-      let sparePartsMap:Map<string, number> = new Map(Object.entries(response))
-
-      console.log(sparePartsMap);
-      for(let key of Array.from(sparePartsMap.keys())) {
-        let amount = sparePartsMap.get(key);
-        this.sparepartService.getSparepartById(+key).subscribe((response: SparePartDto | undefined) => {
-          if (response === undefined) {
-            return;
-          }
-          this.sparePartsMap.set(response, amount!)
-
-        })
-
-      }
-
-    })
+    this.toolService.getSparePartsMap(this.objectStore.selectedTool!).subscribe(
+      (response: SparepartsWithAmount[]) => {
+        this.selectedSparepart = response;
+        for (let x of response) {
+          this.quantities[x.id] = x.amount;
+          this.sumBruttoPrices[x.id] = x.spareParts.nettoBuyingPrice * 1.27 * x.amount
+        }
+        for (let n of this.sumBruttoPrices) {
+          this.sumBruttoPrice += n;
+        }
+      })
 
   }
 
@@ -222,16 +214,6 @@ export class UpdateWorksheetComponent {
     })
   }
 
-  onSparepartSelect(sparepart: SparePartDto) {
-    this.selectedSparepart.push(sparepart);
-    this.spareparts = [];
-  }
-
-  onSparepartRemove(index: number) {
-    this.selectedSparepart.splice(index, 1);
-    this.spareparts = [];
-  }
-
   findSparepartsByItemNumber($event: Event) {
     let itemNumber = ($event.target as HTMLInputElement).value;
     this.sparepartService.getSparepartByNumber(itemNumber).subscribe((response: SparePartDto[]) => {
@@ -241,13 +223,43 @@ export class UpdateWorksheetComponent {
     })
   }
 
+  onSparepartSelect(sparepart: SparePartDto) {
+    let x: SparepartsWithAmount = {
+      id: sparepart.id,
+      spareParts: sparepart,
+      amount: 1
+    }
+    this.quantities[x.id] = 1;
+    this.sumBruttoPrices[x.id] = sparepart.nettoBuyingPrice
+    this.selectedSparepart.push(x);
+    this.spareparts = [];
+    this.calculatePrice(sparepart.id, x.amount)
 
-  calculatePrice(index: number) {
+  }
+
+  onSparepartRemove(sparepartsWithAmount: SparepartsWithAmount) {
+
+    let index = this.selectedSparepart
+      .findIndex(spwa => spwa.spareParts.id === sparepartsWithAmount.spareParts.id);
+
+    this.selectedSparepart.splice(index, 1);
+    this.sumBruttoPrices[sparepartsWithAmount.id] = 0;
+    this.sumBruttoPrice = 0;
+    for (let n of this.sumBruttoPrices) {
+      this.sumBruttoPrice += n;
+    }
+    this.spareparts = [];
+  }
+
+
+
+
+  calculatePrice(index: number, amount?: number) {
     this.index = index
-    this.quantity = this.quantities[index];
+    this.quantity = amount!;
     const sparepart = this.selectedSparepart[index];
     if (this.quantity >= 0 && sparepart) {
-      const price = sparepart.nettoSellingPrice;
+      const price = sparepart.spareParts.nettoSellingPrice;
       const sumBruttoPrice = price * this.quantity;
       this.sumBruttoPrices[index] = sumBruttoPrice;
       this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
@@ -259,17 +271,20 @@ export class UpdateWorksheetComponent {
 
   onDataChange(machine: ToolDto | undefined) {
     if (machine) {
-      if(!this.description){
+      if (!this.description) {
         machine.description = this.newDescription!;
-      }else if(this.description){
+      } else if (this.description) {
         machine.description = machine.description + " + " + this.newDescription
       }
       machine.isWarranty = this.warrantyIsChecked;
       machine.isInvoice = this.invoiceIsChecked;
       machine.isRegistration = this.registrationIsChecked;
       machine.isWarrantyTicket = this.warrantyTicketIsChecked;
+      machine.sparepartlist = this.selectedSparepart;
 
-
+      for (let x of this.selectedSparepart) {
+        x.amount = this.quantities[x.id]
+      }
 
 
       this.toolService
@@ -278,7 +293,7 @@ export class UpdateWorksheetComponent {
 
 
     }
-    // window.location.href = 'http://localhost:4200/home/tools'
+   // window.location.href = 'http://localhost:4200/home/tools'
   }
 }
 

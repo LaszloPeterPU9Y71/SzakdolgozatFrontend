@@ -16,43 +16,42 @@
                   </tr>
                   <tr>
                     <td>Cégnév</td>
-                    <td>{{clickedCompany?.companyName}}</td>
+                    <td>{{ clickedCompany?.companyName }}</td>
 
                   </tr>
                   <tr>
                     <td>Irányítószám</td>
-                    <td>{{clickedCompany?.postalCode}}</td>
+                    <td>{{ clickedCompany?.postalCode }}</td>
 
                   </tr>
                   <tr>
                     <td>Város</td>
-                    <td>{{clickedCompany?.town}}</td>
+                    <td>{{ clickedCompany?.town }}</td>
 
                   </tr>
                   <tr>
                     <td>Utca és házszám</td>
-                    <td>{{clickedCompany?.street}}</td>
+                    <td>{{ clickedCompany?.street }}</td>
 
                   </tr>
                   <tr>
                     <td>Személy neve</td>
-                    <td>{{clickedCompanyEmployee?.name}}</td>
+                    <td>{{ clickedCompanyEmployee?.name }}</td>
 
                   </tr>
                   <tr>
                     <td>Telefonszám</td>
-                    <td>{{clickedCompanyEmployee?.telNum}}</td>
+                    <td>{{ clickedCompanyEmployee?.telNum }}</td>
 
                   </tr>
                   <tr>
                     <td>E-mail</td>
-                    <td>{{clickedCompanyEmployee?.email}}</td>
+                    <td>{{ clickedCompanyEmployee?.email }}</td>
 
 
                   </tr>
-                    <br>
+                  <br>
                 </table>
-
 
 
               </div>
@@ -84,17 +83,17 @@
                 <tr>
                   <td>Személy neve</td>
 
-                  <td>{{loggedInUser?.name}}</td>
+                  <td>{{ loggedInUser?.name }}</td>
                 </tr>
                 <tr>
                   <td>Telefonszám</td>
 
-                  <td>{{loggedInUser?.telNum}}</td>
+                  <td>{{ loggedInUser?.telNum }}</td>
                 </tr>
                 <tr>
                   <td>E-mail</td>
 
-                  <td>{{loggedInUser?.email}}</td>
+                  <td>{{ loggedInUser?.email }}</td>
                 </tr>
                 <br><br><br>
 
@@ -104,103 +103,105 @@
           <p><strong>Javításre beadott gép adatai!</strong></p>
           <table class="table border-bottom border-gray-200 mt-3">
             <thead>
-              <tr>
+            <tr>
 
-                <th>Megnevezés</th>
-                <th>Típusszám</th>
-                <th>Cikkszám</th>
-                <th>Sorszám</th>
-                <th>Átvétel időpontja</th>
+              <th>Megnevezés</th>
+              <th>Típusszám</th>
+              <th>Cikkszám</th>
+              <th>Sorszám</th>
+              <th>Átvétel időpontja</th>
 
-              </tr>
+            </tr>
             </thead>
             <tbody>
-              <tr>
-                <td >{{clickedTool?.name}}</td>
-                <td >{{clickedTool?.typeNumber}}</td>
-                <td >{{clickedTool?.itemNumber}}</td>
-                <td >{{clickedTool?.serialNumber}}</td>
-                <td >{{clickedTool?.dateOfReceiving}}</td>
-              </tr>
+            <tr>
+              <td>{{ clickedTool?.name }}</td>
+              <td>{{ clickedTool?.typeNumber }}</td>
+              <td>{{ clickedTool?.itemNumber }}</td>
+              <td>{{ clickedTool?.serialNumber }}</td>
+              <td>{{ clickedTool?.dateOfReceiving }}</td>
+            </tr>
 
             <tr>
-              <tr>
-                <td ><strong>Hibajelenség</strong></td>
-                <td>
-                  <input placeholder="Kereső" (keyup.enter)="getDefect($event)">
-                  <ul>
-                    <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
-                      {{defect.name}}
+            <tr>
+              <td><strong>Hibajelenség</strong></td>
+              <td>
+                <input placeholder="Kereső" (keyup.enter)="getDefect($event)">
+                <ul>
+                  <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
+                    {{ defect.name }}
 
-                    </li>
-                  </ul>
-                </td>
+                  </li>
+                </ul>
+              </td>
 
               <td>
                 <ul>
 
                   <li *ngFor="let addedDefects of addedDefects; index as i " (click)="onDefectRemove(i)">
-                    {{addedDefects.name}}
+                    {{ addedDefects.name }}
                   </li>
                 </ul>
               </td>
-                <td>Feltárt hiba:</td>
-                <td>
+              <td>Feltárt hiba:</td>
+              <td>
 
-                  <ul>
-                    <li *ngFor="let defect of selectedDefect; index as i " (click)="onDefectRemove(i)">
-                      {{defect.name}}
+                <ul>
+                  <li *ngFor="let defect of selectedDefect; index as i " (click)="onDefectRemove(i)">
+                    {{ defect.name }}
 
-                    </li>
-                  </ul>
-                </td>
-
+                  </li>
+                </ul>
+              </td>
 
 
             </tr>
-              <tr>
-                <td><strong>A tulajdonos hibaleírása</strong></td>
-                <td></td>
-                <td colspan="3" id="description">{{description}}</td>
-
-              </tr>
             <tr>
-              <td><strong>Megjegyzés <button (click)="descriptionRemove($event)" >Törlés </button></strong></td>
+              <td><strong>A tulajdonos hibaleírása</strong></td>
+              <td></td>
+              <td colspan="3" id="description">{{ description }}</td>
 
-              <td  class="data">
+            </tr>
+            <tr>
+              <td><strong>Megjegyzés
+                <button (click)="descriptionRemove($event)">Törlés</button>
+              </strong></td>
+
+              <td class="data">
                 <input placeholder="Megjegyzés" type="text" (keyup.enter)="setDescription($event)"/>
               </td>
-              <td colspan="3" id="newDescription">{{newDescription}}</td>
+              <td colspan="3" id="newDescription">{{ newDescription }}</td>
             </tr>
-              <tr>
-                <td><strong>A gép státusza: </strong></td>
-                <td >
-                  <select (change)="onStatusChange(clickedTool, $event)">
-                    <option >{{clickedTool?.status}}</option>
-                    <option value="Folyamatban">Folyamatban</option>
-                    <option value="Lezárt">Lezárt</option>
-                    <option value="Beérkezett">Beérkezett</option>
-                    <option value="Felküldve">Felküldve</option>
-                    <option value="Visszaérkezett">Visszaérkezett</option>
-                    <option value="Kiajánlott">Kiajánlott</option>
-                    <option value="Kész">Kész</option>
-                  </select>
-                </td>
-              </tr>
+            <tr>
+              <td><strong>A gép státusza: </strong></td>
+              <td>
+                <select (change)="onStatusChange(clickedTool, $event)">
+                  <option>{{ clickedTool?.status }}</option>
+                  <option value="Folyamatban">Folyamatban</option>
+                  <option value="Lezárt">Lezárt</option>
+                  <option value="Beérkezett">Beérkezett</option>
+                  <option value="Felküldve">Felküldve</option>
+                  <option value="Visszaérkezett">Visszaérkezett</option>
+                  <option value="Kiajánlott">Kiajánlott</option>
+                  <option value="Kész">Kész</option>
+                </select>
+              </td>
+            </tr>
             </tbody>
 
-            </table>
+          </table>
           <table>
             <tr>
-              <td ><label for="warranty">Garanciális a gép?</label></td>
+              <td><label for="warranty">Garanciális a gép?</label></td>
               <td class="checkbox"><input type="checkbox" [(ngModel)]="warrantyIsChecked" id="warranty"></td>
             </tr>
             <tr>
               <td><label for="warrantyTicket">Behozta a jótállási jegy?</label></td>
-              <td class="checkbox"><input type="checkbox" [(ngModel)]="warrantyTicketIsChecked" id="warrantyTicket"></td>
+              <td class="checkbox"><input type="checkbox" [(ngModel)]="warrantyTicketIsChecked" id="warrantyTicket">
+              </td>
             </tr>
             <tr>
-              <td ><label for="invoice">Behozta a számlamásolat?</label></td>
+              <td><label for="invoice">Behozta a számlamásolat?</label></td>
               <td class="checkbox"><input type="checkbox" [(ngModel)]="invoiceIsChecked" id="invoice"></td>
             </tr>
             <tr>
@@ -209,15 +210,15 @@
             </tr>
           </table>
 
-            <br>
-            <strong>Szükséges alkatrészek</strong>
+          <br>
+          <strong>Szükséges alkatrészek</strong>
           <tr>
             <input placeholder="Keresés névre" type="text" (keyup.enter)="findSparepartsByName($event)">
             <input placeholder="Keresés cikkszámra" type="text" (keyup.enter)="findSparepartsByItemNumber($event)">
             <ul>
               <li *ngFor="let sparepart of spareparts" (click)="onSparepartSelect(sparepart)">
-                <span>{{sparepart.partName}}</span>
-                <span>{{sparepart.partNumber}}</span>
+                <span>{{ sparepart.partName }}</span>
+                <span>{{ sparepart.partNumber }}</span>
               </li>
             </ul>
           </tr>
@@ -235,14 +236,22 @@
             </tr>
 
             <tbody>
-            <tr *ngFor="let addedSpareparts of selectedSparepart; let i = index"    >
-              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partName  }} </td>
-              <td (click)="onSparepartRemove(i)">{{ addedSpareparts?.partNumber }}</td>
-              <td >{{ addedSpareparts?.nettoBuyingPrice }}</td>
-              <td >{{ addedSpareparts?.nettoSellingPrice }}</td>
-              <input type="number" [(ngModel)]="quantities[i]"  (input)="calculatePrice(i)" />
+            <tr *ngFor="let addedSpareparts of selectedSparepart; ">
+              <td
+                (click)="onSparepartRemove(addedSpareparts)">{{ addedSpareparts?.spareParts!.partName }}
+              </td>
+              <td
+                (click)="onSparepartRemove(addedSpareparts)">{{ addedSpareparts?.spareParts!.partNumber }}
+              </td>
+              <td>{{ addedSpareparts?.spareParts!.nettoBuyingPrice }}</td>
+              <td>{{ addedSpareparts?.spareParts!.nettoSellingPrice }}</td>
+              <input type="number"
+                     [(ngModel)]="quantities[addedSpareparts?.id!]"
+                     (input)="calculatePrice(addedSpareparts?.id!, quantities[addedSpareparts?.id!])"
+                     min="0"
+              />
               <td></td>
-              <td>{{sumBruttoPrices[i]}}</td>
+              <td>{{ sumBruttoPrices[addedSpareparts?.id!] }}</td>
             </tr>
             <tr>
               <td></td>
@@ -251,7 +260,7 @@
               <td></td>
               <td colspan="2">Javítás teljes bruttó összege:</td>
 
-              <td><strong>{{sumBruttoPrice}}</strong></td>
+              <td><strong>{{ sumBruttoPrice }}</strong></td>
             </tr>
 
 
@@ -260,9 +269,12 @@
 
         </div>
 
-        <button class="btn btn-primary" type="button" (click)="onDataChange(clickedTool)">Szerkesztés befejezése és mentés</button><br>
+        <button class="btn btn-primary" type="button" (click)="onDataChange(clickedTool)">Szerkesztés befejezése és
+          mentés
+        </button>
+        <br>
         <button class="btn btn-primary" type="button" [routerLink]="['/home']">Főoldal</button>
-        {{this.sparePartsMap | json}}
+
       </div>
     </div>
   </div>

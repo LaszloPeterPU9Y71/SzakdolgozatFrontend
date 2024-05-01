@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {ToolDto} from "../models/backend.models";
+import {SparepartsWithAmount, ToolDto} from "../models/backend.models";
 import {AuthenticationService} from "./authentication.service";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
@@ -199,8 +199,8 @@ export class ToolsService {
       }))
   }
 
-  getSparePartsMap(machine: ToolDto): Observable<Map<number,number>> {
-      return this.http.get<Map<number,number>>(this.host + `/get-quantity/${machine.id}`, {
+  getSparePartsMap(machine: ToolDto): Observable<SparepartsWithAmount[]> {
+    return this.http.get<SparepartsWithAmount[]>(this.host + `/get-quantity/${machine.id}`, {
       headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
       responseType: "json"
 
@@ -215,20 +215,6 @@ export class ToolsService {
       }))
   }
 
- /* getSparePartsIds(machine: ToolDto): Observable<number[]> {
-    return this.http.get<number[]>(this.host + `/get-spareparts-ids/${machine.id}`, {
-      headers: this.loginService.getAuthenticationHeader(localStorage.getItem("email")!, localStorage.getItem("password")!),
-      responseType: "json"
 
-    })
-      .pipe(catchError((err, caught) => {
-        if (err.status === 401) {
-          this.router.navigate(["/login"])
-        }
-        this.errorPopup.openErrorDialog(err.error.text);
-        console.log(err, caught)
-        return of()
-      }))
-  }*/
 
 }
