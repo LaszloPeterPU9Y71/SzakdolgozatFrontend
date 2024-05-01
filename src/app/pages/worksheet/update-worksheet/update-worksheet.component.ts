@@ -14,8 +14,6 @@ import {ObjectStore} from "../../../services/object-store";
 import {DefectService} from "../../../services/defect.service";
 import {SparePartService} from "../../../services/spare-part.service";
 import {UserService} from "../../../services/user.service";
-import {forkJoin} from "rxjs";
-import {EmailService} from "../../../services/email.service";
 
 
 @Component({
@@ -50,6 +48,8 @@ export class UpdateWorksheetComponent {
   quantity: number | undefined;
   index: number = 0;
   selectedSparepart: SparepartsWithAmount[] = [];
+  margin: number = 1.4;
+  tax: number = 1.27;
 
 
   constructor(
@@ -98,11 +98,12 @@ export class UpdateWorksheetComponent {
 
 
   findCustomerCompanyById(id: number | undefined) {
-    this.customerCompanyService.findCompanyById(id).subscribe((response: OwnerCompanyDto) => {
-      this.clickedCompany = response;
-    })
+    if (id) {
+      this.customerCompanyService.findCompanyById(id).subscribe((response: OwnerCompanyDto) => {
+        this.clickedCompany = response;
+      })
+    }
   }
-
   findCustomerCompanyEmployeeById(id: number | undefined) {
     this.customerCompanyEmployeeService.findEmployeeById(id).subscribe((response: OwnerCompanyEmployeeDto) => {
       this.clickedCompanyEmployee = response;
@@ -161,10 +162,11 @@ export class UpdateWorksheetComponent {
         this.selectedSparepart = response;
         for (let x of response) {
           this.quantities[x.id] = x.amount;
-          this.sumBruttoPrices[x.id] = x.spareParts.nettoBuyingPrice * 1.27 * x.amount
+          this.sumBruttoPrices[x.id] = x.spareParts.nettoBuyingPrice *this.margin * this.tax * x.amount
+          this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
         }
         for (let n of this.sumBruttoPrices) {
-          this.sumBruttoPrice += n;
+          this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
         }
       })
 
@@ -223,49 +225,44 @@ export class UpdateWorksheetComponent {
     })
   }
 
-  onSparepartSelect(sparepart: SparePartDto) {
+  onSparepartSelect(index: number, sparepart: SparePartDto) {
     let x: SparepartsWithAmount = {
       id: sparepart.id,
       spareParts: sparepart,
       amount: 1
     }
-    this.quantities[x.id] = 1;
-    this.sumBruttoPrices[x.id] = sparepart.nettoBuyingPrice
-    this.selectedSparepart.push(x);
-    this.spareparts = [];
-    this.calculatePrice(sparepart.id, x.amount)
-
-  }
-
-  onSparepartRemove(sparepartsWithAmount: SparepartsWithAmount) {
-
-    let index = this.selectedSparepart
-      .findIndex(spwa => spwa.spareParts.id === sparepartsWithAmount.spareParts.id);
-
-    this.selectedSparepart.splice(index, 1);
-    this.sumBruttoPrices[sparepartsWithAmount.id] = 0;
-    this.sumBruttoPrice = 0;
-    for (let n of this.sumBruttoPrices) {
-      this.sumBruttoPrice += n;
+    if(x){
+      this.quantities[x.id] = 1;
+      this.sumBruttoPrices[index] = sparepart.nettoBuyingPrice*this.margin*this.tax * this.quantities[x.id]
+      this.selectedSparepart.push(x);
+      this.spareparts = [];
+      this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
     }
-    this.spareparts = [];
+
   }
-
-
-
-
-  calculatePrice(index: number, amount?: number) {
-    this.index = index
+    calculatePrice(index: number, amount?: number) {
+    if (amount === undefined || amount < 0 || !this.selectedSparepart[index]) {
+      return;
+    }
     this.quantity = amount!;
     const sparepart = this.selectedSparepart[index];
-    if (this.quantity >= 0 && sparepart) {
-      const price = sparepart.spareParts.nettoSellingPrice;
-      const sumBruttoPrice = price * this.quantity;
-      this.sumBruttoPrices[index] = sumBruttoPrice;
-      this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
-      this.addedSparePartsQuantities[index] = this.quantity;
-      this.addedSparepartsIds[index] = (this.selectedSparepart[index].id)
+    const price = sparepart.spareParts.nettoBuyingPrice * this.tax * this.margin;
+    const sumBruttoPrice = Math.round(price * this.quantity);
+
+
+    if (!this.sumBruttoPrices[index]) {
+      this.sumBruttoPrices[index] = 0;
     }
+    if (!this.addedSparePartsQuantities[index]) {
+      this.addedSparePartsQuantities[index] = 0;
+    }
+    if (!this.addedSparepartsIds[index]) {
+      this.addedSparepartsIds[index] = 0;
+    }
+    this.sumBruttoPrices[index] = sumBruttoPrice;
+    this.sumBruttoPrice = this.sumBruttoPrices.reduce((total, current) => total + current, 0);
+    this.addedSparePartsQuantities[index] = this.quantity;
+    this.addedSparepartsIds[index] = this.selectedSparepart[index].id;
   }
 
 
@@ -293,7 +290,7 @@ export class UpdateWorksheetComponent {
 
 
     }
-   // window.location.href = 'http://localhost:4200/home/tools'
+    window.location.href = 'http://localhost:4200/home/tools'
   }
 }
 

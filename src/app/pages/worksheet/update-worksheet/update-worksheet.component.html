@@ -216,7 +216,7 @@
             <input placeholder="Keresés névre" type="text" (keyup.enter)="findSparepartsByName($event)">
             <input placeholder="Keresés cikkszámra" type="text" (keyup.enter)="findSparepartsByItemNumber($event)">
             <ul>
-              <li *ngFor="let sparepart of spareparts" (click)="onSparepartSelect(sparepart)">
+              <li *ngFor="let sparepart of spareparts, let i = index" (click)="onSparepartSelect(i, sparepart) ">
                 <span>{{ sparepart.partName }}</span>
                 <span>{{ sparepart.partNumber }}</span>
               </li>
@@ -236,22 +236,20 @@
             </tr>
 
             <tbody>
-            <tr *ngFor="let addedSpareparts of selectedSparepart; ">
-              <td
-                (click)="onSparepartRemove(addedSpareparts)">{{ addedSpareparts?.spareParts!.partName }}
+            <tr *ngFor="let addedSpareparts of selectedSparepart, let i = index ">
+              <td>{{ addedSpareparts?.spareParts!.partName }}
               </td>
-              <td
-                (click)="onSparepartRemove(addedSpareparts)">{{ addedSpareparts?.spareParts!.partNumber }}
+              <td>{{ addedSpareparts?.spareParts!.partNumber }}
               </td>
-              <td>{{ addedSpareparts?.spareParts!.nettoBuyingPrice }}</td>
-              <td>{{ addedSpareparts?.spareParts!.nettoSellingPrice }}</td>
+              <td>{{ (addedSpareparts?.spareParts!.nettoBuyingPrice  * margin).toFixed(0)}} Ft</td>
+              <td>{{ (addedSpareparts?.spareParts!.nettoBuyingPrice  * margin * tax).toFixed(0)}} Ft</td>
               <input type="number"
                      [(ngModel)]="quantities[addedSpareparts?.id!]"
-                     (input)="calculatePrice(addedSpareparts?.id!, quantities[addedSpareparts?.id!])"
+                     (input)="calculatePrice(i, quantities[addedSpareparts?.id!])"
                      min="0"
               />
               <td></td>
-              <td>{{ sumBruttoPrices[addedSpareparts?.id!] }}</td>
+              <td>{{ sumBruttoPrices[i] }} Ft</td>
             </tr>
             <tr>
               <td></td>
@@ -260,7 +258,7 @@
               <td></td>
               <td colspan="2">Javítás teljes bruttó összege:</td>
 
-              <td><strong>{{ sumBruttoPrice }}</strong></td>
+              <td><strong>{{ sumBruttoPrice }} Ft</strong></td>
             </tr>
 
 

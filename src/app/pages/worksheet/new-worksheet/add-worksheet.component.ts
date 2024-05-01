@@ -68,11 +68,14 @@ export class AddWorksheetComponent implements OnInit{
 
     onEmployeeSelect(employee: OwnerCompanyEmployeeDto) {
       this.selectedEmployee = employee
-      this.ownerCompanyService.findCompanyById(employee.ownerCompanyId).subscribe((response: OwnerCompanyDto) =>{
-        this.selectedCompany = response
-      });
+      if (employee.ownerCompanyId) {
+        this.ownerCompanyService.findCompanyById(employee.ownerCompanyId).subscribe((response: OwnerCompanyDto) => {
+          this.selectedCompany = response
+        });
+      }
         this.employees = [];
       }
+
 
   private worksheetService2 = inject(ToolsService)
   form: FormGroup = new FormGroup({
