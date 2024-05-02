@@ -1,27 +1,31 @@
 .col-second {
-  margin-top: 50px; /* Térköz a felső rész és a tartalom között */
+  margin-top: 50px;
 }
 
 h2 {
-  margin-bottom: 30px; /* Térköz a cím és a form között */
+  margin-bottom: 30px;
 }
 
 .btn {
-  font-size: 16px; /* Gombok szövegének mérete */
-  border-radius: 5px; /* Gombok kerekített sarkai */
+  font-size: 16px;
+  border-radius: 5px;
 }
 
 .btn-block {
-  width: 100%; /* Teljes szélességű gombok */
+  width: 100%;
 }
 
 .form-control {
-  margin-bottom: 15px; /* Térköz az input mezők között */
+  margin-bottom: 15px;
 }
 
 html {
   background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
-  background-size: cover; /* Kép kinyújtása a képernyő méreteihez */
-  background-position: center; /* Kép pozícionálása középen */
-  height: 100vh; /* Háttér teljes magassága (viewport magasság) */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.form-label {
+  font-weight: bold;
 }

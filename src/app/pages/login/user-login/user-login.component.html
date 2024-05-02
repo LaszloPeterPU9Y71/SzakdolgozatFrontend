@@ -11,17 +11,19 @@
       <h2 class="text-center">Jelentkezz be!</h2>
       <form>
         <div class="form-group">
-          <input class="form-control" type="email" name="email" id="email" placeholder="E-mail" [(ngModel)]="email" />
+          <label class="form-label">E-mail cím</label>
+          <input class="form-control" type="email" name="email" id="email"  [(ngModel)]="email" />
         </div>
         <div class="form-group">
-          <input class="form-control" type="password" name="password" id="loginPassword" placeholder="Jelszó" [(ngModel)]="password" />
+          <label class="form-label">Jelszó</label>
+          <input class="form-control" type="password" name="password" id="loginPassword"  [(ngModel)]="password" />
         </div>
         <div class="form-group">
           <input type="submit" value="Bejelentkezés" class="btn btn-primary btn-block mb-4" (click)="onLogin()" />
         </div>
 
         <div class="form-group">
-          <button class="btn btn-outline-primary btn-block mb-4" routerLink="/register">Új fiókot szeretnék</button>
+          <button class="btn btn-outline-primary btn-block mb-4" routerLink="/register">Regisztráció</button>
         </div>
 
         <h1>{{ msg }}</h1>
