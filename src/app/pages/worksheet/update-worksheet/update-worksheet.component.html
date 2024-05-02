@@ -101,31 +101,31 @@
             </div>
           </div>
           <p><strong>Javításre beadott gép adatai!</strong></p>
-          <table class="table border-bottom border-gray-200 mt-3">
+          <table class="table border-bottom border-gray-200 mt-3" >
             <thead>
             <tr>
 
-              <th>Megnevezés</th>
-              <th>Típusszám</th>
-              <th>Cikkszám</th>
-              <th>Sorszám</th>
-              <th>Átvétel időpontja</th>
+              <th class="background">Megnevezés</th>
+              <th class="background">Típusszám</th>
+              <th class="background">Cikkszám</th>
+              <th class="background">Sorszám</th>
+              <th class="background">Átvétel időpontja</th>
 
             </tr>
             </thead>
-            <tbody>
+            <tbody class="background">
             <tr>
-              <td>{{ clickedTool?.name }}</td>
-              <td>{{ clickedTool?.typeNumber }}</td>
-              <td>{{ clickedTool?.itemNumber }}</td>
-              <td>{{ clickedTool?.serialNumber }}</td>
-              <td>{{ clickedTool?.dateOfReceiving }}</td>
+              <td class="background">{{ clickedTool?.name }}</td>
+              <td class="background">{{ clickedTool?.typeNumber }}</td>
+              <td class="background">{{ clickedTool?.itemNumber }}</td>
+              <td class="background">{{ clickedTool?.serialNumber }}</td>
+              <td class="background">{{ clickedTool?.dateOfReceiving }}</td>
             </tr>
 
             <tr>
             <tr>
-              <td><strong>Hibajelenség</strong></td>
-              <td>
+              <td class="background"><strong>Hibajelenség</strong></td>
+              <td class="background">
                 <input placeholder="Kereső" (keyup.enter)="getDefect($event)">
                 <ul>
                   <li *ngFor="let defect of defects" (click)="onDefectSelect(defect)">
@@ -135,7 +135,7 @@
                 </ul>
               </td>
 
-              <td>
+              <td class="background">
                 <ul>
 
                   <li *ngFor="let addedDefects of addedDefects; index as i " (click)="onDefectRemove(i)">
@@ -143,8 +143,8 @@
                   </li>
                 </ul>
               </td>
-              <td>Feltárt hiba:</td>
-              <td>
+              <td class="background">Feltárt hiba:</td>
+              <td class="background">
 
                 <ul>
                   <li *ngFor="let defect of selectedDefect; index as i " (click)="onDefectRemove(i)">
@@ -157,24 +157,24 @@
 
             </tr>
             <tr>
-              <td><strong>A tulajdonos hibaleírása</strong></td>
-              <td></td>
-              <td colspan="3" id="description">{{ description }}</td>
+              <td class="background"><strong>A tulajdonos hibaleírása</strong></td>
+              <td class="background"></td>
+              <td class="background" colspan="3" id="description">{{ description }}</td>
 
             </tr>
             <tr>
-              <td><strong>Megjegyzés
+              <td class="background"><strong>Megjegyzés
                 <button (click)="descriptionRemove($event)">Törlés</button>
               </strong></td>
 
-              <td class="data">
+              <td  class="background">
                 <input placeholder="Megjegyzés" type="text" (keyup.enter)="setDescription($event)"/>
               </td>
-              <td colspan="3" id="newDescription">{{ newDescription }}</td>
+              <td class="background" colspan="3" id="newDescription">{{ newDescription }}</td>
             </tr>
             <tr>
-              <td><strong>A gép státusza: </strong></td>
-              <td>
+              <td class="background"><strong>A gép státusza: </strong></td>
+              <td class="background">
                 <select (change)="onStatusChange(clickedTool, $event)">
                   <option>{{ clickedTool?.status }}</option>
                   <option value="Folyamatban">Folyamatban</option>
@@ -223,7 +223,7 @@
             </ul>
           </tr>
 
-          <table>
+          <table class="data">
             <tr>
 
               <th class="spare">Megnevezés</th>

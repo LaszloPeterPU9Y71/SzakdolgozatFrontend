@@ -13,15 +13,15 @@
           <form method="post" role="form" [formGroup]="Customerform">
             <div class="mb-3">
               <label class="form-label" for="name">Teljes név</label>
-              <input class="form-control" id="name" name="name" placeholder="Teljes nevét írja ide!" formControlName="name" type="text" />
+              <input class="form-control" id="name" name="name"  formControlName="name" type="text" />
             </div>
             <div class="mb-3">
               <label class="form-label" for="telnum">Telefonszám</label>
-              <input class="form-control" id="telnum" name="telnum" formControlName="telNum" placeholder="Telefonszámát írja ide" type="number" />
+              <input class="form-control" id="telnum" name="telnum" formControlName="telNum"  type="number" />
             </div>
             <div class="mb-3">
               <label class="form-label" for="email">E-mail cím</label>
-              <input class="form-control" id="email" name="email" formControlName="email" placeholder="E-mail címét írja ide" type="email" />
+              <input class="form-control" id="email" name="email" formControlName="email"  type="email" />
             </div>
             <div class="mb-3">
               <label class="form-label">Beosztás</label>
@@ -34,7 +34,7 @@
               </select>
             </div>
             <div class="autocomplete mb-3">
-              <input class="form-control" placeholder="A cégét itt tudja keresni" (keyup.enter)="findCompany($event)">
+              <input class="form-control" placeholder="A cégnevét itt tudja keresni" (keyup.enter)="findCompany($event)">
               <ul>
                 <li *ngFor="let company of companies" (click)="onCompanySelect(company)">
                   {{company?.companyName}} {{company?.postalCode}} {{company?.town}} {{company?.street}} {{company?.taxNumber}}

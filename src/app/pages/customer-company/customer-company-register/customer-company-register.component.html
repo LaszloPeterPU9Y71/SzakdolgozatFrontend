@@ -10,27 +10,27 @@
     <form method="post" role="form" [formGroup]="Companyform">
       <div class="form-group">
         <label for="companyName">Cégnév</label>
-        <input class="form-control" id="companyName" name="companyName" placeholder="Cégnév!" formControlName="companyName" type="text">
+        <input class="form-control" id="companyName" name="companyName" placeholder="Cégnév!"  type="text">
       </div>
       <div class="form-group">
         <label for="postalCode">Telefonszám</label>
-        <input class="form-control" id="postalCode" name="postalCode" formControlName="postalCode" placeholder="Irányítószám" type="number">
+        <input class="form-control" id="postalCode" name="postalCode" formControlName="postalCode"  type="number">
       </div>
       <div class="form-group">
         <label for="town">Telefonszám</label>
-        <input class="form-control" id="town" name="town" formControlName="town" placeholder="Településnév" type="text">
+        <input class="form-control" id="town" name="town" formControlName="town"  type="text">
       </div>
       <div class="form-group">
         <label for="street">Utca és házszám</label>
-        <input class="form-control" id="street" name="street" formControlName="street" placeholder="Utca és házszám" type="text">
+        <input class="form-control" id="street" name="street" formControlName="street"  type="text">
       </div>
       <div class="form-group">
         <label for="taxNumber">Adószám</label>
-        <input class="form-control" id="taxNumber" name="taxNumber" formControlName="taxNumber" placeholder="Adószám!" type="text">
+        <input class="form-control" id="taxNumber" name="taxNumber" formControlName="taxNumber"  type="text">
       </div>
       <div class="form-group">
         <label for="accountNumber">Számlaszám</label>
-        <input class="form-control" id="accountNumber" name="accountNumber" formControlName="accountNumber" placeholder="Számlaszám!" type="text">
+        <input class="form-control" id="accountNumber" name="accountNumber" formControlName="accountNumber"  type="text">
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="button" (click)="onSaveCustomer()">Regisztrál</button>
