@@ -82,8 +82,8 @@
           <td (click)="selectOnClick(machine.id)">{{ machine.typeNumber }}</td>
           <td (click)="selectOnClick(machine.id)">{{ machine.itemNumber }}</td>
           <td (click)="selectOnClick(machine.id)">{{ machine.serialNumber }}</td>
-          <td class="status" (click)="selectOnClick(machine.id)">{{ machine.dateOfReceiving }}</td>
-          <td class="status">
+          <td class="status"  (click)="selectOnClick(machine.id)">{{ machine.dateOfReceiving }}</td>
+          <td class="status" >
             <select class="form-control" (change)="onStatusChange(machine, $event)">
               <option value="{{ machine.status }}" selected>{{ machine.status }}</option>
               <option value="Folyamatban">Folyamatban</option>
