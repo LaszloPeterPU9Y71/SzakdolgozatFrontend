@@ -20,12 +20,9 @@ export class UserLoginComponent {
 
   onLogin() {
     this.loginService.login(this.email, this.password).subscribe((res) => {
-      console.log("got response")
       localStorage.setItem('email', this.email);
       localStorage.setItem('password', this.password);
-      console.log("navigate")
       this.router.navigate(['/home/tools'])
-      console.log("navigate done")
     });
 
   }

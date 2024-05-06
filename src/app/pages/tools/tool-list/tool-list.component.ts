@@ -29,7 +29,6 @@ export class ToolListComponent implements  OnInit {
   pageSize: number = 20;
   totalPages: number = 0;
   loggedInUser: UserDto | undefined
-  timeOut: number = 1000;
 
 
 
@@ -79,11 +78,9 @@ export class ToolListComponent implements  OnInit {
 
 
   onSearchSubmitName(): void {
-    setTimeout(() => {
     this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormName.value.searchValue ?? '';
     this.fetchData();
-    }, this.timeOut);
   }
 
   fetchDataTypeNumber(): void {
@@ -108,11 +105,9 @@ export class ToolListComponent implements  OnInit {
 
 
   onSearchSubmitTypeNumber(): void {
-    setTimeout(() => {
     this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormTypeNumber.value.searchValue ?? '';
     this.fetchDataTypeNumber();
-    }, this.timeOut);
   }
 
   fetchDataItemNumber(): void {
@@ -135,11 +130,9 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitItemNumber(): void {
-    setTimeout(() => {
     this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormItemNumber.value.searchValue ?? '';
     this.fetchDataItemNumber();
-    }, this.timeOut);
   }
 
   fetchDataIdentifier(): void {
@@ -162,11 +155,9 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitIdentifier(): void {
-    setTimeout(() => {
-      this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
-      this.searchValue = this.searchFormIdentifier.value.searchValue ?? '';
-      this.fetchDataIdentifier();
-    }, this.timeOut);
+    this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
+    this.searchValue = this.searchFormIdentifier.value.searchValue ?? '';
+    this.fetchDataIdentifier();
   }
 
   fetchDataSerialNumber(): void {
@@ -198,11 +189,9 @@ export class ToolListComponent implements  OnInit {
   }
 
   onSearchSubmitSerialNumber(): void {
-    setTimeout(() => {
     this.totalPages = Math.ceil(this.searchList.length / this.pageSize)
     this.searchValue = this.searchFormSerialNumber.value.searchValue ?? '';
     this.fetchDataSerialNumber();
-    }, this.timeOut);
   }
 
   onStatusChange(machine: ToolDto, $event: Event) {
