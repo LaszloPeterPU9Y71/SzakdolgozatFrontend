@@ -1,5 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
 
 
-html, body { height: 100%; }
+html, body {
+  background-image: url('https://media.istockphoto.com/id/487125438/photo/hand-tools.jpg?s=612x612&w=0&k=20&c=29BDKlnOJWx6O1WhW3vArbH_TU0-fj7XIc73y0MdKm0=');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
